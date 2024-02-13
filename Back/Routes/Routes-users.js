@@ -1,9 +1,10 @@
 const { Router } = require('express');
-const { getUsers } = require('./controllers/controllers-user');
+const { getUsers, postUsers } = require('./controllers/controllers-user');
 const router= Router();
 
 // Aca se agregan todos los request (PUT / GET /DELETE...)
-router.get('/', getUsers); // ej: ruta get = Para obtener todos los usuarios registrados.
+router.get('/', getUsers); // Obtiene todos los usuarios registrados.
+router.post('/post', postUsers) // Creamos un nuevo usuario
 
 
 module.exports = router;

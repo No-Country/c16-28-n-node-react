@@ -2,9 +2,9 @@
   "name": "back",
   "version": "1.0.0",
   "description": "ServiApp - Not country",
-  "main": "index.js",
+  "main": "Server.js",
   "scripts": {
-    "start": "node ./index.js"
+    "start": "node ./Server.js"
   },
   "author": "c16-28-n-node-react",
   "license": "ISC",

@@ -3,7 +3,7 @@ const routesUsers = require("./Routes-users")
 
 
 // Aca va el indice de las rutas :)
-// Vamos a necesitar unas 5 o 6 dependiendo del diagrama de tablas para la bd
+// Vamos a necesitar unas 7 dependiendo del diagrama de tablas para la bd
 
 const router = Router();
 

@@ -3,8 +3,10 @@ const port = process.env.PORT || 3001;
 const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
 const routes = require('./Routes/index.js');
+const { conn } = require('./Database/database.js');
 const express = require('express');
 const server = express();
+
 
 server.name = 'API';
 
@@ -34,8 +36,14 @@ server.use((err, req, res, next) => {
 
 
 // Server On:
-console.log('Iniciando la aplicación');
+    console.log('Iniciando la aplicación');
+conn.sync()
+  .then(() => {
     server.listen(port, async () => {
-        console.log('Servidor ON');
-        // Aca vamos a tener que agregar la base de datos cuando la tengamos y sincronizarla para que responda los request de las routes 
+      console.log('Servidor ON');
     });
+    console.log('Base de datos sincronizada');
+  })
+  .catch((error) => {
+    console.error('Error sincronizando la base de datos:', error);
+  });

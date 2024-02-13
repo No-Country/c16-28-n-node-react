@@ -1,15 +1,39 @@
+const { User }= require ("../../Database/database")
 
-//Aca van a ir los controller de la ruta Users , (Cada routa tiene su propio controlador)
+//Aca van a ir los controller de la ruta Users , (Cada ruta tiene su propio controlador)
 
-async function getUsers(req, res) {
-    console.log("No tenemos base :c"); //Cuando tengamos base vamos a pedirle a la base la data de los usuarios
-    return;
+// funcion para crear un usuario:
+async function postUsers(req, res) {
+
+    try {
+        const { id, name, email, password } = req.body;
+        const user = await User.create({
+          id,
+          name,
+          email,
+          password,
+          isActive: true, 
+        });
+        res.status(201).json(user);
+      } catch (error) {
+        console.error(error);
+        res.status(500).json({ "error": error  });
+      }
 }
- //Con postman o thunder pueden probar la  ruta : http://localhost:3001/users >>> Les va a salir "no tenemos base" en la consola
- 
 
-//Aca van a seguir los /POST y demas funciones ...
+//funcion para obtener usuarios: 
+async function getUsers(req, res) {
+    try {
+        const allUsers = await User.findAll();
+        res.status(200).json(allUsers);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ "error": error  });
+    }
+}
+
 
 module.exports = {
-    getUsers };
+    getUsers,
+    postUsers };
 
