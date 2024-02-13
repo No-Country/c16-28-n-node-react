@@ -9,17 +9,13 @@ App para encontrar servicios .<br>
 | `Project Manager` | Lerkor         | [![GitHub]](https://github.com) [![linkedin]](https://www.linkedin.com)                                  |
 | `Testing`         | Glory | [![GitHub]](https://github.com) [![linkedin]](https://www.linkedin.com/)                                    |
 | `UX/UI Designer`  | Caro     | [![GitHub]](https://github.com) [![linkedin]](https://www.linkedin.com)           |
-
 | `DevOp`  | Antonio     | [![GitHub]](https://github.com) [![linkedin]](https://www.linkedin.com)           |
-
 | `Front End`       | Humberto | [![GitHub]](https://github.com/juanmderosa) [![linkedin]](https://www.linkedin.com/)                               |
 | `Front End`       | Javier    | [![GitHub]](https://github.com/jramire5) [![linkedin]](https://www.linkedin.com)                                |
 | `Front End`       | Lerkor    | [![GitHub]](https://github.com/jramire5) [![linkedin]](https://www.linkedin.com)                                |
 | `Front End`       | Enair   | [![GitHub]](https://github.com/jramire5) [![linkedin]](https://www.linkedin.com)                                |
 | `Front End`       | Arianny   | [![GitHub]](https://github.com/jramire5) [![linkedin]](https://www.linkedin.com)                                |
 | `Front End`       | Moises    | [![GitHub]](https://github.com/jramire5) [![linkedin]](https://www.linkedin.com)                                |
-
-
 | `Back End`        | Bárbara         | [![GitHub]](https://github.com) [![linkedin]](https://www.linkedin.com)                       |
 | `Back End`        | Neil         | [![GitHub]](https://github.com) [![linkedin]](https://www.linkedin.com)                       |
 | `Back End`        | Gustavo    | [![GitHub]](https://github.com) [![linkedin]](https://www.linkedin.com)                       |
