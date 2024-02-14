@@ -33,39 +33,32 @@ let entries = Object.entries(sequelize.models);
 let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].slice(1), entry[1]]);
 sequelize.models = Object.fromEntries(capsEntries);
 
-const { user , solicitedService, review , provider, service, rubro, imgService} = sequelize.models;
+const { User , Solicited, Review , Provider, Service, Rubro, ImgService} = sequelize.models;
 
 // Modelo User
-user.hasMany(solicitedService);  // usuario puede realizar varios pedidos
-solicitedService.belongsTo(user); 
-user.hasMany(review);
+User.hasMany(Solicited);  // usuario puede realizar varios pedidos
+Solicited.belongsTo(User); 
+User.hasMany(Review);
 
-  // Modelo SolicitedService
-solicitedService.hasMany(review);
-review.belongsTo(solicitedService);
-solicitedService.hasMany(review);
-solicitedService.hasOne(service, {
-    foreignKey: {
-        name: 'solicitedServiceId',
-        allowNull: false,
-        unique: true, // Esta restricción asegura que cada solicitud de servicio tenga solo un servicio asociado
-    },
-    });
-    service.belongsTo(solicitedService);
+// Modelo Solicited
+Solicited.hasMany(Review);
+Review.belongsTo(Solicited);
+Solicited.hasMany(Review);
+Service.belongsTo(Solicited);
 
 // Modelo Provider
-provider.hasMany(service);
-service.belongsTo(provider);
+Provider.hasMany(Service);
+Service.belongsTo(Provider);
 
 // Modelo Service
-service.belongsTo(rubro);
-service.hasMany(imgService);
+Service.belongsTo(Rubro);
+Service.hasMany(ImgService);
 
 // Modelo Rubro
-rubro.hasMany(service);
+Rubro.hasMany(Service);
 
 // Modelo ImgService
-imgService.belongsTo(service);
+ImgService.belongsTo(Service);
 
 module.exports = {
   ...sequelize.models,
