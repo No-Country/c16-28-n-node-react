@@ -2,7 +2,6 @@ require('dotenv').config();
 const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
-const SolicitedService = require('./Models/SolicitedService');
 const { POSTGRES_URL } = process.env; // Pedir .Env , sino no funca !!
 // import pg from "pg";
 
@@ -33,39 +32,39 @@ let entries = Object.entries(sequelize.models);
 let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].slice(1), entry[1]]);
 sequelize.models = Object.fromEntries(capsEntries);
 
-const { user , solicitedService, review , provider, service, rubro, imgService} = sequelize.models;
+const { user , solicited, review , provider, service, rubro, imgService} = sequelize.models;
 
-// Modelo User
-user.hasMany(solicitedService);  // usuario puede realizar varios pedidos
-solicitedService.belongsTo(user); 
-user.hasMany(review);
+// // Modelo User
+// user.hasMany(solicited);  // usuario puede realizar varios pedidos
+// solicited.belongsTo(user); 
+// user.hasMany(review);
 
-  // Modelo SolicitedService
-solicitedService.hasMany(review);
-review.belongsTo(solicitedService);
-solicitedService.hasMany(review);
-solicitedService.hasOne(service, {
-    foreignKey: {
-        name: 'solicitedServiceId',
-        allowNull: false,
-        unique: true, // Esta restricción asegura que cada solicitud de servicio tenga solo un servicio asociado
-    },
-    });
-    service.belongsTo(solicitedService);
+//   // Modelo SolicitedService
+// solicited.hasMany(review);
+// review.belongsTo(solicited);
+// solicited.hasMany(review);
+// solicited.hasOne(service, {
+//     foreignKey: {
+//         name: 'solicitedId',
+//         allowNull: false,
+//         unique: true, // Esta restricción asegura que cada solicitud de servicio tenga solo un servicio asociado
+//     },
+//     });
+// service.belongsTo(solicited);
 
-// Modelo Provider
-provider.hasMany(service);
-service.belongsTo(provider);
+// // Modelo Provider
+// provider.hasMany(service);
+// service.belongsTo(provider);
 
-// Modelo Service
-service.belongsTo(rubro);
-service.hasMany(imgService);
+// // Modelo Service
+// service.belongsTo(rubro);
+// service.hasMany(imgService);
 
-// Modelo Rubro
-rubro.hasMany(service);
+// // Modelo Rubro
+// rubro.hasMany(service);
 
-// Modelo ImgService
-imgService.belongsTo(service);
+// // Modelo ImgService
+// imgService.belongsTo(service);
 
 module.exports = {
   ...sequelize.models,
