@@ -15,6 +15,10 @@ sequelize.define('review', {
         type: DataTypes.STRING,
         allowNull: false,
     },
+    id_solicited:{
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
     id_prov:{
         type: DataTypes.STRING,
         allowNull: false,

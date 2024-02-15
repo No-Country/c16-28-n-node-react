@@ -7,9 +7,10 @@ module.exports = (sequelize) => {
   // defino el modelo : Servicio ya solicitado
   const Solicited = sequelize.define('solicited', {
     id_solicited: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
+      autoIncrement: true,
     },
     id_user: {
       type: DataTypes.STRING,

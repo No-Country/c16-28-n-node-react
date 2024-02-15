@@ -7,9 +7,10 @@ module.exports = (sequelize) => {
   // defino el modelo : usuarios
   const User = sequelize.define('user', {
     id_user: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
+      autoIncrement: true,
     },
     name: {
       type: DataTypes.STRING,

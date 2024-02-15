@@ -2,7 +2,6 @@ require('dotenv').config();
 const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
-const SolicitedService = require('./Models/SolicitedService');
 const { POSTGRES_URL } = process.env; // Pedir .Env , sino no funca !!
 // import pg from "pg";
 
@@ -36,14 +35,15 @@ sequelize.models = Object.fromEntries(capsEntries);
 const { User , Solicited, Review , Provider, Service, Rubro, ImgService} = sequelize.models;
 
 // Modelo User
-User.hasMany(Solicited);  // usuario puede realizar varios pedidos
-Solicited.belongsTo(User); 
-User.hasMany(Review);
+User.hasMany(Review, { foreignKey: 'id_user' });
+Review.belongsTo(User, { foreignKey: 'id_user' });
+User.hasMany(Solicited, { foreignKey: 'id_user' });  // usuario puede realizar varios pedidos
+Solicited.belongsTo(User, { foreignKey: 'id_user' }); 
+
 
 // Modelo Solicited
-Solicited.hasMany(Review);
-Review.belongsTo(Solicited);
-Solicited.hasMany(Review);
+Solicited.hasMany(Review, { foreignKey: 'id_solicited' });
+Review.belongsTo(Solicited, { foreignKey: 'id_solicited' });
 Service.belongsTo(Solicited);
 
 // Modelo Provider
