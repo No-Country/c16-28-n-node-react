@@ -7,7 +7,7 @@ module.exports = (sequelize) => {
   // defino el modelo
 sequelize.define('review', {
     id_review: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
         allowNull: false,
         primaryKey: true,
     },
