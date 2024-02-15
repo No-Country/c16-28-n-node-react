@@ -37,25 +37,24 @@ const { User , Solicited, Review , Provider, Service, Rubro, ImgService} = seque
 // Modelo User
 User.hasMany(Review, { foreignKey: 'id_user' });
 Review.belongsTo(User, { foreignKey: 'id_user' });
-User.hasMany(Solicited, { foreignKey: 'id_user' });  // usuario puede realizar varios pedidos
+User.hasMany(Solicited, { foreignKey: 'id_user' });  
 Solicited.belongsTo(User, { foreignKey: 'id_user' }); 
 
 
 // Modelo Solicited
 Solicited.hasMany(Review, { foreignKey: 'id_solicited' });
 Review.belongsTo(Solicited, { foreignKey: 'id_solicited' });
-Service.belongsTo(Solicited);
 
 // Modelo Provider
-Provider.hasMany(Service);
-Service.belongsTo(Provider);
+Provider.hasMany(Service, { foreignKey: 'id_service' });
+Service.belongsTo(Provider, { foreignKey: 'id_service' });
 
 // Modelo Service
-Service.belongsTo(Rubro);
-Service.hasMany(ImgService);
+Service.hasMany(ImgService)
 
 // Modelo Rubro
-Rubro.hasMany(Service);
+Rubro.hasMany(Service ,{ foreignKey: 'id_rubro' });
+Service.belongsTo(Rubro, { foreignKey: 'id_rubro' })
 
 // Modelo ImgService
 ImgService.belongsTo(Service);

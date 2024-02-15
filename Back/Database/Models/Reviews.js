@@ -5,41 +5,43 @@ const { DataTypes } = require('sequelize');
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
   // defino el modelo
-sequelize.define('review', {
+  sequelize.define('review', {
     id_review: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        primaryKey: true,
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true,
     },
     id_user: {
-        type: DataTypes.STRING,
-        allowNull: false,
+      type: DataTypes.INTEGER,
+      allowNull: false,
     },
-    id_solicited:{
-        type: DataTypes.STRING,
-        allowNull: false,
+    id_solicited: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
     },
-    id_prov:{
-        type: DataTypes.STRING,
-        allowNull: false,
+    id_prov: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
     },
-    id_service:{
-        type: DataTypes.STRING,
-        allowNull: false,
+    id_service: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
     },
-    description:{
-        type: DataTypes.STRING,
-      allowNull: true, // puede no comentar nada 
+    description: {
+      type: DataTypes.STRING,
+      allowNull: true,
     },
     score: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        validate: {
-            min: 1,
-            max: 5,
-        },
-        },
-    });
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        min: 1,
+        max: 5,
+      },
+    },
+  }, { timestamps: false });
 };
+
 
 

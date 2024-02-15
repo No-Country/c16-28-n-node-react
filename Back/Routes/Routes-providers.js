@@ -3,7 +3,7 @@ const { getProviders, postProviders, putProvider} = require("./controllers/contr
 const router = Router();
 
 router.get('/', getProviders);
-router.post('/', postProviders);
+router.post('/post', postProviders);
 router.put('/:id', putProvider);
 
 module.exports = router
