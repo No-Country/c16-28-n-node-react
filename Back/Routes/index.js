@@ -1,5 +1,6 @@
 const { Router } = require('express');
-const routesUsers = require("./Routes-users"); 
+const routesUsers = require("./Routes-users");
+const routesProviders = require("./Routes-providers");
 const routesReviews = require("./Routes-reviews")
 
 // Aca va el indice de las rutas :)
@@ -7,9 +8,14 @@ const routesReviews = require("./Routes-reviews")
 
 const router = Router();
 
-// Configurar los routers
-router.use('/users', routesUsers); // config de las rutas usuarios
-router.use('/reviews', routesReviews ) // Config de rutas reviews
+// Configurar los routes de users:
+router.use('/users', routesUsers);
+
+// confg las rutas de reviews:
+router.use('/reviews', routesReviews ) 
+
+// Configurar los routers de los proveedores
+router.use('/providers', routesProviders);
 
 
 module.exports = router;
