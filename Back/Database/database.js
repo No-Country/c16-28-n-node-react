@@ -2,7 +2,6 @@ require('dotenv').config();
 const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
-const SolicitedService = require('./Models/SolicitedService');
 const { POSTGRES_URL } = process.env; // Pedir .Env , sino no funca !!
 // import pg from "pg";
 
