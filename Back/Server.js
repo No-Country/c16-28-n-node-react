@@ -37,7 +37,7 @@ server.use((err, req, res, next) => {
 
 // Server On:
     console.log('Iniciando la aplicación');
-conn.sync()
+conn.sync({ force: false})
   .then(() => {
     server.listen(port, async () => {
       console.log('Servidor ON in http://localhost:3001/');

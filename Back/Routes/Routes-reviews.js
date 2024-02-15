@@ -4,7 +4,7 @@ const { getReviews, postReviews, putReviews, getReviewsByID } = require('./contr
 const router= Router();
 
 router.get('/', getReviews); // Obtiene todos las reviews
-router.get('/:id_prove', getReviewsByID); // Obtiene las reviews de un proveedor por su id
+router.get('/:id_prov', getReviewsByID); // Obtiene las reviews de un proveedor por su id
 router.post('/post', postReviews) // Creamos una nueva reseña
 router.put('/put:id_review', putReviews) // actualizamos la review 
 

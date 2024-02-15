@@ -29,7 +29,7 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     id_service:{
-        type:DataTypes.STRING,
+        type:DataTypes.INTEGER,
         allowNull: false,
     },
     contact:{

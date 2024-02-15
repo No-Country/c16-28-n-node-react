@@ -13,15 +13,15 @@ module.exports = (sequelize) => {
       autoIncrement: true,
     },
     id_user: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
     id_prov:{
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
     id_service:{
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
     description: {

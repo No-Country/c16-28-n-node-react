@@ -19,7 +19,7 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     id_rubro: {
-    type: DataTypes.STRING,
+    type: DataTypes.INTEGER,
       allowNull: false,
     }
   },{timestamps:false});

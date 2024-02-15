@@ -13,10 +13,9 @@ async function getProviders(req, res) {
 
 async function postProviders(req, res) {
   try {
-    const { name, email, password, address, id_service, contact, id_prov } = req.body;
+    const { name, email, password, address, id_service, contact } = req.body;
 
     const provider = await Provider.create({
-      id_prov,
       name,
       email,
       password,
@@ -38,19 +37,23 @@ async function postProviders(req, res) {
 async function putProvider(req, res) {
   try {
     const { id } = req.params;
+    const { address, password, id_service, isActive,contact } = req.body;
 
-    const { address, password, id_service, contact } = req.body;
-
-    const updateProvider = await Provider.update({
+    const provider = await Provider.findByPk(id);
+    if (!provider) {
+      return res.status(404).json({ "message": "Provider not found" });
+  }
+      await Provider.update({
       address,
       password,
       id_service,
-      contact
+      contact,
+      isActive
     }, {
       where: { id_prov: id }
-    })
+    });
 
-    res.status(200).send({msj: "Actualizado correctamente"})
+    res.status(200).json(provider);
 
   } catch (error) {
     console.log("Error", error);

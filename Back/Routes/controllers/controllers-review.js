@@ -34,12 +34,12 @@ async function getReviews(req, res) {
 
 //funcion para traer todas las reseñas de un solo proveedor:
 const getReviewsByID = async (req, res) => {
-    const { id_prove } = req.params;
+    const { id_prov } = req.params;
 
     try {
         const reviews = await Review.findAll({
         where: {
-            id_prov: id_prove
+            id_prov: id_prov
         }
         });
 
