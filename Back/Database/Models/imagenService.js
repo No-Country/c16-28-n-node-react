@@ -23,7 +23,7 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     id_rubro: {
-      type: DataTypes.BOOLEAN,
+      type: DataTypes.STRING,
       allowNull: false,
     }
   },{timestamps:false});
