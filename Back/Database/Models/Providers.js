@@ -7,9 +7,10 @@ module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('provider', {
     id_prov: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
+      autoIncrement: true,
     },
     name: {
       type: DataTypes.STRING,

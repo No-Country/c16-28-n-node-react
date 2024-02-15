@@ -40,7 +40,7 @@ server.use((err, req, res, next) => {
 conn.sync()
   .then(() => {
     server.listen(port, async () => {
-      console.log('Servidor ON');
+      console.log('Servidor ON in http://localhost:3001/');
     });
     console.log('Base de datos sincronizada');
   })

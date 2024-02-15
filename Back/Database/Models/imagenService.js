@@ -5,9 +5,10 @@ module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('imgService', {
     id_img: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
+      autoIncrement: true,
     },
     url: {
       type: DataTypes.STRING,

@@ -1,6 +1,6 @@
 const { Router } = require('express');
-const routesUsers = require("./Routes-users")
-
+const routesUsers = require("./Routes-users"); 
+const routesReviews = require("./Routes-reviews")
 
 // Aca va el indice de las rutas :)
 // Vamos a necesitar unas 7 dependiendo del diagrama de tablas para la bd
@@ -8,7 +8,8 @@ const routesUsers = require("./Routes-users")
 const router = Router();
 
 // Configurar los routers
-router.use('/users', routesUsers); // Aca se van a configurar las rutas para manejar los usuarios
+router.use('/users', routesUsers); // config de las rutas usuarios
+router.use('/reviews', routesReviews ) // Config de rutas reviews
 
 
 module.exports = router;
