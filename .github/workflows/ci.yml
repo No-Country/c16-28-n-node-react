@@ -39,7 +39,7 @@ jobs:
             context: ./Back
             file: ./Back/Dockerfile
             push: true
-            tags: ${{ secrets.DOCKERHUB_USERNAME }}/serviapp-front:latest
+            tags: ${{ secrets.DOCKERHUB_USERNAME }}/serviapp-back:latest
 
         - name: Build and push Front
           uses: docker/build-push-action@v2
