@@ -36,7 +36,7 @@ jobs:
         - name: Build and push
           uses: docker/build-push-action@v2
           with:
-            context: ./
+            context: ./Back
             file: ./Back/Dockerfile
             push: true
             tags: ${{ secrets.DOCKERHUB_USERNAME }}/serviapp-back:latest
