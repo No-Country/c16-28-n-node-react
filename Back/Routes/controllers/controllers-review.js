@@ -5,7 +5,30 @@ const { Review }= require ("../../Database/database")
 // funcion para crear una review:
 async function postReviews(req, res) {
     try {
-        const {  id_user, id_prov, id_service, id_solicited, description, score } = req.body;
+        const { id_user, id_prov, id_service, id_solicited, description, score } = req.body;
+        
+        // Verificar que los campos requeridos no estén en blanco
+        if (!id_user) {
+            return res.status(400).json({ "error": "User ID is required" });
+        }
+        if (!id_prov) {
+            return res.status(400).json({ "error": "Provider ID is required" });
+        }
+        if (!id_service) {
+            return res.status(400).json({ "error": "Service ID is required" });
+        }
+        if (!id_solicited) {
+            return res.status(400).json({ "error": "Solicited ID is required" });
+        }
+        if (!score) {
+            return res.status(400).json({ "error": "Score is required" });
+        }
+
+        // Verificar la longitud de la descripción
+        if (description && description.length > 250) {
+            return res.status(400).json({ "error": "Description must be less than or equal to 250 characters" });
+        }
+
         const review = await Review.create({
             id_user,
             id_prov,
@@ -37,10 +60,15 @@ const getReviewsByID = async (req, res) => {
     const { id_prov } = req.params;
 
     try {
-        const reviews = await Review.findAll({
-        where: {
-            id_prov: id_prov
+        const prov = await Review.findByPk(id_prov);
+        if (!prov) {
+            return res.status(404).json({ "message": "Provider not found" });
         }
+
+        const reviews = await Review.findAll({
+            where: {
+                id_prov: id_prov
+            }
         });
 
         res.status(200).json(reviews);
@@ -60,6 +88,26 @@ async function putReviews(req, res) {
         if (!review) {
             return res.status(404).json({ "message": "Review not found" });
         }
+
+        // Verificar que los campos requeridos no estén en blanco
+        if (!id_user) {
+            return res.status(400).json({ "error": "User ID is required" });
+        }
+        if (!id_prov) {
+            return res.status(400).json({ "error": "Provider ID is required" });
+        }
+        if (!id_service) {
+            return res.status(400).json({ "error": "Service ID is required" });
+        }
+        if (!score) {
+            return res.status(400).json({ "error": "Score is required" });
+        }
+
+        // Verificar la longitud de la descripción
+        if (description && description.length > 250) {
+            return res.status(400).json({ "error": "Description must be less than or equal to 250 characters" });
+        }
+
         await review.update({
             id_user,
             id_prov,
@@ -74,7 +122,6 @@ async function putReviews(req, res) {
         res.status(500).json({ "error": error.message });
     }
 }
-
 
 
 module.exports = {
