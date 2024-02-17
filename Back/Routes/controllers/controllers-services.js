@@ -1,4 +1,4 @@
-const { Service }= require ("../../Database/database")
+const { Service , Rubro }= require ("../../Database/database")
 
 // Controllers de la ruta Services:
 
@@ -6,6 +6,11 @@ const { Service }= require ("../../Database/database")
 async function postServices(req, res) {
     try {
         const { name , description, id_rubro } = req.body;
+
+        const rubro = await Rubro.findByPk(id_rubro);
+        if (!rubro) {
+            return res.status(404).json({ "message": "Rubro not found" });
+        }
         const service = await Service.create({
             name,
             description,
@@ -103,5 +108,5 @@ module.exports = {
     putService,
     getServicesByID,
     deleteService
-    };
+};
 
