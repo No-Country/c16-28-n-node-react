@@ -3,10 +3,10 @@ const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
 const { POSTGRES_URL } = process.env; // Pedir .Env , sino no funca !!
-
+// import pg from "pg";
 
 //Inicio de Base de datos :
-const sequelize = new Sequelize(POSTGRES_URL, {
+const sequelize = new Sequelize( POSTGRES_URL, {
   // dialectModule: pg,
   logging: false,
   native: false,
@@ -32,36 +32,32 @@ let entries = Object.entries(sequelize.models);
 let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].slice(1), entry[1]]);
 sequelize.models = Object.fromEntries(capsEntries);
 
-const { User, Solicited, Review, Provider, Service, Rubro, ImgService } = sequelize.models;
+const { User , Solicited, Review , Provider, Service, Rubro, ImgService} = sequelize.models;
 
 // Modelo User
 User.hasMany(Review, { foreignKey: 'id_user' });
 Review.belongsTo(User, { foreignKey: 'id_user' });
-User.hasMany(Solicited, { foreignKey: 'id_user' });
-Solicited.belongsTo(User, { foreignKey: 'id_user' });
+User.hasMany(Solicited, { foreignKey: 'id_user' });  
+Solicited.belongsTo(User, { foreignKey: 'id_user' }); 
 
 
 // Modelo Solicited
 Solicited.hasMany(Review, { foreignKey: 'id_solicited' });
 Review.belongsTo(Solicited, { foreignKey: 'id_solicited' });
 
-//NO EXISTIA RELACION (NEIL)
-Solicited.hasMany(Provider, { foreignKey: 'id_prov' });
-Provider.belongsTo(Solicited, { foreignKey: 'id_solicited' });
-
 // Modelo Provider
 Provider.hasMany(Service, { foreignKey: 'id_service' });
 Service.belongsTo(Provider, { foreignKey: 'id_service' });
 
 // Modelo Service
-Service.hasMany(ImgService, { foreignKey: 'id_service' });
+Service.hasMany(ImgService)
 
 // Modelo Rubro
-Rubro.hasMany(Service, { foreignKey: 'id_rubro' });
+Rubro.hasMany(Service ,{ foreignKey: 'id_rubro' });
 Service.belongsTo(Rubro, { foreignKey: 'id_rubro' })
 
 // Modelo ImgService
-ImgService.belongsTo(Service, { foreignKey: 'id_service' });
+ImgService.belongsTo(Service);
 
 module.exports = {
   ...sequelize.models,

@@ -1,4 +1,4 @@
-const { Review, User, Provider, Service, Solicited} = require("../../Database/database");
+const { Review }= require ("../../Database/database")
 
 // Controllers de la ruta Reviews:
 
@@ -6,13 +6,6 @@ const { Review, User, Provider, Service, Solicited} = require("../../Database/da
 async function postReviews(req, res) {
     try {
         const {  id_user, id_prov, id_service, id_solicited, description, score } = req.body;
-        const user = await User.findByPk(id_user);
-        const provider = await Provider.findByPk(id_prov);
-        const service = await Service.findByPk(id_service);
-        const solicited = await Solicited.findByPk(id_solicited);
-        if (!user || !provider || !service || !solicited) {
-            return res.status(404).json({ "message": "User, provider, service or solicited not found" });
-        }
         const review = await Review.create({
             id_user,
             id_prov,

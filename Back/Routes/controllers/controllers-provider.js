@@ -1,4 +1,4 @@
-const { Provider , Service  } = require("../../Database/database");
+const { Provider } = require("../../Database/database");
 
 
 async function getProviders(req, res) {
@@ -15,10 +15,6 @@ async function postProviders(req, res) {
   try {
     const { name, email, password, address, id_service, contact } = req.body;
 
-    const service = await Service.findByPk(id_service);
-    if (!service) {
-      return res.status(404).json({ "message": "Service not found" });
-  }
     const provider = await Provider.create({
       name,
       email,
