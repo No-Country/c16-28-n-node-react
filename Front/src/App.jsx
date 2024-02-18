@@ -1,11 +1,18 @@
 import './App.css'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <div className='bg-black text-white'>Home</div>,
+  }
+])
 function App() {
 
   return (
-    <h1 className="text-3xl font-bold underline">
-      Hello ServiApp
-    </h1>
+    <>
+    <RouterProvider  router={router} />
+    </>
   )
 }
 

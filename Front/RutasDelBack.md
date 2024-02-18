@@ -17,10 +17,13 @@ URL + /reviews/      ===> Obtiene todas las reviews
 Rutas users:                                             (requerimientos de cada ruta)
 
 URL + /users/        =>>> Obtiene todos los usuarios 
-    + /users/post          =>>> Crea un usuario (req: name ,email, password)
-    + /users/put:id_user        =>> Actualiza email, password, name e isActive (req: id_user(params), name , email , password, isActive ) 
+    + /users/post          =>>> Crea un usuario (req: name ,email, password y lastName)
+    + /users/put:id_user        =>> Actualiza email, password, name , contact , lastname, isActive (req: id_user(params), y el dato a actualizar : name , email , password, lastname, contact, isActive ) 
 
-    * Recordatorio: isActive estará en true , o sea que el usuario puede entrar , si esta baneado tiene que cambiar a false  y no podra ingresar.
+    * Recordatorio: 
+        -isActive estará en true , o sea que el usuario puede entrar , si esta baneado tiene que cambiar a false  y no podra ingresar.
+        -Contact se llenara posteriormente, por eso no se pide al crear un user 
+
 
     (Los Usuarios NO se eliminan)
 

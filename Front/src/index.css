@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  html,
+  body {
+    @apply bg-white;
+  }
+
+  h1 {
+    @apply text-5xl text-center font-extrabold leading-tight tracking-tight mb-4 pt-8 px-6 sm:text-3xl md:text-5xl;
+  }
+}
+ 
