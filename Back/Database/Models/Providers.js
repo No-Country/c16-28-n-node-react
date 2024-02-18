@@ -16,6 +16,10 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    lastName: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     email:{
         type: DataTypes.STRING,
         allowNull: false,
@@ -24,17 +28,25 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
     },
+    img:{
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    otherCertif:{
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
     address:{
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     id_service:{
         type:DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: true,
     },
     contact:{
         type:DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
     },
     isActive: {
       type: DataTypes.BOOLEAN,

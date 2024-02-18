@@ -19,7 +19,7 @@ module.exports = (sequelize) => {
       allowNull: true, //puede no tener descripcion
     },
     id_service:{
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
     id_rubro: {

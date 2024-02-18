@@ -40,25 +40,21 @@ Review.belongsTo(User, { foreignKey: 'id_user' });
 User.hasMany(Solicited, { foreignKey: 'id_user' });
 Solicited.belongsTo(User, { foreignKey: 'id_user' });
 
-
 // Modelo Solicited
 Solicited.hasMany(Review, { foreignKey: 'id_solicited' });
 Review.belongsTo(Solicited, { foreignKey: 'id_solicited' });
-
-//NO EXISTIA RELACION (NEIL)
-Solicited.hasMany(Provider, { foreignKey: 'id_prov' });
-Provider.belongsTo(Solicited, { foreignKey: 'id_solicited' });
+Solicited.belongsTo(Service, { foreignKey: 'id_service' });
 
 // Modelo Provider
-Provider.hasMany(Service, { foreignKey: 'id_service' });
-Service.belongsTo(Provider, { foreignKey: 'id_service' });
+Provider.hasMany(Service, { foreignKey: 'id_prov', allowNull: true });
+Service.belongsTo(Provider, { foreignKey: 'id_prov', allowNull: true });
 
 // Modelo Service
 Service.hasMany(ImgService, { foreignKey: 'id_service' });
 
 // Modelo Rubro
 Rubro.hasMany(Service, { foreignKey: 'id_rubro' });
-Service.belongsTo(Rubro, { foreignKey: 'id_rubro' })
+Service.belongsTo(Rubro, { foreignKey: 'id_rubro' });
 
 // Modelo ImgService
 ImgService.belongsTo(Service, { foreignKey: 'id_service' });
