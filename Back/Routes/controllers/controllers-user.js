@@ -1,4 +1,4 @@
-const { User }= require ("../../Database/database")
+const { User , Provider }= require ("../../Database/database")
 
 //Aca van a ir los controller de la ruta Users , (Cada ruta tiene su propio controlador)
 
@@ -47,7 +47,8 @@ async function postUsers(req, res) {
 
       // Verificar si el email ya existe
       const existingUser = await User.findOne({ where: { email } });
-      if (existingUser) {
+      const existingProv = await Provider.findOne({ where: { email } });
+      if (existingUser || existingProv) {
           return res.status(400).json({ "error": "Email already exists" });
       }
 
@@ -111,10 +112,11 @@ async function putUsers(req, res) {
 
     // Verificar si el email ya existe
     if (email && email !== user.email) {
-        const existingUser = await User.findOne({ where: { email } });
-        if (existingUser) {
-            return res.status(400).json({ "error": "Email already exists" });
-        }
+      const existingUser = await User.findOne({ where: { email } });
+      const existingProv = await Provider.findOne({ where: { email } });
+      if (existingUser || existingProv) {
+          return res.status(400).json({ "error": "Email already exists" });
+      }
     }
 
     // Actualizar el usuario con los nuevos valores

@@ -52,3 +52,19 @@ Rutas Providers:                              (requerimientos de cada ruta)
 URL + /providers/ === >>> Obtiene todos los proveedores
      /providers/post ==>>>> Crea un proovedor (req: name , email , password, address , id_service , contact)
      /providers/:id_prov ==>>> Actualiza un proovedor (req: id_prov(params), adderess,password, id_service , contact, isActive)
+
+Rutas SolicitedService:                             (requerimientos de cada ruta)
+
+URL + /solicited/ ====> Obtiene todas las solicitudes
+    + /solicited/post ===>> Crear solicitud (req: id_user , id_prov , id_service, description)
+    +/solicited/by/:parameter/:value   ===> Obtiene servicios solicitados por parámetro y valor específicos  (req: parameter (params),value(params))
+    +/solicited/:id ====> actualizar una solicitud por ID (req: id_user , id_prov , id_service ,description y id_solicited(params)  )
+    +/solicited/:id (delete) ==> Elimina una solicitud por ID (req: id_solicited(params) )
+
+Rutas para cargar imagenes: 
+
+URL + /img/  ===> Obtiene todas las imagenes
+    + /img/post ===> "Crea"(sube) una imagen  (req: url , description, id_service, id_rubro)
+    + /img/:id  ==>> Actualiza una imagen (req :id (params), url , description, id_service , id_rubro)
+    + /img/:id  ===>> Obtiene una imagen por id del servicio (req :id (params))
+    + /img/:id ===> Elimina la imagen (req :id (params))

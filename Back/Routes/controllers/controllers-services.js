@@ -61,7 +61,7 @@ const getServicesByID = async (req, res) => {
 async function putService(req, res) {
     try {
         const { id_service } = req.params;
-        const { name, description, id_rubro } = req.body;
+        const { name, description, id_rubro , id_prov} = req.body;
 
         const service = await Service.findByPk(id_service);
         if (!service) {
@@ -70,7 +70,8 @@ async function putService(req, res) {
         await service.update({
             name,
             description,
-            id_rubro
+            id_rubro,
+            id_prov
         }, {
             where: {
                 id_service: id_service
