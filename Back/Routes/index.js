@@ -4,6 +4,8 @@ const routesProviders = require("./Routes-providers");
 const routesReviews = require("./Routes-reviews");
 const routesServices = require("./Routes-services");
 const routesRubros = require("./Routes-rubros");
+const routesImg = require("./Routes-img");
+const routesSolicited = require("./Routes-solicited");
 
 // Aca va el indice de las rutas :)
 // Vamos a necesitar unas 7 dependiendo del diagrama de tablas para la bd
@@ -14,7 +16,7 @@ const router = Router();
 router.use('/users', routesUsers);
 
 // confg las rutas de reviews:
-router.use('/reviews', routesReviews ) 
+router.use('/reviews', routesReviews)
 
 // Configurar los routers de los proveedores
 router.use('/providers', routesProviders);
@@ -24,5 +26,11 @@ router.use('/services', routesServices);
 
 // Config los routers de los rubros:
 router.use('/rubros', routesRubros);
+
+// Config los routers de los solicited:
+router.use('/solicited', routesSolicited);
+
+// Config los routers de los img:
+router.use('/img', routesImg);
 
 module.exports = router;

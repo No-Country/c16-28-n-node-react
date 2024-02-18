@@ -1,12 +1,12 @@
-const { Review }= require ("../../Database/database")
+const { Review, User, Provider, Service, Solicited} = require("../../Database/database");
 
 // Controllers de la ruta Reviews:
 
 // funcion para crear una review:
 async function postReviews(req, res) {
     try {
-        const { id_user, id_prov, id_service, id_solicited, description, score } = req.body;
-        
+        const {  id_user, id_prov, id_service, id_solicited, description, score } = req.body;
+
         // Verificar que los campos requeridos no estén en blanco
         if (!id_user) {
             return res.status(400).json({ "error": "User ID is required" });

@@ -16,11 +16,11 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    id_prov:{
+    id_prov: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    id_service:{
+    id_service: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
