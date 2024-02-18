@@ -33,7 +33,7 @@ async function getProviders(req, res) {
 // Crear un proveedor
 async function postProviders(req, res) {
   try {
-    const { name, email, lastName, address , password} = req.body;
+    const { name, email, lastName, password} = req.body;
 
 // Validaciones de los campos
   const errors = [];
@@ -82,7 +82,7 @@ async function postProviders(req, res) {
 async function putProvider(req, res) {
   try {
     const { id } = req.params;
-    const {name, lastName, email, address, password, img, otherCertif, id_service, isActive,contact } = req.body;
+    const {name, lastName, email, address, password, img, otherCertif, id_service, isActive,contact, horary,matriculation } = req.body;
 
     // Validaciones de los campos
     const errors = [];
@@ -129,7 +129,9 @@ async function putProvider(req, res) {
         otherCertif: otherCertif || provider.otherCertif,
         address: address || provider.address,
         contact: contact || provider.contact,
-        isActive: isActive || provider.isActive,
+        horary: horary || provider.horary,
+        matriculation: matriculation || provider.matriculation,
+        isActive: isActive || provider.isActive
     }, {
       where: { id_prov: id }
     });
