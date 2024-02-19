@@ -1,10 +1,11 @@
 import './App.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import Home from './pages/home/Home'
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <div className='bg-black text-white'>Home</div>,
+    element: <Home />,
   }
 ])
 function App() {
