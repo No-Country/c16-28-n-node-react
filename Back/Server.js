@@ -6,11 +6,13 @@ const routes = require('./Routes/index.js');
 const { conn } = require('./Database/database.js');
 const express = require('express');
 const server = express();
+const cloudinary = require('cloudinary').v2;
+const cloudName = process.env.CLOUDINARY_NAME;
+const cloudKey = process.env.CLOUDINARY_API_KEY;
+const cloudSecret = process.env.CLOUDINARY_API_SECRET;
 
 
 server.name = 'API';
-
-//Esto es puro blablabla ("procedimientos") , sino entienden me dicen :)
 
 server.use(express.json({ limit: '50mb' }));
 server.use(express.urlencoded({ extended: true, limit: '50mb' }));
@@ -25,6 +27,13 @@ server.use((req, res, next) => {
 });
 
 server.use('/', routes);
+
+cloudinary.config({
+  cloud_name: cloudName,
+  api_key: cloudKey,
+  api_secret: cloudSecret
+});
+
 
 // Detector de errores: 
 server.use((err, req, res, next) => {

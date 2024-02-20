@@ -2,7 +2,7 @@ const { ImgService, Service, Rubro } = require("../../Database/database");
 
 async function postImgService(req, res) {
   try {
-    const { url, description, id_service, id_rubro } = req.body;
+    const { description, id_service, id_rubro } = req.body;
 
     const rubro = await Rubro.findByPk(id_rubro);
     if (!rubro) {
@@ -12,18 +12,23 @@ async function postImgService(req, res) {
     if (!service) {
       return res.status(404).json({ message: "Service not found" });
     }
+
+    const uploadedImg = await cloudinary.uploader.upload(req.file.path);
+    const imgUrl = uploadedImg.secure_url;
+
     const imgService = await ImgService.create({
-      url,
+      url: imgUrl,
       description,
       id_service,
       id_rubro
     });
-    res.status(201).json(imgService);
+    res.status(200).json(imgService);
   } catch (error) {
     console.error("Error creating image service:", error);
     res.status(500).json({ error: error.message || "Internal Server Error" });
   }
 }
+
 
 async function getImgServices(req, res) {
   try {
@@ -54,19 +59,23 @@ async function putImgService(req, res) {
     const { id } = req.params;
     const { url, description, id_service, id_rubro } = req.body;
 
+
+    const uploadedImg = await cloudinary.uploader.upload(req.file.path);
+    const imgUrl = uploadedImg.secure_url;
+
     const imgService = await ImgService.findByPk(id);
     if (!imgService) {
-      return res.status(404).json({ message: "Image service not found" });
+      return res.status(404).json({ message: "Image not found" });
     }
 
     await imgService.update({
-      url,
+      url: url || imgUrl ,
       description,
       id_service,
       id_rubro
     });
 
-    res.status(200).json(imgService);
+    res.status(200).json({ message: 'Image uploaded successfully', imageUrl: imgUrl, imgService });
   } catch (error) {
     console.error("Error updating image service:", error);
     res.status(500).json({ error: "Error updating image service" });
@@ -81,9 +90,12 @@ async function deleteImgService(req, res) {
       return res.status(404).json({ message: "Image service not found" });
     }
 
+    // Eliminar la imagen de Cloudinary
+    await cloudinary.uploader.destroy(imgService.public_id);
+
     await imgService.destroy();
     console.log(`Image service ${id} removed successfully`);
-    return res.status(204).end();
+    return res.status(200).end();
   } catch (error) {
     console.error("Error deleting image service:", error);
     return res.status(500).json({ error: error.message });
