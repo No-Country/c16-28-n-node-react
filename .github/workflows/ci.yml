@@ -49,7 +49,7 @@ jobs:
             push: true
             tags: ${{ secrets.DOCKERHUB_USERNAME }}/serviapp:front-${{ github.ref_name }}
 
-              #    if: github.ref == 'refs/heads/dev' # run this job only for the dev branch
+        #    if: github.ref == 'refs/heads/dev' # run this job only for the dev branch
 
         - name: checkout repo
           uses: actions/checkout@v2
