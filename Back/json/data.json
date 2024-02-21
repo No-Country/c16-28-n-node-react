@@ -1,0 +1,348 @@
+{
+    "rubros": [
+        {
+            "name": "Electricidad",
+            "description": "Servicios de instalación y reparación eléctrica",
+            "id_rubro": "1"
+        },
+        {
+            "name": "Fontanería",
+            "description": "Servicios de instalación y reparación de tuberías y sistemas de agua",
+            "id_rubro": "2"
+        },
+        {
+            "name": "Carpintería",
+            "description": "Servicios de fabricación y reparación de muebles y estructuras de madera",
+            "id_rubro": "3"
+        },
+        {
+            "name": "Pintura",
+            "description": "Servicios de pintura y acabados en interiores y exteriores",
+            "id_rubro": "4"
+        },
+        {
+            "name": "Albañilería",
+            "description": "Servicios de construcción y reparación de estructuras de concreto y mampostería",
+            "id_rubro": "5"
+        },
+        {
+            "name": "Jardinería",
+            "description": "Servicios de diseño, mantenimiento y paisajismo de jardines",
+            "id_rubro": "6"
+        },
+        {
+            "name": "Limpieza",
+            "description": "Servicios de limpieza y mantenimiento de espacios residenciales y comerciales",
+            "id_rubro": "7"
+        },
+        {
+            "name": "Seguridad",
+            "description": "Servicios de vigilancia y protección de bienes y personas",
+            "id_rubro": "8"
+        }
+    ],
+    "services": [
+        {
+            "name": "Instalación Eléctrica",
+            "description": "Servicio de instalación y mantenimiento de sistemas eléctricos",
+            "id_rubro": "1"
+        },
+        {
+            "name": "Reparación de Cables",
+            "description": "Servicio de reparación de cables y conexiones eléctricas",
+            "id_rubro": "1"
+        },
+        {
+            "name": "Mantenimiento de Generadores",
+            "description": "Servicio de mantenimiento de generadores eléctricos",
+            "id_rubro": "1"
+        },
+        {
+            "name": "Instalación de Paneles Solares",
+            "description": "Servicio de instalación de paneles solares",
+            "id_rubro": "1"
+        },
+        {
+            "name": "Reparación de Interruptores",
+            "description": "Servicio de reparación de interruptores eléctricos",
+            "id_rubro": "1"
+        },
+        {
+            "name": "Diseño de Iluminación",
+            "description": "Servicio de diseño de sistemas de iluminación",
+            "id_rubro": "1"
+        },
+        {
+            "name": "Fontanería Residencial",
+            "description": "Servicio de instalación y reparación de sistemas de fontanería en hogares",
+            "id_rubro": "2"
+        },
+        {
+            "name": "Reparación de Tuberías",
+            "description": "Servicio de reparación de tuberías y sistemas de agua",
+            "id_rubro": "2"
+        },
+        {
+            "name": "Instalación de Griferías",
+            "description": "Servicio de instalación de griferías y accesorios",
+            "id_rubro": "2"
+        },
+        {
+            "name": "Detección de Fugas de Agua",
+            "description": "Servicio de detección y reparación de fugas de agua",
+            "id_rubro": "2"
+        },
+        {
+            "name": "Fontanería Comercial",
+            "description": "Servicio de instalación y mantenimiento de sistemas de fontanería en entornos comerciales",
+            "id_rubro": "2"
+        },
+        {
+            "name": "Reparación de Sistemas de Calefacción",
+            "description": "Servicio de reparación de sistemas de calefacción",
+            "id_rubro": "2"
+        },
+        {
+            "name": "Carpintería a Medida",
+            "description": "Servicio de fabricación de muebles a medida y reparación de estructuras de madera",
+            "id_rubro": "3"
+        },
+        {
+            "name": "Restauración de Muebles",
+            "description": "Servicio de restauración y reparación de muebles antiguos",
+            "id_rubro": "3"
+        },
+        {
+            "name": "Construcción de Estructuras de Madera",
+            "description": "Servicio de construcción de estructuras y elementos arquitectónicos de madera",
+            "id_rubro": "3"
+        },
+        {
+            "name": "Diseño de Muebles Personalizados",
+            "description": "Servicio de diseño y fabricación de muebles personalizados según las preferencias del cliente",
+            "id_rubro": "3"
+        },
+        {
+            "name": "Reparación de Puertas y Ventanas de Madera",
+            "description": "Servicio de reparación y mantenimiento de puertas y ventanas de madera",
+            "id_rubro": "3"
+        },
+        {
+            "name": "Instalación de Suelos de Madera",
+            "description": "Servicio de instalación y mantenimiento de suelos de madera",
+            "id_rubro": "3"
+        },
+        {
+            "name": "Pintura Interior",
+            "description": "Servicio de pintura y acabados en interiores",
+            "id_rubro": "4"
+        },
+        {
+            "name": "Pintura Exterior",
+            "description": "Servicio de pintura y mantenimiento en exteriores",
+            "id_rubro": "4"
+        },
+        {
+            "name": "Diseño de Murales",
+            "description": "Servicio de diseño y pintura de murales artísticos",
+            "id_rubro": "4"
+        },
+        {
+            "name": "Pintura de Fachadas",
+            "description": "Servicio de pintura y renovación de fachadas",
+            "id_rubro": "4"
+        },
+        {
+            "name": "Restauración de Pinturas Antiguas",
+            "description": "Servicio de restauración y conservación de pinturas antiguas",
+            "id_rubro": "4"
+        },
+        {
+            "name": "Pintura de Muebles",
+            "description": "Servicio de pintura y personalización de muebles",
+            "id_rubro": "4"
+        },
+        {
+            "name": "Albañilería de Obra Nueva",
+            "description": "Servicio de construcción de estructuras de concreto para obras nuevas",
+            "id_rubro": "5"
+        },
+        {
+            "name": "Reparación de Estructuras de Concreto",
+            "description": "Servicio de reparación y mantenimiento de estructuras de concreto",
+            "id_rubro": "5"
+        },
+        {
+            "name": "Construcción de Paredes de Mampostería",
+            "description": "Servicio de construcción de paredes utilizando técnicas de mampostería",
+            "id_rubro": "5"
+        },
+        {
+            "name": "Instalación de Suelos de Concreto",
+            "description": "Servicio de instalación y mantenimiento de suelos de concreto",
+            "id_rubro": "5"
+        },
+        {
+            "name": "Construcción de Chimeneas",
+            "description": "Servicio de construcción de chimeneas y elementos de concreto",
+            "id_rubro": "5"
+        },
+        {
+            "name": "Revestimiento de Paredes",
+            "description": "Servicio de revestimiento y acabados en paredes de concreto",
+            "id_rubro": "5"
+        },
+        {
+            "name": "Diseño de Jardines",
+            "description": "Servicio de diseño paisajístico y planificación de jardines",
+            "id_rubro": "6"
+        },
+        {
+            "name": "Mantenimiento de Jardines",
+            "description": "Servicio de mantenimiento y cuidado de jardines",
+            "id_rubro": "6"
+        },
+        {
+            "name": "Podado de Árboles",
+            "description": "Servicio de poda de árboles y arbustos",
+            "id_rubro": "6"
+        },
+        {
+            "name": "Instalación de Sistemas de Riego",
+            "description": "Servicio de instalación y mantenimiento de sistemas de riego",
+            "id_rubro": "6"
+        },
+        {
+            "name": "Control de Plagas en Jardines",
+            "description": "Servicio de control y eliminación de plagas en jardines",
+            "id_rubro": "6"
+        },
+        {
+            "name": "Diseño de Patios",
+            "description": "Servicio de diseño y planificación de patios exteriores",
+            "id_rubro": "6"
+        },
+        {
+            "name": "Limpieza Comercial",
+            "description": "Servicio de limpieza para espacios comerciales y oficinas",
+            "id_rubro": "7"
+        },
+        {
+            "name": "Limpieza Residencial",
+            "description": "Servicio de limpieza y mantenimiento para espacios residenciales",
+            "id_rubro": "7"
+        },
+        {
+            "name": "Limpieza de Vidrios y Cristales",
+            "description": "Servicio de limpieza especializado en vidrios y superficies acristaladas",
+            "id_rubro": "7"
+        },
+        {
+            "name": "Limpieza de Alfombras y Tapetes",
+            "description": "Servicio de limpieza profunda para alfombras y tapetes",
+            "id_rubro": "7"
+        },
+        {
+            "name": "Desinfección de Espacios",
+            "description": "Servicio de desinfección y sanitización de espacios",
+            "id_rubro": "7"
+        },
+        {
+            "name": "Limpieza Post Construcción",
+            "description": "Servicio de limpieza exhaustiva después de obras y construcciones",
+            "id_rubro": "7"
+        },
+        {
+            "name": "Vigilancia Residencial 1",
+            "description": "Servicio de vigilancia y seguridad para propiedades residenciales",
+            "id_rubro": "8"
+        },
+        {
+            "name": "Vigilancia Comercial",
+            "description": "Servicio de vigilancia para espacios comerciales y negocios",
+            "id_rubro": "8"
+        },
+        {
+            "name": "Monitoreo de Cámaras de Seguridad",
+            "description": "Servicio de monitoreo constante de cámaras de seguridad",
+            "id_rubro": "8"
+        },
+        {
+            "name": "Control de Acceso",
+            "description": "Servicio de control de acceso y verificación de identidad",
+            "id_rubro": "8"
+        },
+        {
+            "name": "Seguridad en Eventos",
+            "description": "Servicio de seguridad especializado para eventos y concentraciones masivas",
+            "id_rubro": "8"
+        },
+        {
+            "name": "Asesoría en Seguridad",
+            "description": "Servicio de asesoramiento y consultoría en medidas de seguridad",
+            "id_rubro": "8"
+        }
+    ],
+    "users": [
+        {
+            "name": "Juan",
+            "email": "juanperez@example.com",
+            "password": "123456",
+            "lastName": "Pérez"
+        },
+        {
+            "name": "María",
+            "email": "mariagonzalez@example.com",
+            "password": "654321",
+            "lastName": "González"
+        },
+        {
+            "name": "Carlos",
+            "email": "carlosrodriguez@example.com",
+            "password": "abcdef",
+            "lastName": "Rodríguez"
+        }
+    ],
+    "providers": [
+        {
+            "name": "Electri",
+            "email": "proveedorelectricidad@example.com",
+            "password": "proveedor123",
+            "address": "Av. de la Energía 123, Santiago de Chile",
+            "id_service": "1",
+            "contact": "+1234567890"
+        },
+        {
+            "name": "Fontanería El Chorrito",
+            "email": "proveedorfontaneria@example.com",
+            "password": "proveedor456",
+            "address": "Calle de las Cañerías 456, Santiago de Chile",
+            "id_service": "2",
+            "contact": "+9876543210"
+        },
+        {
+            "name": "Carpintería 33",
+            "email": "proveedorcarpinteria@example.com",
+            "password": "proveedor789",
+            "address": "Plaza de la Madera 789, Santiago de Chile",
+            "id_service": "3",
+            "contact": "+1122334455"
+        },
+        {
+            "name": "Pintura La Pinta",
+            "email": "proveedorpintura@example.com",
+            "password": "proveedorabc",
+            "address": "Av. de los Colores 234, Santiago de Chile",
+            "id_service": "4",
+            "contact": "+9988776655"
+        },
+        {
+            "name": "Albañilería Mex",
+            "email": "proveedoralbanileria@example.com",
+            "password": "proveedorxyz",
+            "address": "Calle de las Obras 567, Santiago de Chile",
+            "id_service": "5",
+            "contact": "+1122334455"
+        }
+    ]
+}
