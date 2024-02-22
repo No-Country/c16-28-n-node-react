@@ -6,6 +6,7 @@ const routesServices = require("./Routes-services");
 const routesRubros = require("./Routes-rubros");
 const routesImg = require("./Routes-img");
 const routesSolicited = require("./Routes-solicited");
+const routesProvService = require("./Routes-provService")
 
 // Aca va el indice de las rutas :)
 // Vamos a necesitar unas 7 dependiendo del diagrama de tablas para la bd
@@ -32,5 +33,8 @@ router.use('/solicited', routesSolicited);
 
 // Config los routers de los img:
 router.use('/img', routesImg);
+
+// Config los routers de ProvService:
+router.use('/ProvService', routesProvService);
 
 module.exports = router;

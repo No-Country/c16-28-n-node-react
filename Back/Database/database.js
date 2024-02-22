@@ -32,7 +32,8 @@ let entries = Object.entries(sequelize.models);
 let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].slice(1), entry[1]]);
 sequelize.models = Object.fromEntries(capsEntries);
 
-const { User, Solicited, Review, Provider, Service, Rubro, ImgService } = sequelize.models;
+const { User, Solicited, Review, Provider, Service, Rubro, ImgService, ProviderService} = sequelize.models;
+
 
 // (async () => {
 //   await sequelize.sync({ alter: true });
@@ -74,11 +75,15 @@ Review.belongsTo(Solicited, { foreignKey: 'id_solicited' });
 Solicited.belongsTo(Service, { foreignKey: 'id_service' });
 
 // Modelo Provider
-Provider.hasMany(Service, { foreignKey: 'id_prov', allowNull: true });
-Service.belongsTo(Provider, { foreignKey: 'id_prov', allowNull: true });
+Provider.belongsToMany(Service, { through: 'ProviderService', foreignKey: 'id_prov' });
 
 // Modelo Service
+Service.belongsToMany(Provider, { through: 'ProviderService', foreignKey: 'id_service' });
 Service.hasMany(ImgService, { foreignKey: 'id_service' });
+
+// Modelo ProviderService
+Provider.belongsToMany(Service, { through: 'ProviderService', foreignKey: 'id_prov' });
+Service.belongsToMany(Provider, { through: 'ProviderService', foreignKey: 'id_service' });
 
 // Modelo Rubro
 Rubro.hasMany(Service, { foreignKey: 'id_rubro' });

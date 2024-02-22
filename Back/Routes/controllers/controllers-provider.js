@@ -82,69 +82,83 @@ async function postProviders(req, res) {
 
 
 // Modificar proveedor
+// Modificar proveedor
+// Modificar proveedor
 async function putProvider(req, res) {
   try {
     const { id } = req.params;
-    const {name, lastName, email, address, password, img, otherCertif, id_service, isActive,contact, horary,matriculation } = req.body;
+    const { name, lastName, email, address, password, img, otherCertif, isActive, contact, horary, matriculation, id_services } = req.body;
 
     // Validaciones de los campos
     const errors = [];
     if (name && !validateName(name)) {
-        errors.push("Name must be alphanumeric and have 3 to 15 characters");
+      errors.push("Name must be alphanumeric and have 3 to 15 characters");
     }
     if (lastName && !validateLastName(lastName)) {
-        errors.push("Last name must be alphanumeric and have 3 to 15 characters");
+      errors.push("Last name must be alphanumeric and have 3 to 15 characters");
     }
     if (email && !validateEmail(email)) {
-        errors.push("Invalid email format");
+      errors.push("Invalid email format");
     }
     if (password && !validatePassword(password)) {
-        errors.push("Password must have 6 to 10 characters, at least one uppercase letter, one lowercase letter, one digit, and one special character");
+      errors.push("Password must have 6 to 10 characters, at least one uppercase letter, one lowercase letter, one digit, and one special character");
     }
     if (errors.length > 0) {
       return res.status(400).json({ "error": errors });
-  }
-    // Buscar proveedor y servicio:
+    }
+
+    // Buscar proveedor
     const provider = await Provider.findByPk(id);
     if (!provider) {
       return res.status(404).json({ "message": "Provider not found" });
-  }
-      const service = await Service.findByPk(id_service);
-    if (!service) {
-      return res.status(404).json({ "message": "Service not found" });
-  }
-
-   // Verificar si el email ya existe
-  if (email && email !== provider.email) {
-    const existingUser = await User.findOne({ where: { email } });
-    const existingProv = await Provider.findOne({ where: { email } });
-    if (existingUser || existingProv) {
-        return res.status(400).json({ "error": "Email already exists" });
     }
-}
-      await provider.update({
-        name:  name || provider.name,
-        lastName:lastName || provider.lastName,
-        email:email || provider.email,
-        password:password || provider.password,
-        id_service: service|| provider.id_service,
-        img: img || provider.id_service,
-        otherCertif: otherCertif || provider.otherCertif,
-        address: address || provider.address,
-        contact: contact || provider.contact,
-        horary: horary || provider.horary,
-        matriculation: matriculation || provider.matriculation,
-        isActive: isActive || provider.isActive
-    }, {
-      where: { id_prov: id }
+
+    // Verificar si el email ya existe
+    if (email && email !== provider.email) {
+      const existingUser = await User.findOne({ where: { email } });
+      const existingProv = await Provider.findOne({ where: { email } });
+      if (existingUser || existingProv) {
+        return res.status(400).json({ "error": "Email already exists" });
+      }
+    }
+
+    console.log("1er console:", id_services)
+    // Convertir id_services a array de números si es una cadena
+    let services = [];
+    if (id_services && typeof id_services === 'string') {
+      services = id_services.split(',').map(Number);
+    }
+
+    console.log("2do console:", services)
+    // Actualizar proveedor
+    await provider.update({
+      name: name || provider.name,
+      lastName: lastName || provider.lastName,
+      email: email || provider.email,
+      password: password || provider.password,
+      img: img || provider.img,
+      otherCertif: otherCertif || provider.otherCertif,
+      address: address || provider.address,
+      contact: contact || provider.contact,
+      horary: horary || provider.horary,
+      matriculation: matriculation || provider.matriculation,
+      isActive: isActive || provider.isActive
     });
 
-    res.status(200).json(provider);
+    // Actualizar servicios del proveedor
+    await provider.setServices(services);
+    console.log("3er console:", services)
+    // Obtener el proveedor actualizado con los servicios
+    const updatedProvider = await Provider.findByPk(id, { include: Service });
+
+    res.status(200).json(updatedProvider);
+
   } catch (error) {
     console.log("Error", error);
-    res.status(500).json({ "error": error })
+    res.status(500).json({ "error": error });
   }
 }
+
 
 module.exports = {
   getProviders,
