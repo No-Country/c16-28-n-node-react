@@ -34,6 +34,34 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 const { User, Solicited, Review, Provider, Service, Rubro, ImgService } = sequelize.models;
 
+// (async () => {
+//   await sequelize.sync({ alter: true });
+// })();
+
+// // Lee el archivo JSON
+// fs.readFile('data.json', 'utf8', (err, data) => {
+//   if (err) {
+//     console.error(err);
+//     return;
+//   }
+
+//   // Parsea el archivo JSON
+//   const jsonData = JSON.parse(data);
+
+//   Promise.all([
+//     Rubro.bulkCreate(jsonData.rubro),
+//     Service.bulkCreate(jsonData.service),
+//     Provider.bulkCreate(jsonData.provider),
+//     User.bulkCreate(jsonData.user)
+//   ])
+//     .then(() => {
+//       console.log('Datos insertados correctamente');
+//     })
+//     .catch((error) => {
+//       console.error('Error al insertar datos:', error);
+//     });
+// });
+
 // Modelo User
 User.hasMany(Review, { foreignKey: 'id_user' });
 Review.belongsTo(User, { foreignKey: 'id_user' });

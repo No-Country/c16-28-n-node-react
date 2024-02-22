@@ -1,47 +1,39 @@
 {
-    "rubros": [
+    "rubro": [
         {
             "name": "Electricidad",
-            "description": "Servicios de instalación y reparación eléctrica",
-            "id_rubro": "1"
+            "description": "Servicios de instalación y reparación eléctrica"
         },
         {
             "name": "Fontanería",
-            "description": "Servicios de instalación y reparación de tuberías y sistemas de agua",
-            "id_rubro": "2"
+            "description": "Servicios de instalación y reparación de tuberías y sistemas de agua"
         },
         {
             "name": "Carpintería",
-            "description": "Servicios de fabricación y reparación de muebles y estructuras de madera",
-            "id_rubro": "3"
+            "description": "Servicios de fabricación y reparación de muebles y estructuras de madera"
         },
         {
             "name": "Pintura",
-            "description": "Servicios de pintura y acabados en interiores y exteriores",
-            "id_rubro": "4"
+            "description": "Servicios de pintura y acabados en interiores y exteriores"
         },
         {
             "name": "Albañilería",
-            "description": "Servicios de construcción y reparación de estructuras de concreto y mampostería",
-            "id_rubro": "5"
+            "description": "Servicios de construcción y reparación de estructuras de concreto y mampostería"
         },
         {
             "name": "Jardinería",
-            "description": "Servicios de diseño, mantenimiento y paisajismo de jardines",
-            "id_rubro": "6"
+            "description": "Servicios de diseño, mantenimiento y paisajismo de jardines"
         },
         {
             "name": "Limpieza",
-            "description": "Servicios de limpieza y mantenimiento de espacios residenciales y comerciales",
-            "id_rubro": "7"
+            "description": "Servicios de limpieza y mantenimiento de espacios residenciales y comerciales"
         },
         {
             "name": "Seguridad",
-            "description": "Servicios de vigilancia y protección de bienes y personas",
-            "id_rubro": "8"
+            "description": "Servicios de vigilancia y protección de bienes y personas"
         }
     ],
-    "services": [
+    "service": [
         {
             "name": "Instalación Eléctrica",
             "description": "Servicio de instalación y mantenimiento de sistemas eléctricos",
@@ -283,7 +275,7 @@
             "id_rubro": "8"
         }
     ],
-    "users": [
+    "user": [
         {
             "name": "Juan",
             "email": "juanperez@example.com",
@@ -303,10 +295,11 @@
             "lastName": "Rodríguez"
         }
     ],
-    "providers": [
+    "provider": [
         {
             "name": "Electri",
             "email": "proveedorelectricidad@example.com",
+            "lastName":"Todo",
             "password": "proveedor123",
             "address": "Av. de la Energía 123, Santiago de Chile",
             "id_service": "1",
@@ -314,6 +307,7 @@
         },
         {
             "name": "Fontanería El Chorrito",
+            "lastName":"De agua",
             "email": "proveedorfontaneria@example.com",
             "password": "proveedor456",
             "address": "Calle de las Cañerías 456, Santiago de Chile",
@@ -322,6 +316,7 @@
         },
         {
             "name": "Carpintería 33",
+            "lastName":"32+1",
             "email": "proveedorcarpinteria@example.com",
             "password": "proveedor789",
             "address": "Plaza de la Madera 789, Santiago de Chile",
@@ -330,6 +325,7 @@
         },
         {
             "name": "Pintura La Pinta",
+            "lastName":"Tura",
             "email": "proveedorpintura@example.com",
             "password": "proveedorabc",
             "address": "Av. de los Colores 234, Santiago de Chile",
@@ -337,7 +333,8 @@
             "contact": "+9988776655"
         },
         {
-            "name": "Albañilería Mex",
+            "name": "Albañilería",
+            "lastName":"Mex",
             "email": "proveedoralbanileria@example.com",
             "password": "proveedorxyz",
             "address": "Calle de las Obras 567, Santiago de Chile",
