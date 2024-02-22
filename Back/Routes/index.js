@@ -10,7 +10,6 @@ const multer = require('multer');
 const cloudinary = require('cloudinary').v2;
 
 const router = Router();
-const upload = multer({ dest: 'uploads/' });
 
 // Configurar los routes de users:
 router.use('/users', routesUsers);
@@ -33,18 +32,28 @@ router.use('/solicited', routesSolicited);
 // Config los routers de los img:
 router.use('/img', routesImg);
 
-//Subir archivos a cloudinary:
-router.post('/upload',
-    upload.single('image'),
-    async (req, res) => {
-        try {
-            const uploadedImg = await cloudinary.uploader.upload(req.file.path);
 
-            res.status(200).json({ imageUrl: uploadedImg.secure_url });
-        } catch (error) {
-            console.error(error);
-            res.status(500).json({ message: 'Error al subir la imagen' });
-        }
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, 'uploads/');
+    },
+  });
+
+  
+const upload = multer({ storage: storage });
+
+//Subir archivos a cloudinary:
+router.post('/upload', upload.single('file'), async (req, res) => {
+    try {
+        const uploadedImg = await cloudinary.uploader.upload(req.file.path);
+
+        res.status(200).json(uploadedImg.secure_url );
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Error al subir la imagen' });
+    }
 });
+
 
 module.exports = router;

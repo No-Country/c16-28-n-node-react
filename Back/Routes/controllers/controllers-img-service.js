@@ -13,7 +13,6 @@ async function postImgService(req, res) {
       return res.status(404).json({ message: "Service not found" });
     }
 
-    const uploadedImg = await cloudinary.uploader.upload(req.file.path);
     const imgUrl = uploadedImg.secure_url;
 
     const imgService = await ImgService.create({
@@ -60,7 +59,6 @@ async function putImgService(req, res) {
     const { url, description, id_service, id_rubro } = req.body;
 
 
-    const uploadedImg = await cloudinary.uploader.upload(req.file.path);
     const imgUrl = uploadedImg.secure_url;
 
     const imgService = await ImgService.findByPk(id);
