@@ -1,4 +1,5 @@
 const { Provider , Service , User } = require("../../Database/database");
+const MailService = require("../../Services/mailerServices");
 
 // Validaciones
 function validateName(name) {
@@ -67,6 +68,8 @@ async function postProviders(req, res) {
       password,
       isActive: true
     })
+
+    MailService(name, email, lastName);
 
     res.status(200).json(provider)
   } catch (error) {
