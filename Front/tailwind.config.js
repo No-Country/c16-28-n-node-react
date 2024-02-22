@@ -4,7 +4,7 @@ export default {
   theme: {
     colors: {
       skyBlue: '#76B4CC',
-      orange: '##FF6F00',
+      orange: '#FF6F00',
       yellow: '#FFA000',
       background: '#EEEEEE',
       dark: '#1C1A1A',
