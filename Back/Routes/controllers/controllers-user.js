@@ -1,4 +1,5 @@
-const { User , Provider }= require ("../../Database/database")
+const { User, Provider } = require("../../Database/database");
+const MailService = require("../../Services/mailerServices");
 
 //Aca van a ir los controller de la ruta Users , (Cada ruta tiene su propio controlador)
 
@@ -24,83 +25,87 @@ function validatePassword(password) {
 async function postUsers(req, res) {
 
   try {
-      const { name, email, password, lastName } = req.body;
+    const { name, email, password, lastName } = req.body;
 
-      // Validaciones de los campos
-      const errors = [];
-      if (!validateName(name)) {
-          errors.push("Name must be alphanumeric and have 3 to 15 characters");
-      }
-      if (!validateLastName(lastName)) {
-          errors.push("Last name must be alphanumeric and have 3 to 15 characters");
-      }
-      if (!validateEmail(email)) {
-          errors.push("Invalid email format");
-      }
-      if (!validatePassword(password)) {
-          errors.push("Password must have 6 to 10 characters, at least one uppercase letter, one lowercase letter, one digit, and one special character");
-      }
-
-      if (errors.length > 0) {
-          return res.status(400).json({ "error": errors });
-      }
-
-      // Verificar si el email ya existe
-      const existingUser = await User.findOne({ where: { email } });
-      const existingProv = await Provider.findOne({ where: { email } });
-      if (existingUser || existingProv) {
-          return res.status(400).json({ "error": "Email already exists" });
-      }
-
-      const user = await User.create({
-        name,
-        email,
-        lastName,
-        password,
-        isActive: true, 
-      });
-      res.status(201).json(user);
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ "error": error  });
+    // Validaciones de los campos
+    const errors = [];
+    if (!validateName(name)) {
+      errors.push("Name must be alphanumeric and have 3 to 15 characters");
     }
+    if (!validateLastName(lastName)) {
+      errors.push("Last name must be alphanumeric and have 3 to 15 characters");
+    }
+    if (!validateEmail(email)) {
+      errors.push("Invalid email format");
+    }
+    if (!validatePassword(password)) {
+      errors.push("Password must have 6 to 10 characters, at least one uppercase letter, one lowercase letter, one digit, and one special character");
+    }
+
+    if (errors.length > 0) {
+      return res.status(400).json({ "error": errors });
+    }
+
+    // Verificar si el email ya existe
+    const existingUser = await User.findOne({ where: { email } });
+    const existingProv = await Provider.findOne({ where: { email } });
+    if (existingUser || existingProv) {
+      return res.status(400).json({ "error": "Email already exists" });
+    }
+
+    const user = await User.create({
+      name,
+      email,
+      lastName,
+      password,
+      isActive: true,
+    });
+
+    MailService(name, email, lastName);
+
+    res.status(201).json(user);
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ "error": error });
+  }
 }
 
 
 //funcion para obtener usuarios: 
 async function getUsers(req, res) {
-    try {
-        const allUsers = await User.findAll();
-        res.status(200).json(allUsers);
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ "error": error  });
-    }
+  try {
+    const allUsers = await User.findAll();
+    res.status(200).json(allUsers);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ "error": error });
+  }
 }
- 
+
 //funcion para actualizar un usuario: 
 async function putUsers(req, res) {
   try {
     const { id_user } = req.params;
-    const { name, email, password, isActive ,lastName , contact } = req.body;
+    const { name, email, password, isActive, lastName, contact } = req.body;
 
     // Validaciones de los campos
     const errors = [];
     if (name && !validateName(name)) {
-        errors.push("Name must be alphanumeric and have 3 to 15 characters");
+      errors.push("Name must be alphanumeric and have 3 to 15 characters");
     }
     if (lastName && !validateLastName(lastName)) {
-        errors.push("Last name must be alphanumeric and have 3 to 15 characters");
+      errors.push("Last name must be alphanumeric and have 3 to 15 characters");
     }
     if (email && !validateEmail(email)) {
-        errors.push("Invalid email format");
+      errors.push("Invalid email format");
     }
     if (password && !validatePassword(password)) {
-        errors.push("Password must have 6 to 10 characters, at least one uppercase letter, one lowercase letter, one digit, and one special character");
+      errors.push("Password must have 6 to 10 characters, at least one uppercase letter, one lowercase letter, one digit, and one special character");
     }
 
     if (errors.length > 0) {
-        return res.status(400).json({ "error": errors });
+      return res.status(400).json({ "error": errors });
     }
 
     // Buscar el usuario por su id
@@ -115,7 +120,7 @@ async function putUsers(req, res) {
       const existingUser = await User.findOne({ where: { email } });
       const existingProv = await Provider.findOne({ where: { email } });
       if (existingUser || existingProv) {
-          return res.status(400).json({ "error": "Email already exists" });
+        return res.status(400).json({ "error": "Email already exists" });
       }
     }
 
@@ -138,8 +143,8 @@ async function putUsers(req, res) {
 
 
 module.exports = {
-    getUsers,
-    postUsers,
-    putUsers
-    };
+  getUsers,
+  postUsers,
+  putUsers
+};
 
