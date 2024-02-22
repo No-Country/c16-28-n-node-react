@@ -5,11 +5,28 @@
 @layer base {
   html,
   body {
-    @apply bg-white;
+    @apply bg-background;
   }
 
   h1 {
-    @apply text-5xl text-center font-extrabold leading-tight tracking-tight mb-4 pt-8 px-6 sm:text-3xl md:text-5xl;
+    @apply font-sans font-semibold;
+  }
+
+  h2 {
+    @apply font-sans font-medium;
+  }
+
+  p {
+    @apply font-sans text-black text-text;
   }
 }
- 
+
+@layer components {
+  .primaryBtn {
+    @apply p-3 bg-orange rounded border border-dark;
+  }
+
+  .secondaryBtn {
+    @apply p-3 rounded border border-dark;
+  }
+}

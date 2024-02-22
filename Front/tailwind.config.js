@@ -3,7 +3,7 @@ export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     colors: {
-      'sky-blue': '#76B4CC',
+      skyBlue: '#76B4CC',
       orange: '##FF6F00',
       yellow: '#FFA000',
       background: '#EEEEEE',
