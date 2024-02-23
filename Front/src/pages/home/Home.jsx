@@ -1,4 +1,4 @@
-import Main from '../../components/Main/Main';
+import MainHome from '../../components/MainHome/MainHome';
 import NavBar from '../../components/NavBar/NavBar';
 import SearchBar from '../../components/SearchBar/SearchBar';
 const Home = () => {
@@ -11,7 +11,7 @@ const Home = () => {
         <SearchBar />
       </section>
       <section>
-          <Main />
+          <MainHome />
       </section>
     </div>
   );
