@@ -1,8 +1,6 @@
 const { DataTypes } = require('sequelize');
 
-// Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
-  // defino el modelo
   sequelize.define('imgService', {
     id_img: {
       type: DataTypes.INTEGER,
@@ -16,17 +14,15 @@ module.exports = (sequelize) => {
     },
     description: {
       type: DataTypes.STRING,
-      allowNull: true, //puede no tener descripcion
+      allowNull: true, // puede no tener descripción
     },
-    id_service:{
+    id_service: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    id_rubro: {
+    id_prov: {
       type: DataTypes.INTEGER,
       allowNull: false,
     }
-  },{timestamps:false});
+  }, { timestamps: false });
 }
-
-
