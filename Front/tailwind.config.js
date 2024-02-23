@@ -2,6 +2,16 @@
 export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
+    container: {
+      center: true,
+      padding: {
+        DEFAULT: '0rem',
+        sm: '2rem',
+        lg: '4rem',
+        xl: '5rem',
+        '2xl': '35rem',
+      },
+    },
     colors: {
       skyBlue: '#76B4CC',
       blue: '#0D47A1',
