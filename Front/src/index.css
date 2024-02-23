@@ -31,6 +31,10 @@
   }
 
   .section__skyblue {
-    @apply py-[46px] px-[32px] bg-skyBlue/25 space-y-[32px]
+    @apply py-[46px] px-[32px] bg-skyBlue/25 space-y-[32px];
+  }
+
+  .section__normal {
+    @apply py-[46px] px-[32px] flex flex-col  space-y-[32px];
   }
 }

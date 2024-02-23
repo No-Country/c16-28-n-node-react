@@ -15,30 +15,30 @@ const categoryList = [
     alt: 'Icono de electricidad',
   },
   {
-    title: 'Electricidad',
-    image: '../src/assets/icons/electricity.png',
-    alt: 'Icono de electricidad',
+    title: 'Carpintería',
+    image: '../src/assets/icons/carpentry.png',
+    alt: 'Icono de una cierra',
   },
   {
-    title: 'Electricidad',
-    image: '../src/assets/icons/electricity.png',
-    alt: 'Icono de electricidad',
+    title: 'Mudanzas',
+    image: '../src/assets/icons/truck.png',
+    alt: 'Icono de camión',
   },
   {
-    title: 'Electricidad',
-    image: '../src/assets/icons/electricity.png',
-    alt: 'Icono de electricidad',
+    title: 'Pintores',
+    image: '../src/assets/icons/tabler_paint.png',
+    alt: 'Icono de pintores',
   },
 ];
 
 const CategoryList = () => {
   return (
-    <div className='flex flex-wrap items-center justify-center w-auto gap-5'>
+    <div className='flex flex-wrap w-full items-center justify-center  gap-5'>
       {' '}
       {categoryList.map((category, index) => {
         return (
           <div
-            className='flex flex-col items-center justify-center px-3 py-2 rounded-md h-24 w-24 bg-orange'
+            className='flex flex-col items-center justify-center px-3 py-2 rounded-md h-20 w-20 bg-orange'
             key={index}
             data={category}
           >
