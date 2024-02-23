@@ -9,15 +9,15 @@
   }
 
   h1 {
-    @apply font-sans font-semibold;
+    @apply font-sans font-semibold text-title;
   }
 
   h2 {
-    @apply font-sans font-medium;
+    @apply font-sans font-medium text-subtitle;
   }
 
   p {
-    @apply font-sans text-black text-text;
+    @apply font-sans font-normal text-black text-text;
   }
 }
 
