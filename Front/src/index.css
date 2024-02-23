@@ -29,4 +29,8 @@
   .secondaryBtn {
     @apply p-3 rounded border border-dark;
   }
+
+  .section__skyblue {
+    @apply py-[46px] px-[32px] bg-skyBlue/25 space-y-[32px]
+  }
 }
