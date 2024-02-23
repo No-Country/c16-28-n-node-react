@@ -55,7 +55,6 @@ async function postProviders(req, res) {
       return res.status(400).json({ "error": errors });
   }
 
-   // Verificar si el email ya existe
   const existingUser = await User.findOne({ where: { email } });
   const existingProv = await Provider.findOne({ where: { email } });
   if (existingUser || existingProv) {
@@ -80,9 +79,6 @@ async function postProviders(req, res) {
 
 }
 
-
-// Modificar proveedor
-// Modificar proveedor
 // Modificar proveedor
 async function putProvider(req, res) {
   try {
@@ -107,13 +103,11 @@ async function putProvider(req, res) {
       return res.status(400).json({ "error": errors });
     }
 
-    // Buscar proveedor
     const provider = await Provider.findByPk(id);
     if (!provider) {
       return res.status(404).json({ "message": "Provider not found" });
     }
 
-    // Verificar si el email ya existe
     if (email && email !== provider.email) {
       const existingUser = await User.findOne({ where: { email } });
       const existingProv = await Provider.findOne({ where: { email } });
@@ -122,15 +116,11 @@ async function putProvider(req, res) {
       }
     }
 
-    console.log("1er console:", id_services)
-    // Convertir id_services a array de números si es una cadena
     let services = [];
     if (id_services && typeof id_services === 'string') {
       services = id_services.split(',').map(Number);
     }
 
-    console.log("2do console:", services)
-    // Actualizar proveedor
     await provider.update({
       name: name || provider.name,
       lastName: lastName || provider.lastName,
@@ -145,10 +135,7 @@ async function putProvider(req, res) {
       isActive: isActive || provider.isActive
     });
 
-    // Actualizar servicios del proveedor
     await provider.setServices(services);
-    console.log("3er console:", services)
-    // Obtener el proveedor actualizado con los servicios
     const updatedProvider = await Provider.findByPk(id, { include: Service });
 
     res.status(200).json(updatedProvider);

@@ -76,10 +76,10 @@ Solicited.belongsTo(Service, { foreignKey: 'id_service' });
 
 // Modelo Provider
 Provider.belongsToMany(Service, { through: 'ProviderService', foreignKey: 'id_prov' });
+Provider.hasMany(ImgService,{ foreignKey: 'id_prov' })
 
 // Modelo Service
 Service.belongsToMany(Provider, { through: 'ProviderService', foreignKey: 'id_service' });
-Service.hasMany(ImgService, { foreignKey: 'id_service' });
 
 // Modelo ProviderService
 Provider.belongsToMany(Service, { through: 'ProviderService', foreignKey: 'id_prov' });
@@ -90,7 +90,7 @@ Rubro.hasMany(Service, { foreignKey: 'id_rubro' });
 Service.belongsTo(Rubro, { foreignKey: 'id_rubro' });
 
 // Modelo ImgService
-ImgService.belongsTo(Service, { foreignKey: 'id_service' });
+ImgService.belongsTo(Provider, { foreignKey: 'id_prov' });
 
 module.exports = {
   ...sequelize.models,
