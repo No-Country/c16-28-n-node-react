@@ -21,7 +21,11 @@ const Main = () => {
         </div>
         <div>
           <h2>Busca por Categorías</h2>
+          <div className="flex">
+          
+          </div>
         </div>
+        
       </section>
     </main>
   );
