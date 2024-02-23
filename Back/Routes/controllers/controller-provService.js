@@ -11,7 +11,7 @@ async function getProvService(req, res) {
     }
 }
 
-//funcion para obtener Reseñas: 
+//funcion para obtener ProvServ:
 async function getProvServiceByID(req, res) {
     const { id_service } = req.params;
     console.log("id_service:", id_service);
