@@ -83,7 +83,7 @@ async function postProviders(req, res) {
 async function putProvider(req, res) {
   try {
     const { id } = req.params;
-    const { name, lastName, email, address, password, img, otherCertif, isActive, contact, horary, matriculation, id_services } = req.body;
+    const { name, lastName, email, address, password, img, otherCertif, isActive, contact, horary, matriculation, id_service } = req.body;
 
     // Validaciones de los campos
     const errors = [];
@@ -115,40 +115,36 @@ async function putProvider(req, res) {
         return res.status(400).json({ "error": "Email already exists" });
       }
     }
-}
 
-//Subir imagen a Cloudinary:
-  const uploadedImg = await cloudinary.uploader.upload(req.file.path);
-  const imgUrl = uploadedImg.secure_url;
+    const uploadedImg = await cloudinary.uploader.upload(req.file.path);
+    const imgUrl = uploadedImg.secure_url;
 
-      await provider.update({
-        name:  name || provider.name,
-        lastName:lastName || provider.lastName,
-        email:email || provider.email,
-        password:password || provider.password,
-        id_service: service|| provider.id_service,
-        img: img || imgUrl,
-        otherCertif: otherCertif || provider.otherCertif,
-        address: address || provider.address,
-        contact: contact || provider.contact,
-        horary: horary || provider.horary,
-        matriculation: matriculation || provider.matriculation,
-        isActive: isActive || provider.isActive
+    await provider.update({
+      name: name || provider.name,
+      lastName: lastName || provider.lastName,
+      email: email || provider.email,
+      password: password || provider.password,
+      id_service: id_service || provider.id_service,
+      img: img || imgUrl,
+      otherCertif: otherCertif || provider.otherCertif,
+      address: address || provider.address,
+      contact: contact || provider.contact,
+      horary: horary || provider.horary,
+      matriculation: matriculation || provider.matriculation,
+      isActive: isActive || provider.isActive
     }, {
       where: { id_prov: id }
-
+    });
 
     await provider.setServices(services);
     const updatedProvider = await Provider.findByPk(id, { include: Service });
 
     res.status(200).json(updatedProvider);
-
   } catch (error) {
     console.log("Error", error);
     res.status(500).json({ "error": error });
   }
-}
-
+};
 
 module.exports = {
   getProviders,
