@@ -7,7 +7,10 @@ const { conn } = require('./Database/database.js');
 const express = require('express');
 const server = express();
 const cors = require('cors');
-
+const cloudinary = require('cloudinary').v2;
+const cloudName = process.env.CLOUDINARY_NAME;
+const cloudKey = process.env.CLOUDINARY_API_KEY;
+const cloudSecret = process.env.CLOUDINARY_API_SECRET;
 
 server.name = 'API';
 
@@ -31,6 +34,13 @@ server.use((req, res, next) => {
 });
 
 server.use('/', routes);
+
+cloudinary.config({
+  cloud_name: cloudName,
+  api_key: cloudKey,
+  api_secret: cloudSecret
+});
+
 
 // Detector de errores: 
 server.use((err, req, res, next) => {

@@ -115,25 +115,28 @@ async function putProvider(req, res) {
         return res.status(400).json({ "error": "Email already exists" });
       }
     }
+}
 
-    let services = [];
-    if (id_services && typeof id_services === 'string') {
-      services = id_services.split(',').map(Number);
-    }
+//Subir imagen a Cloudinary:
+  const uploadedImg = await cloudinary.uploader.upload(req.file.path);
+  const imgUrl = uploadedImg.secure_url;
 
-    await provider.update({
-      name: name || provider.name,
-      lastName: lastName || provider.lastName,
-      email: email || provider.email,
-      password: password || provider.password,
-      img: img || provider.img,
-      otherCertif: otherCertif || provider.otherCertif,
-      address: address || provider.address,
-      contact: contact || provider.contact,
-      horary: horary || provider.horary,
-      matriculation: matriculation || provider.matriculation,
-      isActive: isActive || provider.isActive
-    });
+      await provider.update({
+        name:  name || provider.name,
+        lastName:lastName || provider.lastName,
+        email:email || provider.email,
+        password:password || provider.password,
+        id_service: service|| provider.id_service,
+        img: img || imgUrl,
+        otherCertif: otherCertif || provider.otherCertif,
+        address: address || provider.address,
+        contact: contact || provider.contact,
+        horary: horary || provider.horary,
+        matriculation: matriculation || provider.matriculation,
+        isActive: isActive || provider.isActive
+    }, {
+      where: { id_prov: id }
+
 
     await provider.setServices(services);
     const updatedProvider = await Provider.findByPk(id, { include: Service });
