@@ -1,10 +1,11 @@
+import { Link } from 'react-router-dom';
 import CardProfesionalCliente from '../CardProfesionalCliente/CardProfesionalCliente';
 import CategoryList from '../CategoryList/CategoryList';
 
 const MainHome = () => {
   return (
     <div className='container'>
-      <main className='max-w-full'>
+      <section className='max-w-full'>
         <div className='m-6 bg-yellow w-[125px] h-[54px] flex items-center justify-center'>
           <p className='font-sans text-xl font-bold text-center text-blue'>
             ServiApp
@@ -40,13 +41,15 @@ const MainHome = () => {
           />
         </section>
         <section className='section__normal items-center justify-center'>
-          <button className='primaryBtn w-[280px]'>Inicia Sesion</button>
+          <Link to={'/login'} className='primaryBtn w-[280px]'>Inicia Sesion</Link>
           <div className='flex flex-col'>
             <span className='text-gray text-sm'>¿No estás registrado?</span>
-            <button className='secondaryBtn'>Regístrate</button>
+            <Link to={'/register'} className='secondaryBtn'>
+              Regístrate
+            </Link>
           </div>
         </section>
-      </main>
+      </section>
     </div>
   );
 };

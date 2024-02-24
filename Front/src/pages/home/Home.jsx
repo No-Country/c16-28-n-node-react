@@ -11,7 +11,7 @@ const Home = () => {
         <SearchBar />
       </section>
       <section>
-          <MainHome />
+        <MainHome />
       </section>
     </div>
   );
