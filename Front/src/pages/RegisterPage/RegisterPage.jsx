@@ -1,9 +1,12 @@
-import { Link } from "react-router-dom"
+import RegisterForm from '../../components/RegisterForm/RegisterForm.jsx';
 
 const RegisterPage = () => {
   return (
-    <Link to={'/'}>Vamos al inicio</Link>
-  )
-}
+    <section>
+      <h1>Crea tu cuenta</h1>
+      <RegisterForm />
+    </section>
+  );
+};
 
-export default RegisterPage
+export default RegisterPage;
