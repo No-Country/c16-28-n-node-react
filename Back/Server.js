@@ -11,17 +11,19 @@ const cors = require('cors');
 
 server.name = 'API';
 
-//Esto es puro blablabla ("procedimientos") , sino entienden me dicen :)
-server.use(cors({
-  origin: ["http://localhost:5173", "http://dev.serviapp.solutions:3001"],
-  credentials: true,
-}))
+// server.use(cors({
+//   origin: ["http://localhost:5173", "http://dev.serviapp.solutions:3001"],
+//   credentials: true,
+// }))
+
+server.use(cors());
+
 server.use(express.json({ limit: '50mb' }));
 server.use(express.urlencoded({ extended: true, limit: '50mb' }));
 server.use(cookieParser());
 server.use(morgan('dev'));
 server.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*'); // (Despues agregamos la ruta del front aca)
+  res.header('Access-Control-Allow-Origin', '*'); 
   res.header('Access-Control-Allow-Credentials', 'true');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
