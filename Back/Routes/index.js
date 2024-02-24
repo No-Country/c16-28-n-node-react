@@ -8,6 +8,8 @@ const routesImg = require("./Routes-img");
 const routesSolicited = require("./Routes-solicited");
 const multer = require('multer');
 const cloudinary = require('cloudinary').v2;
+const routesProvService = require("./Routes-provService")
+const routesLogin = require("./Routes-Login")
 
 const router = Router();
 
@@ -28,6 +30,12 @@ router.use('/rubros', routesRubros);
 
 // Config los routers de los solicited:
 router.use('/solicited', routesSolicited);
+
+// Config los routers de ProvService:
+router.use('/ProvService', routesProvService);
+
+//Conf Login para user y para Prov:
+router.use('/login', routesLogin);
 
 // Config los routers de los img:
 router.use('/img', routesImg);

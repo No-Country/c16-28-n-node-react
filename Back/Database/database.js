@@ -32,7 +32,36 @@ let entries = Object.entries(sequelize.models);
 let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].slice(1), entry[1]]);
 sequelize.models = Object.fromEntries(capsEntries);
 
-const { User, Solicited, Review, Provider, Service, Rubro, ImgService } = sequelize.models;
+const { User, Solicited, Review, Provider, Service, Rubro, ImgService, ProviderService} = sequelize.models;
+
+
+// (async () => {
+//   await sequelize.sync({ alter: true });
+// })();
+
+// // Lee el archivo JSON
+// fs.readFile('data.json', 'utf8', (err, data) => {
+//   if (err) {
+//     console.error(err);
+//     return;
+//   }
+
+//   // Parsea el archivo JSON
+//   const jsonData = JSON.parse(data);
+
+//   Promise.all([
+//     Rubro.bulkCreate(jsonData.rubro),
+//     Service.bulkCreate(jsonData.service),
+//     Provider.bulkCreate(jsonData.provider),
+//     User.bulkCreate(jsonData.user)
+//   ])
+//     .then(() => {
+//       console.log('Datos insertados correctamente');
+//     })
+//     .catch((error) => {
+//       console.error('Error al insertar datos:', error);
+//     });
+// });
 
 // Modelo User
 User.hasMany(Review, { foreignKey: 'id_user' });
@@ -46,18 +75,22 @@ Review.belongsTo(Solicited, { foreignKey: 'id_solicited' });
 Solicited.belongsTo(Service, { foreignKey: 'id_service' });
 
 // Modelo Provider
-Provider.hasMany(Service, { foreignKey: 'id_prov', allowNull: true });
-Service.belongsTo(Provider, { foreignKey: 'id_prov', allowNull: true });
+Provider.belongsToMany(Service, { through: 'ProviderService', foreignKey: 'id_prov' });
+Provider.hasMany(ImgService,{ foreignKey: 'id_prov' })
 
 // Modelo Service
-Service.hasMany(ImgService, { foreignKey: 'id_service' });
+Service.belongsToMany(Provider, { through: 'ProviderService', foreignKey: 'id_service' });
+
+// Modelo ProviderService
+Provider.belongsToMany(Service, { through: 'ProviderService', foreignKey: 'id_prov' });
+Service.belongsToMany(Provider, { through: 'ProviderService', foreignKey: 'id_service' });
 
 // Modelo Rubro
 Rubro.hasMany(Service, { foreignKey: 'id_rubro' });
 Service.belongsTo(Rubro, { foreignKey: 'id_rubro' });
 
 // Modelo ImgService
-ImgService.belongsTo(Service, { foreignKey: 'id_service' });
+ImgService.belongsTo(Provider, { foreignKey: 'id_prov' });
 
 module.exports = {
   ...sequelize.models,

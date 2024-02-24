@@ -1,4 +1,5 @@
 const { Provider , Service , User } = require("../../Database/database");
+const MailService = require("../../Services/mailerServices");
 
 // Validaciones
 function validateName(name) {
@@ -54,7 +55,6 @@ async function postProviders(req, res) {
       return res.status(400).json({ "error": errors });
   }
 
-   // Verificar si el email ya existe
   const existingUser = await User.findOne({ where: { email } });
   const existingProv = await Provider.findOne({ where: { email } });
   if (existingUser || existingProv) {
@@ -68,6 +68,8 @@ async function postProviders(req, res) {
       isActive: true
     })
 
+    MailService(name, email, lastName);
+
     res.status(200).json(provider)
   } catch (error) {
     console.log("Error", error);
@@ -77,46 +79,41 @@ async function postProviders(req, res) {
 
 }
 
-
 // Modificar proveedor
 async function putProvider(req, res) {
   try {
     const { id } = req.params;
-    const {name, lastName, email, address, password, img, otherCertif, id_service, isActive,contact, horary,matriculation } = req.body;
+    const { name, lastName, email, address, password, img, otherCertif, isActive, contact, horary, matriculation, id_services } = req.body;
 
     // Validaciones de los campos
     const errors = [];
     if (name && !validateName(name)) {
-        errors.push("Name must be alphanumeric and have 3 to 15 characters");
+      errors.push("Name must be alphanumeric and have 3 to 15 characters");
     }
     if (lastName && !validateLastName(lastName)) {
-        errors.push("Last name must be alphanumeric and have 3 to 15 characters");
+      errors.push("Last name must be alphanumeric and have 3 to 15 characters");
     }
     if (email && !validateEmail(email)) {
-        errors.push("Invalid email format");
+      errors.push("Invalid email format");
     }
     if (password && !validatePassword(password)) {
-        errors.push("Password must have 6 to 10 characters, at least one uppercase letter, one lowercase letter, one digit, and one special character");
+      errors.push("Password must have 6 to 10 characters, at least one uppercase letter, one lowercase letter, one digit, and one special character");
     }
     if (errors.length > 0) {
       return res.status(400).json({ "error": errors });
-  }
-    // Buscar proveedor y servicio:
+    }
+
     const provider = await Provider.findByPk(id);
     if (!provider) {
       return res.status(404).json({ "message": "Provider not found" });
-  }
-      const service = await Service.findByPk(id_service);
-    if (!service) {
-      return res.status(404).json({ "message": "Service not found" });
-  }
+    }
 
-   // Verificar si el email ya existe
-  if (email && email !== provider.email) {
-    const existingUser = await User.findOne({ where: { email } });
-    const existingProv = await Provider.findOne({ where: { email } });
-    if (existingUser || existingProv) {
+    if (email && email !== provider.email) {
+      const existingUser = await User.findOne({ where: { email } });
+      const existingProv = await Provider.findOne({ where: { email } });
+      if (existingUser || existingProv) {
         return res.status(400).json({ "error": "Email already exists" });
+      }
     }
 }
 
@@ -139,14 +136,19 @@ async function putProvider(req, res) {
         isActive: isActive || provider.isActive
     }, {
       where: { id_prov: id }
-    });
 
-    res.status(200).json(provider);
+
+    await provider.setServices(services);
+    const updatedProvider = await Provider.findByPk(id, { include: Service });
+
+    res.status(200).json(updatedProvider);
+
   } catch (error) {
     console.log("Error", error);
-    res.status(500).json({ "error": error })
+    res.status(500).json({ "error": error });
   }
 }
+
 
 module.exports = {
   getProviders,

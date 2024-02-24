@@ -1,25 +1,24 @@
-const { ImgService, Service, Rubro } = require("../../Database/database");
+const { ImgService, Service, Provider } = require("../../Database/database");
 
+
+//funcion para subir foto 
 async function postImgService(req, res) {
   try {
+
     const { description, id_service, id_rubro } = req.body;
 
-    const rubro = await Rubro.findByPk(id_rubro);
-    if (!rubro) {
-      return res.status(404).json({ message: "Rubro not found" });
-    }
     const service = await Service.findByPk(id_service);
     if (!service) {
       return res.status(404).json({ message: "Service not found" });
     }
 
     const imgUrl = uploadedImg.secure_url;
-
+    
     const imgService = await ImgService.create({
       url: imgUrl,
       description,
       id_service,
-      id_rubro
+      id_prov
     });
     res.status(200).json(imgService);
   } catch (error) {
@@ -28,7 +27,7 @@ async function postImgService(req, res) {
   }
 }
 
-
+// funcion para obtener todas las fotos 
 async function getImgServices(req, res) {
   try {
     const imgServices = await ImgService.findAll();
@@ -39,6 +38,7 @@ async function getImgServices(req, res) {
   }
 }
 
+//funcion para obtener una foto por el id_service
 async function getImgServiceById(req, res) {
   const { id } = req.params;
   try {
@@ -53,10 +53,11 @@ async function getImgServiceById(req, res) {
   }
 }
 
+//funcion para modificar una imagen
 async function putImgService(req, res) {
   try {
     const { id } = req.params;
-    const { url, description, id_service, id_rubro } = req.body;
+    const { url, description, id_service, id_prov } = req.body;
 
 
     const imgUrl = uploadedImg.secure_url;
@@ -67,10 +68,10 @@ async function putImgService(req, res) {
     }
 
     await imgService.update({
-      url: url || imgUrl ,
-      description,
-      id_service,
-      id_rubro
+      url: url || imgService.url,
+      description: description || imgService.description,
+      id_service: id_service || imgService.id_service,
+      id_prov: id_prov || imgService.id_prov,
     });
 
     res.status(200).json({ message: 'Image uploaded successfully', imageUrl: imgUrl, imgService });
@@ -80,6 +81,7 @@ async function putImgService(req, res) {
   }
 }
 
+//funcion para borrar:
 async function deleteImgService(req, res) {
   const { id } = req.params;
   try {
@@ -94,6 +96,7 @@ async function deleteImgService(req, res) {
     await imgService.destroy();
     console.log(`Image service ${id} removed successfully`);
     return res.status(200).end();
+
   } catch (error) {
     console.error("Error deleting image service:", error);
     return res.status(500).json({ error: error.message });
