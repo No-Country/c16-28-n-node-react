@@ -1,32 +1,32 @@
 const categoryList = [
   {
     title: 'Plomería',
-    image: '../src/assets/icons/plumbing.png',
+    image: '../src/assets/plumbing.png',
     alt: 'Icono de plomeria',
   },
   {
     title: 'Limpieza',
-    image: '../src/assets/icons/cleaning.png',
+    image: '../src/assets/cleaning.png',
     alt: 'Icono de limpieza',
   },
   {
     title: 'Electricidad',
-    image: '../src/assets/icons/electricity.png',
+    image: '../src/assets/electricity.png',
     alt: 'Icono de electricidad',
   },
   {
     title: 'Carpintería',
-    image: '../src/assets/icons/carpentry.png',
+    image: '../src/assets/carpentry.png',
     alt: 'Icono de una cierra',
   },
   {
     title: 'Mudanzas',
-    image: '../src/assets/icons/truck.png',
+    image: '../src/assets/truck.png',
     alt: 'Icono de camión',
   },
   {
     title: 'Pintores',
-    image: '../src/assets/icons/tabler_paint.png',
+    image: '../src/assets/tabler_paint.png',
     alt: 'Icono de pintores',
   },
 ];
