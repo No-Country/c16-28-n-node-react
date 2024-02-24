@@ -3,7 +3,10 @@ Si necesitan mas avisen al grupo de whatsap!
 
 de momento la URL = http://localhost:3001 del back 
 
-                                                    
+Ruta login (Tanto para Prov como User):               (requerimientos de cada ruta)
+
+POST     URL + /login    ===> Loguerse (Req: email y password) Te da un token y un role
+
 Rutas Reviews:                                             (requerimientos de cada ruta)
 
 GET        URL + /reviews/      ===> Obtiene todas las reviews    
