@@ -6,12 +6,16 @@ const routes = require('./Routes/index.js');
 const { conn } = require('./Database/database.js');
 const express = require('express');
 const server = express();
+const cors = require('cors');
 
 
 server.name = 'API';
 
 //Esto es puro blablabla ("procedimientos") , sino entienden me dicen :)
-
+server.use(cors({
+  origin: ["http://localhost:5173", "http://dev.serviapp.solutions:3001"],
+  credentials: true,
+}))
 server.use(express.json({ limit: '50mb' }));
 server.use(express.urlencoded({ extended: true, limit: '50mb' }));
 server.use(cookieParser());
