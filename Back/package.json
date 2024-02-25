@@ -4,7 +4,7 @@
   "description": "ServiApp - Not country",
   "main": "Server.js",
   "scripts": {
-    "start": "node ./Server.js"
+    "start": "node --watch Server.js"
   },
   "author": "c16-28-n-node-react",
   "license": "ISC",
