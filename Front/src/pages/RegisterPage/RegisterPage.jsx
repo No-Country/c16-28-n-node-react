@@ -15,7 +15,7 @@ const RegisterPage = () => {
             </div>
             <div className='border-t w-full border-gray-300'></div>
           </div>
-          <div className='flex flex-col items-center justify-center'>
+          <div className='flex flex-col items-center justify-center pb-8'>
             <p>¿Ya estás registrado?</p>
             <Link to={'/login'}>Inicia sesión</Link>
           </div>
