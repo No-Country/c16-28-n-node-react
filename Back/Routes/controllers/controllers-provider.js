@@ -101,7 +101,7 @@ async function postProviders(req, res) {
 async function putProvider(req, res) {
   try {
     const { id } = req.params;
-    const { name, lastName, email, address, password, img, otherCertif, isActive, contact, horary, matriculation, id_service } = req.body;
+    const { name, lastName, email, address, password, img, otherCertif, isActive, contact, horary, matriculation, id_services } = req.body;
 
     // Validaciones de los campos
     const errors = [];
@@ -134,35 +134,36 @@ async function putProvider(req, res) {
       }
     }
 
-    const uploadedImg = await cloudinary.uploader.upload(req.file.path);
-    const imgUrl = uploadedImg.secure_url;
+    let services = [];
+    if (id_services && typeof id_services === 'string') {
+      services = id_services.split(',').map(Number);
+    }
 
     await provider.update({
       name: name || provider.name,
       lastName: lastName || provider.lastName,
       email: email || provider.email,
       password: password || provider.password,
-      id_service: id_service || provider.id_service,
-      img: img || imgUrl,
+      img: img || provider.img,
       otherCertif: otherCertif || provider.otherCertif,
       address: address || provider.address,
       contact: contact || provider.contact,
       horary: horary || provider.horary,
       matriculation: matriculation || provider.matriculation,
       isActive: isActive || provider.isActive
-    }, {
-      where: { id_prov: id }
     });
 
     await provider.setServices(services);
+
     const updatedProvider = await Provider.findByPk(id, { include: Service });
 
     res.status(200).json(updatedProvider);
+
   } catch (error) {
     console.log("Error", error);
     res.status(500).json({ "error": error });
   }
-};
+}
 
 module.exports = {
   getProviders,

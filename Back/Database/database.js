@@ -53,7 +53,8 @@ const { User, Solicited, Review, Provider, Service, Rubro, ImgService, ProviderS
 //     Rubro.bulkCreate(jsonData.rubro),
 //     Service.bulkCreate(jsonData.service),
 //     Provider.bulkCreate(jsonData.provider),
-//     User.bulkCreate(jsonData.user)
+//     User.bulkCreate(jsonData.user),
+//     ProviderService.bulkCreate(jsonData.providerService)
 //   ])
 //     .then(() => {
 //       console.log('Datos insertados correctamente');

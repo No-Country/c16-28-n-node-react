@@ -31,6 +31,10 @@
         {
             "name": "Seguridad",
             "description": "Servicios de vigilancia y protección de bienes y personas"
+        },
+        {
+            "name": "Otros",
+            "description": "Otros servicios"
         }
     ],
     "service": [
@@ -279,19 +283,19 @@
         {
             "name": "Juan",
             "email": "juanperez@example.com",
-            "password": "123456",
+            "password": "Password1!",
             "lastName": "Pérez"
         },
         {
             "name": "María",
             "email": "mariagonzalez@example.com",
-            "password": "654321",
+            "password": "Password2!",
             "lastName": "González"
         },
         {
             "name": "Carlos",
             "email": "carlosrodriguez@example.com",
-            "password": "abcdef",
+            "password": "Password3!",
             "lastName": "Rodríguez"
         }
     ],
@@ -300,46 +304,208 @@
             "name": "Electri",
             "email": "proveedorelectricidad@example.com",
             "lastName":"Todo",
-            "password": "proveedor123",
+            "password": "Proveedor123!",
             "address": "Av. de la Energía 123, Santiago de Chile",
-            "id_service": "1",
-            "contact": "+1234567890"
+            "contact": "+1234567890",
+            "img": "https://img.freepik.com/foto-gratis/apuesto-joven-brazos-cruzados-sobre-fondo-blanco_23-2148222620.jpg",
+            "horary":"10 a 20hs",
+            "matriculation":"Nº 45848484",
+            "otherCertif":"Cursos Online"
         },
         {
             "name": "Fontanería El Chorrito",
             "lastName":"De agua",
             "email": "proveedorfontaneria@example.com",
-            "password": "proveedor456",
+            "password": "Proveedor456!",
             "address": "Calle de las Cañerías 456, Santiago de Chile",
             "id_service": "2",
-            "contact": "+9876543210"
+            "contact": "+9876543210",
+            "img": "https://img.freepik.com/foto-gratis/joven-barbudo-camisa-rayas_273609-5677.jpg?w=900&t=st=1708971804~exp=1708972404~hmac=474e3f9a998c4d60090ff92a2048f02d0db6be9daa015f8e992ed4aee051ca2d",
+            "horary":"14 a 20hs",
+            "matriculation":"Nº 2535352352",
+            "otherCertif":"No tiene"
         },
         {
             "name": "Carpintería 33",
             "lastName":"32+1",
             "email": "proveedorcarpinteria@example.com",
-            "password": "proveedor789",
+            "password": "Proveedor789!",
             "address": "Plaza de la Madera 789, Santiago de Chile",
-            "id_service": "3",
-            "contact": "+1122334455"
+            "contact": "+1122334455",
+            "img": "https://img.freepik.com/foto-gratis/chico-guapo-seguro-posando-contra-pared-blanca_176420-32936.jpg?w=900&t=st=1708971869~exp=1708972469~hmac=b924d6e6e6d1445c1ba1926981bfae9ff209eb364ff82022d222313f25c52809",
+            "horary":"10 a 20hs",
+            "matriculation":"No posee",
+            "otherCertif":"No posee"
         },
         {
             "name": "Pintura La Pinta",
             "lastName":"Tura",
             "email": "proveedorpintura@example.com",
-            "password": "proveedorabc",
+            "password": "Proveedorabc1!",
             "address": "Av. de los Colores 234, Santiago de Chile",
-            "id_service": "4",
-            "contact": "+9988776655"
+            "contact": "+9988776655",
+            "img":"https://img.freepik.com/foto-gratis/joven-posando-brazos-cruzados_114579-42107.jpg?w=900&t=st=1708972025~exp=1708972625~hmac=39b184f2a159e27ac09930ec945c7e9686dfbdb1b00a7ee41555c1226749d424",
+            "horary":"9 a 13hs",
+            "matriculation":"Nº 23523553",
+            "otherCertif":"No posee"
         },
         {
             "name": "Albañilería",
             "lastName":"Mex",
             "email": "proveedoralbanileria@example.com",
-            "password": "proveedorxyz",
+            "password": "proveedorxyZ!2",
             "address": "Calle de las Obras 567, Santiago de Chile",
             "id_service": "5",
-            "contact": "+1122334455"
+            "contact": "+1122334455",
+            "img":"https://img.freepik.com/foto-gratis/apuesto-hombre-sonriente-confiado-manos-cruzadas-sobre-pecho_176420-18743.jpg?w=900&t=st=1708971996~exp=1708972596~hmac=1997e100d5b198cb2503f2878ce1ca542bc1bf63d6b539433ca2af4d63825680",
+            "horary":"9 a 13hs",
+            "matriculation":"Nº 346345346",
+            "otherCertif":"OpenInglish"
         }
+    ],
+    "provService":[
+            {
+              "id_prov": 5,
+              "id_service": 2
+            },
+            {
+              "id_prov": 5,
+              "id_service": 4
+            },
+            {
+
+              "id_prov": 5,
+              "id_service": 6
+            },
+            {
+
+              "id_prov": 5,
+              "id_service": 8
+            },
+            {
+              "id_prov": 5,
+              "id_service": 10
+            },
+            {
+              "id_prov": 5,
+              "id_service": 12
+            },
+            {
+              "id_prov": 5,
+              "id_service": 14
+            },
+            {
+              "id_prov": 1,
+              "id_service": 2
+            },
+            {
+              "id_prov": 1,
+              "id_service": 4
+            },
+            {
+              "id_prov": 1,
+              "id_service": 6
+            },
+            {
+              "id_prov": 1,
+              "id_service": 8
+            },
+            {
+              "id_prov": 1,
+              "id_service": 10
+            },
+            {
+              "id_prov": 1,
+              "id_service": 12
+            },
+            {
+              "id_prov": 1,
+              "id_service": 14
+            },
+            {
+              "id_prov": 3,
+              "id_service": 2
+            },
+            {
+              "id_prov": 3,
+              "id_service": 4
+            },
+            {
+              "id_prov": 3,
+              "id_service": 6
+            },
+            {
+              "id_prov": 3,
+              "id_service": 8
+            },
+            {
+              "id_prov": 3,
+              "id_service": 10
+            },
+            {
+              "id_prov": 3,
+              "id_service": 12
+            },
+            {
+              "id_prov": 3,
+              "id_service": 14
+            },
+            {
+              "id_prov": 2,
+              "id_service": 1
+            },
+            {
+              "id_prov": 2,
+              "id_service": 3
+            },
+            {
+              "id_prov": 2,
+              "id_service": 6
+            },
+            {
+              "id_prov": 2,
+              "id_service": 9
+            },
+            {
+              "id_prov": 2,
+              "id_service": 13
+            },
+            {
+              "id_prov": 2,
+              "id_service": 15
+            },
+            {
+              "id_prov": 2,
+              "id_service": 18
+            },
+            {
+              "id_prov": 4,
+              "id_service": 1
+            },
+            {
+              "id_prov": 4,
+              "id_service": 3
+            },
+            {
+              "id_prov": 4,
+              "id_service": 6
+            },
+            {
+              "id_prov": 4,
+              "id_service": 9
+            },
+            {
+              "id_prov": 4,
+              "id_service": 13
+            },
+            {
+              "id_prov": 4,
+              "id_service": 15
+            },
+            {
+              "id_prov": 4,
+              "id_service": 18
+            }
+          
     ]
 }
