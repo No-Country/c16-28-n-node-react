@@ -13,11 +13,13 @@ function ServiceList() {
 
   return (
     <div>
-      <h2  className='section__normal items-center justify-center'>Servicios:</h2>
+      <h2  className='items-left justify-center p-[5%]'>Servicios:</h2>
       <ul>
         {services && services.map((services) => (
-          <li key={services.id_service} className='items-left justify-center p-[5%] ml-1 mb-2 border border-black-100 rounded-md'>
-            <Link to={`/providers/${services.id_service}`}>{services.name}</Link>
+          <li key={services.id_service} className=' justify-center p-[5%] ml-1 mb-2 border border-blue rounded-md hover:bg-orange focus:bg-orange'>
+            <Link className='mx-auto p-[5%]' to={`/providers/${services.id_service}`}>
+              {services.name}
+            </Link>
             </li>
 
         ))}
