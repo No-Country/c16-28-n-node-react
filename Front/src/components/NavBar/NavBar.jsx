@@ -1,4 +1,4 @@
-import React from 'react'
+import { Link } from "react-router-dom";
 
 const NavBar = () => {
   return (
@@ -8,8 +8,13 @@ const NavBar = () => {
         <li>Search</li>
         <li>Profile</li>
       </ul>
+      <div className='m-6 bg-yellow w-[125px] h-[54px] flex items-center justify-center'>
+        <Link to={'/'} className='font-sans text-xl font-bold text-center text-blue'>
+          ServiApp
+        </Link>
+      </div>
     </nav>
-  )
+  );
 }
 
 export default NavBar
