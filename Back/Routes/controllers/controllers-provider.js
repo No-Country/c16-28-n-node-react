@@ -31,6 +31,24 @@ async function getProviders(req, res) {
   }
 }
 
+//Traer detalle de un proveedor: 
+
+async function getProvidersByID(req,res){
+  const { id_prov } = req.params;
+  try {
+    const provider = await Provider.findByPk(id_prov)
+
+    if (!provider || provider.length === 0) {
+        return res.status(404).json({ error: "No provider found for the ID" });
+    }
+
+    res.status(200).json(provider);
+} catch (error) {
+    console.error("Error getting provider by ID:", error);
+    res.status(500).json({ error: "Error getting provider by ID" });
+}
+}
+
 // Crear un proveedor
 async function postProviders(req, res) {
   try {
@@ -149,5 +167,6 @@ async function putProvider(req, res) {
 module.exports = {
   getProviders,
   postProviders,
-  putProvider
+  putProvider,
+  getProvidersByID
 }
