@@ -4,6 +4,7 @@ import Proveedores from '../pages/Proveedores/Proveedores';
 import PerfilProveedor from '../pages/PerfilProveedor/PerfilProveedor';
 import Login from '../pages/Login/Login';
 import Home from '../pages/Home/Home';
+import ConfirmationPage from '../pages/ConfirmationPage/ConfirmationPage';
 
 const AppRoutes = () => {
   return (
@@ -11,6 +12,7 @@ const AppRoutes = () => {
       <Route path='/' element={<Home />} />
       <Route path='/login' element={<Login />} />
       <Route path='/register' element={<RegisterPage />} />
+      <Route path='confirmation-page' element={<ConfirmationPage />} />
       <Route path='/proveedores' element={<Proveedores />} />
       <Route path='/proveedor/perfil/:id' element={<PerfilProveedor />} />
     </Routes>
