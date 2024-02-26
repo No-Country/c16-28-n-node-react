@@ -1,7 +1,9 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { registerUser } from '../../api/userApi';
 
 const RegisterForm = () => {
+  const navigate = useNavigate()
   const [formData, setFormData] = useState({
     name: '',
     lastName: '',
@@ -22,6 +24,7 @@ const RegisterForm = () => {
     const userData = { name, lastName, email, password };
     console.log(userData);
     await registerUser(userData);
+    navigate('/confirmation-page')
   };
 
   const handleChange = (e) => {
