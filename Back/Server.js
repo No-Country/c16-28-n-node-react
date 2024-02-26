@@ -1,4 +1,3 @@
-
 const port = process.env.PORT || 3001;
 const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
@@ -14,21 +13,24 @@ const cloudSecret = process.env.CLOUDINARY_API_SECRET;
 
 server.name = 'API';
 
-// server.use(cors({
-//   origin: ["http://localhost:5173", "http://dev.serviapp.solutions:3001"],
-//   credentials: true,
-// }))
+server.use(cors({
+  origin: ["http://localhost:5173", "http://dev.serviapp.solutions:3001"],
+  credentials: true,
+}))
 
-server.use(cors());
+
 
 server.use(express.json({ limit: '50mb' }));
-server.use(express.urlencoded({ extended: true, limit: '50mb' }));
+server.use(express.urlencoded({ extended: false }));
 server.use(cookieParser());
 server.use(morgan('dev'));
 server.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*'); 
-  res.header('Access-Control-Allow-Credentials', 'true');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  // res.header('Access-Control-Allow-Origin', '*');
+  // res.header('Access-Control-Allow-Credentials', 'true');
+  // res.header(
+  //   'Access-Control-Allow-Headers',
+  //   'Origin, X-Requested-With, Content-Type, Accept'
+  // );
   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
   next();
 });
@@ -38,11 +40,10 @@ server.use('/', routes);
 cloudinary.config({
   cloud_name: cloudName,
   api_key: cloudKey,
-  api_secret: cloudSecret
+  api_secret: cloudSecret,
 });
 
-
-// Detector de errores: 
+// Detector de errores:
 server.use((err, req, res, next) => {
   const status = err.status || 500;
   const message = err.message || 'Internal Server Error';
@@ -50,10 +51,10 @@ server.use((err, req, res, next) => {
   res.status(status).json({ error: message });
 });
 
-
 // Server On:
-    console.log('Iniciando la aplicación');
-conn.sync({alter:true})
+console.log('Iniciando la aplicación');
+conn
+  .sync({ alter: true })
   .then(() => {
     server.listen(port, async () => {
       console.log('Servidor ON in http://localhost:3001/');

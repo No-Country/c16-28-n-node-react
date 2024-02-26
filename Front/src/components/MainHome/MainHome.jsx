@@ -6,11 +6,6 @@ const MainHome = () => {
   return (
     <div className='container'>
       <section className='max-w-full'>
-        <div className='m-6 bg-yellow w-[125px] h-[54px] flex items-center justify-center'>
-          <p className='font-sans text-xl font-bold text-center text-blue'>
-            ServiApp
-          </p>
-        </div>
         <section className='container mx-auto section__skyblue'>
           <div className='flex flex-col space-y-[32px]'>
             <h1>
@@ -41,7 +36,9 @@ const MainHome = () => {
           />
         </section>
         <section className='section__normal items-center justify-center'>
-          <Link to={'/login'} className='primaryBtn w-[280px]'>Inicia Sesion</Link>
+          <Link to={'/login'} className='primaryBtn w-[280px]'>
+            Inicia Sesion
+          </Link>
           <div className='flex flex-col'>
             <span className='text-gray text-sm'>¿No estás registrado?</span>
             <Link to={'/register'} className='secondaryBtn'>

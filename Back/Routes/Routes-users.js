@@ -3,9 +3,9 @@ const { getUsers, postUsers, putUsers } = require('./controllers/controllers-use
 const router= Router();
 
 // Aca se agregan todos los request (PUT / POST / GET)
-router.get('/', getUsers); // Obtiene todos los usuarios registrados.
-router.post('/post', postUsers) // Creamos un nuevo usuario
-router.put('/put:id_user', putUsers) // Actualizamos el usuario
+router.get('/users', getUsers); // Obtiene todos los usuarios registrados.
+router.post('/users', postUsers) // Creamos un nuevo usuario
+router.put('/users/:id_user', putUsers) // Actualizamos el usuario
 
 
 module.exports = router;
