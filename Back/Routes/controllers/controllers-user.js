@@ -25,7 +25,7 @@ function validatePassword(password) {
 async function postUsers(req, res) {
 
   try {
-    const { name, email, password, lastName } = req.body;
+    const { name, lastName, email, password,  } = req.body;
 
     // Validaciones de los campos
     const errors = [];
@@ -43,7 +43,7 @@ async function postUsers(req, res) {
     }
 
     if (errors.length > 0) {
-      return res.status(400).json({ "error": errors });
+      return res.status(400).json({ "ERROR>>>>>>": errors });
     }
 
     // Verificar si el email ya existe
@@ -55,8 +55,8 @@ async function postUsers(req, res) {
 
     const user = await User.create({
       name,
-      email,
       lastName,
+      email,
       password,
       isActive: true,
     });

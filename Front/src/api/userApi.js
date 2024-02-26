@@ -1,11 +1,12 @@
-import api from './axios';
+import configureAxios from './axios';
 
-export const registerUser = async () => {
+export const registerUser = async (newUser) => {
   try {
-    const res = await api.post('/register');
-    console.log(res)
+    const api = configureAxios();
+    const res = await api.post('/users', newUser);
     return res.data;
   } catch (error) {
-    throw error.data.message || 'Server Error';
+    console.error('Error creando usuario:', error);
+    throw error || 'Server Error';
   }
 };
