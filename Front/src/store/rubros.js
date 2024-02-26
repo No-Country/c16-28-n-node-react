@@ -7,7 +7,6 @@ const rubroStore = create((set) => ({
     try {
       const response = await fetch( URL +`/rubros`);
       const data = await response.json();
-      console.log(data)
       set({ rubros: data });
       
     } catch (error) {
