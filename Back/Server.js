@@ -14,7 +14,7 @@ const cloudSecret = process.env.CLOUDINARY_API_SECRET;
 server.name = 'API';
 
 server.use(cors({
-  origin: ["http://localhost:5173", "http://dev.serviapp.solutions:3001"],
+  origin: ["http://localhost:5173", "http://dev.serviapp.solutions"],
   credentials: true,
 }))
 

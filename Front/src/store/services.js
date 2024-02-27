@@ -1,7 +1,6 @@
 import { create } from 'zustand';
 import configureAxios from '../api/axios';
 const api = configureAxios();
-
 const useServiceStore = create((set) => ({
   services: [],
   loadServices: async (id_rubro) => {

@@ -2,7 +2,6 @@ import { create } from 'zustand';
 import configureAxios from '../api/axios';
 
 const api = configureAxios();
-
 const rubroStore = create((set) => ({
   rubros: [],
   loadRubros: async () => {

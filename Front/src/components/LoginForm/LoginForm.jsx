@@ -1,106 +1,99 @@
 import { useState } from 'react';
-import configureAxios from '../../api/axios';
-import useUserStore from '../../store/auth';
+import { Link } from "react-router-dom"
 
 const LoginForm = () => {
-  const setTokenAndRole = useUserStore((state) => state.setTokenAndRole);
+    // Estado para correo electrónico y contraseña
+    const [formData, setFormData] = useState({
+      email: '',
+      password: '',
+    });
+    const [errorResponse, setErrorResponse] = useState("");
+    
+    // Manejar el envío del formulario
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      setErrorResponse("");
+  
+      // Validar correo electrónico y contraseña
 
-  const [formData, setFormData] = useState({
-    email: '',
-    password: '',
-  });
-  const [error, setError] = useState(null);
-  const api = configureAxios();
-
-  const handleLogin = async () => {
-    setError(null);
-
-    try {
-      const res = await api.post('/login', { ...formData });
-      const { token, role } = res.data;
-
-      setTokenAndRole(token, role);
-    } catch (error) {
-      console.error('Error>>>', error.response?.status);
-      setError(error);
-    }
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const { email, password } = formData;
-    console.log(formData);
-    await handleLogin({ email, password });
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
-
-  return (
-    <div className='bg-white p-10 rounded-md shadow-md'>
-      <div className='flex flex-col items-center'>
-        <h1 className='text-2xl font-bold text-gray-700 mb-5'>
-          Iniciar sesión
-        </h1>
-        <form onSubmit={handleSubmit}>
-          <div className='mb-5'>
-            <label
-              className='block mb-2 text-sm font-medium text-gray-700'
-              htmlFor='email'
-            >
-              Correo Electrónico
-            </label>
-            <input
-              type='email'
-              id='email'
-              name='email'
-              value={formData.email}
-              onChange={handleChange}
-              required
-              className='w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
-            />
-          </div>
-          <div className='mb-5'>
-            <label
-              className='block mb-2 text-sm font-medium text-gray-700'
-              htmlFor='password'
-            >
-              Contraseña
-            </label>
-            <input
-              type='password'
-              id='password'
-              name='password'
-              value={formData.password}
-              onChange={handleChange}
-              required
-              className='w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
-            />
-          </div>
-          <div className='flex items-center justify-between mb-5'>
-            <a
-              href='/forgot-password'
-              className='text-sm text-gray-500 hover:underline'
-            >
-              ¿Olvidaste tu contraseña?
-            </a>
-          </div>
-          <button
-            type='submit'
-            className='primaryBtn w-full px-4 py-2 bg-blue-500 text-white font-bold rounded-md hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300'
-          >
-            Iniciar sesión
-          </button>
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(formData.email)) {
+        setErrorResponse("Correo electrónico inválido");
+        return;
+      }
+    
+      // Validate password (consider stronger validation rules)
+      if (formData.password.length < 8) {
+        setErrorResponse("Debe tener al menos 8 caracteres");
+        return;
+      }
+  
+      // Enviar datos de inicio de sesión
+      const { email, password } = formData;
+      const loginData = { email, password };
+      login(loginData); // Reemplazar con la función de login
+      console.log(loginData);
+    };
+     
+    // Manejar cambios de entrada de formulario
+    const handleChange = (e) => {
+      const { name, value } = e.target;
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: value,
+      }));
+    };
+  
+    return (
+      <div>
+        <form className="flex flex-col rounded border p-4 gap-6"
+          onSubmit={handleSubmit}
+        >
+            <div className="flex flex-col">          
+                <label 
+                    htmlFor="email" 
+                    className="mb-2 text-text text-black">Correo Electrónico <span className="text-text font-light text-red">*</span>
+                </label>
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                    className="bg-background p-3 rounded border text-text text-gray"
+                    placeholder="Escribe tu correo..."
+                />
+                {!errorResponse && <div className="text-text text-red font-medium">{errorResponse}</div>}
+            </div>
+            <div className="flex flex-col">          
+                <label 
+                    htmlFor="password"
+                    className="mb-2 text-text text-black"
+                >Contraseña <span className="text-text font-light text-red">*</span>
+                </label>
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    value={formData.password}
+                    onChange={handleChange}
+                    required
+                    className="bg-background p-3 rounded border text-text text-gray"
+                    placeholder="Escribe tu contraseña..."
+                />
+                {!errorResponse && <div className="text-text text-red font-medium">{errorResponse}</div>}
+            </div>
+            <div className="pb-0.5 self-center border-b border-black border-1">
+            <Link to={'#'} className="text-text text-center text-dark">¿Olvidaste tu contraseña?</Link>
+            </div>
+            <button 
+                type="submit"
+                className="bg-yellow p-3 rounded border text-text font-medium text-dark ">Iniciar Sesión
+            </button>
         </form>
-        {error && <div className='error-message'>{error.message}</div>}
       </div>
-    </div>
-  );
-};
-
-export default LoginForm;
+    );
+  };
+  
+  export default LoginForm;
