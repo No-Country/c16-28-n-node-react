@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import configureAxios from '../api/axios';
+
 const api = configureAxios();
 const useServiceStore = create((set) => ({
   services: [],
@@ -11,6 +12,7 @@ const useServiceStore = create((set) => ({
       console.error('Error loading services:', error);
     }
   },
+  resetServices: () => set({ services: [] }),
 }));
 
 export default useServiceStore;

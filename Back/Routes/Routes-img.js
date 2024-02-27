@@ -19,7 +19,7 @@ router.post('/post', postImgService);
 router.get('/', getImgServices);
 
 // Ruta para obtener una imagen por ID (GET)
-router.get('/:id', getImgServiceById);
+router.get('/:id_prov/:id_service', getImgServiceById);
 
 // Ruta para actualizar una imagen por ID (PUT)
 router.put('/:id', putImgService);
