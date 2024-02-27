@@ -35,7 +35,7 @@ router.use('/solicited', routesSolicited);
 router.use('/ProvService', routesProvService);
 
 //Conf Login para user y para Prov:
-router.use('/login', routesLogin);
+router.use(routesLogin);
 
 // Config los routers de los img:
 router.use('/img', routesImg);
