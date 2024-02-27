@@ -1,14 +1,13 @@
-import create from 'zustand';
-const URL = "http://dev.serviapp.solutions:3001" || "http://localhost:3001"
+import { create } from 'zustand';
+import configureAxios from '../api/axios';
 
+const api = configureAxios();
 const rubroStore = create((set) => ({
-  rubros:[],
+  rubros: [],
   loadRubros: async () => {
     try {
-      const response = await fetch( URL +`/rubros`);
-      const data = await response.json();
-      set({ rubros: data });
-      
+      const response = await api.get('/rubros');
+      set({ rubros: response.data });
     } catch (error) {
       console.error('Error loading rubros:', error);
     }

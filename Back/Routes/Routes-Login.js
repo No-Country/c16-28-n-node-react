@@ -5,7 +5,7 @@ const { Provider, User } = require('../Database/database');
 
 const router = Router();
 
-router.post('/', async (req, res) => {
+router.post('/login', async (req, res) => {
     const { email, password } = req.body;
     const secretKey = process.env.JWT_SECRET_KEY;
 

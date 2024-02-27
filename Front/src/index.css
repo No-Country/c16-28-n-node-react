@@ -23,7 +23,7 @@
 
 @layer components {
   .primaryBtn {
-    @apply p-3 bg-orange rounded border border-dark text-center;
+    @apply p-3 bg-orange rounded border border-dark text-center hover:bg-blue hover:text-background;
   }
 
   .secondaryBtn {
@@ -36,5 +36,13 @@
 
   .section__normal {
     @apply py-[46px] px-[32px] flex flex-col  space-y-[32px];
+  }
+
+  .p__title {
+    @apply ml-5 text-[0.9em] font-medium text-dark;
+  }
+
+  .p__h3 {
+    @apply text-lg font-medium text-dark;
   }
 }
