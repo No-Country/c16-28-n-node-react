@@ -45,7 +45,7 @@ jobs:
 
         - name: checkout repo
           uses: actions/checkout@v2
-#deploy front
+#deploy frontend
         - name: Use Node.js 16 LTS
           uses: actions/setup-node@v2
           with:
