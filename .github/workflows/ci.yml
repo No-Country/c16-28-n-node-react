@@ -67,6 +67,6 @@ jobs:
                   
         - name: Deploy with rsync
           run: |
-              echo "${{ secrets.OPT_SRV }}" > dist/.htaccess
-              rsync -rav --delete dist/ ubuntu@dev.serviapp.solutions:/var/www/dev.serviapp.solutions/public_html/
+              echo "${{ secrets.OPT_SRV }}" > Front/dist/.htaccess
+              rsync -rav --delete Front/dist/ ubuntu@dev.serviapp.solutions:/var/www/dev.serviapp.solutions/public_html/
               ssh -f ubuntu@${{ secrets.SSH_HOST }} /home/ubuntu/serviapp/dev/dev.sh
