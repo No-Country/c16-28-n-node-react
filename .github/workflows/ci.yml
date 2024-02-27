@@ -41,15 +41,15 @@ jobs:
             push: true
             tags: ${{ secrets.DOCKERHUB_USERNAME }}/serviapp:back-${{ github.ref_name }}
 
-        - name: Build and push Front
-          uses: docker/build-push-action@v2
-          with:
-            context: ./Front
-            file: ./Front/Dockerfile
-            push: true
-            tags: ${{ secrets.DOCKERHUB_USERNAME }}/serviapp:front-${{ github.ref_name }}
+#        - name: Build and push Front
+#          uses: docker/build-push-action@v2
+#          with:
+#            context: ./Front
+#            file: ./Front/Dockerfile
+#            push: true
+#            tags: ${{ secrets.DOCKERHUB_USERNAME }}/serviapp:front-${{ github.ref_name }}
 
-        #    if: github.ref == 'refs/heads/dev' # run this job only for the dev branch
+        if: github.ref == 'refs/heads/Develop' # run this job only for the dev branch
 
         - name: checkout repo
           uses: actions/checkout@v2
@@ -63,3 +63,35 @@ jobs:
         - name: execute script file
           run: ssh -f ubuntu@${{ secrets.SSH_HOST }} /home/ubuntu/serviapp/dev/dev.sh
 
+  deploy-front-dev:
+
+    name: Deploy React App Dev
+    runs-on: ubuntu-latest
+  
+    if: github.ref == 'refs/heads/Develop' # run this job only for the dev branch
+    
+    steps:
+    - name: Get latest code
+      uses: actions/checkout@v2.3.2   
+
+    - name: Use Node.js 16 LTS
+      uses: actions/setup-node@v2
+      with:
+        node-version: '16'
+      
+    - name: Install NPM Modules
+      run: npm install
+
+    - name: Build Project
+      run: CI= npm run build
+      
+    - name: Create SSH key
+      run: |
+          install -m 600 -D /dev/null ~/.ssh/id_rsa
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          ssh-keyscan dev.serviapp.solutions > ~/.ssh/known_hosts
+               
+    - name: Deploy with rsync
+      run: |
+          echo "${{ secrets.OPT_SRV }}" > dist/.htaccess
+          rsync -rav --delete dist/ ubuntu@dev.serviapp.solutions:/var/www/dev.serviapp.solutions/public_html/
