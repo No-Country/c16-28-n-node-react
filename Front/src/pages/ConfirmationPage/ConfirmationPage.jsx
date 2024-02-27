@@ -10,7 +10,7 @@ const ConfirmationPage = () => {
         <div className='flex items-center justify-center'>
           <figure>
             <img
-              src='https://i.postimg.cc/QHfCJ5p3/confirmation-image.png'
+              src='../../../src/assets/confirmation-image.png'
               alt='confirmation image'
             />
           </figure>
