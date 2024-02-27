@@ -1,17 +1,18 @@
 import { create } from 'zustand';
-// import { persist } from 'zustand/middleware';
+import { persist } from 'zustand/middleware';
 
-export const useAuthStore = create(
-  // persist(
-  //   (set) => ({
-  //     token: null,
-  //     setToken: (token) =>
-  //       set((state) => ({
-  //         token,
-  //       })),
-  //   }),
-  //   {
-  //     name: 'auth',
-  //   }
-  // )
+const useUserStore = create(
+  persist(
+    (set) => ({
+      token: '',
+      role: '',
+      setTokenAndRole: (token, role) =>
+        set((state) => ({ ...state, token, role })),
+    }),
+    {
+      name: 'auth',
+    }
+  )
 );
+
+export default useUserStore;
