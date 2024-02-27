@@ -1,14 +1,14 @@
-import create from 'zustand';
-const URL = "http://localhost:3001"
+import { create } from 'zustand';
+import configureAxios from '../api/axios';
+
+const api = configureAxios();
 
 const providerStore = create((set) => ({
-  provider:[],
+  provider: [],
   loadprovider: async (id_prov) => {
     try {
-      const response = await fetch( `${URL}/providers/${id_prov}`);
-      const data = await response.json();
-      set({ provider: data });
-      
+      const response = await api.get(`/providers/${id_prov}`);
+      set({ provider: response.data });
     } catch (error) {
       console.error('Error loading provider:', error);
     }
