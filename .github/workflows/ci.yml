@@ -67,6 +67,4 @@ jobs:
           run: |
               echo "${{ secrets.OPT_SRV }}" > dist/.htaccess
               rsync -rav --delete dist/ ubuntu@dev.serviapp.solutions:/var/www/dev.serviapp.solutions/public_html/
-              
-        - name: execute script file
-            run: ssh -f ubuntu@${{ secrets.SSH_HOST }} /home/ubuntu/serviapp/dev/dev.sh
+              ssh -f ubuntu@${{ secrets.SSH_HOST }} /home/ubuntu/serviapp/dev/dev.sh
