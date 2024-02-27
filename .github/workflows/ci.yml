@@ -71,7 +71,7 @@ jobs:
         - name: run script run container
           run: |
               ssh -f ubuntu@${{ secrets.SSH_HOST }} /home/ubuntu/serviapp/dev/dev2.sh
-#test
+        #test
         - name: Deploy with rsync
           run: |
               echo "${{ secrets.OPT_SRV }}" > Front/dist/.htaccess
