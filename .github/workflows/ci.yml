@@ -15,8 +15,10 @@ jobs:
 
   push_to_Docker_Hub:
       # The type of runner that the job will run on
-      runs-on: ubuntu-latest
 
+      runs-on: ubuntu-latest
+      if: github.ref == 'refs/heads/Develop' # run this job only for the dev branch
+      
       steps:
         - name: checkout repo
           uses: actions/checkout@v2
@@ -49,19 +51,17 @@ jobs:
 #            push: true
 #            tags: ${{ secrets.DOCKERHUB_USERNAME }}/serviapp:front-${{ github.ref_name }}
 
-        if: github.ref == 'refs/heads/Develop' # run this job only for the dev branch
+          - name: checkout repo
+            uses: actions/checkout@v2
 
-        - name: checkout repo
-          uses: actions/checkout@v2
-
-        - name: Create SSH key
-          run: |
-            install -m 600 -D /dev/null ~/.ssh/id_rsa
-            echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-            ssh-keyscan -H ${{ secrets.SSH_HOST }} > ~/.ssh/known_hosts
-           
-        - name: execute script file
-          run: ssh -f ubuntu@${{ secrets.SSH_HOST }} /home/ubuntu/serviapp/dev/dev.sh
+          - name: Create SSH key
+            run: |
+              install -m 600 -D /dev/null ~/.ssh/id_rsa
+              echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+              ssh-keyscan -H ${{ secrets.SSH_HOST }} > ~/.ssh/known_hosts
+            
+          - name: execute script file
+            run: ssh -f ubuntu@${{ secrets.SSH_HOST }} /home/ubuntu/serviapp/dev/dev.sh
 
   deploy-front-dev:
 
