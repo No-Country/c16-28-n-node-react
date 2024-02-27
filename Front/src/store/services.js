@@ -1,5 +1,5 @@
 import create from 'zustand';
-const URL = "http://localhost:3001" || "http://dev.serviapp.solutions:3001"
+const URL = "http://dev.serviapp.solutions:3001" || "http://localhost:3001"
 
 const useServiceStore = create((set) => ({
   services: [],
