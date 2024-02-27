@@ -4,15 +4,6 @@ import NavBar from "../../components/NavBar/NavBar"
 const Login = () => {
   return (
     <div className="px-6">
-        <header>
-          <NavBar />
-        </header>
-        <main>
-          <div className='mt-4 mb-8 bg-yellow w-[125px] h-[54px] flex items-center justify-center'>
-            <p className='font-sans text-xl font-bold text-center text-blue'>
-              ServiApp  
-            </p>
-          </div>
           <div className="flex flex-col gap-8">
             <h1>Inicia sesión</h1>
             <LoginForm />
@@ -23,7 +14,6 @@ const Login = () => {
             </div>
             <button className="w-full p-3 rounded border text-text font-medium text-dark ">Regístrate</button>
           </div>
-        </main>
     </div>
   )
 }
