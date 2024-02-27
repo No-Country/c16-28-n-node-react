@@ -38,20 +38,26 @@ async function getImgServices(req, res) {
   }
 }
 
-//funcion para obtener una foto por el id_service
+// Función para obtener fotos por los IDs de proveedor y servicio
 async function getImgServiceById(req, res) {
-  const { id } = req.params;
-  try {
-    const imgService = await ImgService.findByPk(id);
-    if (!imgService) {
-      return res.status(404).json({ message: "Image service not found" });
+
+  try {  const { id_prov, id_service } = req.params;
+    const imgServices = await ImgService.findAll({
+      where: {
+        id_prov: id_prov,
+        id_service: id_service
+      }
+    });
+    if (!imgServices || imgServices.length === 0) {
+      return res.status(404).json({ message: "Image services not found" });
     }
-    res.status(200).json(imgService);
+    res.status(200).json(imgServices);
   } catch (error) {
-    console.error("Error getting image service by ID:", error);
-    res.status(500).json({ error: "Error getting image service by ID" });
+    console.error("Error getting image services by IDs:", error);
+    res.status(500).json({ error: "Error getting image services by IDs" });
   }
 }
+
 
 //funcion para modificar una imagen
 async function putImgService(req, res) {

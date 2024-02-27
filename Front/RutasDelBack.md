@@ -77,5 +77,5 @@ Rutas para cargar imagenes:
 GET        URL + /img/  ===> Obtiene todas las imagenes
 POST            + /img/post ===> "Crea"(sube) una imagen  (req: url , description, id_service, id_rubro)
 PUT            + /img/:id  ==>> Actualiza una imagen (req :id (params), url , description, id_service , id_rubro)
-GET            + /img/:id  ===>> Obtiene una imagen por id del servicio (req :id (params))
+GET            + /img/:id_prov/:id_service' ===>> Obtiene una imagen por id del servicio e id prov(req :id_service e id_prov(params))
 DELETE            + /img/:id ===> Elimina la imagen (req :id (params))

@@ -30,6 +30,7 @@ const providerStore = create((set) => ({
       return null;
     }
   },
+  resetProviders: () => set({ providersDetails: {} }),
 }));
 
 

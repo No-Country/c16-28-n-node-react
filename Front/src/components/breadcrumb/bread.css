@@ -1,0 +1,20 @@
+
+.bread{
+ color: #FF6F00;
+ margin-left: 0.5em;
+}
+
+.bread ul{
+    display: flex;
+    flex-direction: row;
+}
+
+.bread ul li:hover{
+    color: #0D47A1;
+}
+
+.bread p{
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+    
+}

@@ -14,6 +14,7 @@ const providerStore = create((set) => ({
       console.error('Error loading provider:', error);
     }
   },
+  resetprovider: () => set({ rubros: [] }),
 }));
 
 export default providerStore;

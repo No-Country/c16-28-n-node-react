@@ -12,6 +12,7 @@ const rubroStore = create((set) => ({
       console.error('Error loading rubros:', error);
     }
   },
+  resetRubros: () => set({ rubros: [] }),
 }));
 
 export default rubroStore;
