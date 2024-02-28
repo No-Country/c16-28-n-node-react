@@ -84,7 +84,7 @@ jobs:
       # The type of runner that the job will run on
 
       runs-on: ubuntu-latest    
-      if: github.ref == 'refs/heads/qa' # run this job only for the dev branch
+      if: github.ref == 'refs/heads/qa' # run this job only for the qa branch
 
       steps:
         #deploy frontend
@@ -120,4 +120,47 @@ jobs:
           run: |
               echo "${{ secrets.OPT_SRV }}" > Front/dist/.htaccess
               rsync -rav --delete Front/dist/ ubuntu@serviapp.solutions:/var/www/qa.serviapp.solutions/public_html/
+
+#deploy PROD
+
+  deploy_to_prod:
+      # The type of runner that the job will run on
+
+      runs-on: ubuntu-latest    
+      if: github.ref == 'refs/heads/main' # run this job only for the main branch
+
+      steps:
+        #deploy frontend
+        - name: checkout repo
+          uses: actions/checkout@v2
+
+        - name: Use Node.js 16 LTS
+          uses: actions/setup-node@v2
+          with:
+            node-version: '16'
+      
+        - name: Install NPM Modules
+          working-directory: ./Front
+          run: npm install
+
+        - name: Build Project
+          working-directory: ./Front
+          run: CI= npm run build
+          
+        - name: Create SSH key
+          run: |
+              install -m 600 -D /dev/null ~/.ssh/id_rsa
+              echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+              ssh-keyscan serviapp.solutions > ~/.ssh/known_hosts                 
+ #       - name: run script stop container and clean
+ #         run: |
+ #             ssh -f ubuntu@${{ secrets.SSH_HOST }} /home/ubuntu/serviapp/dev/dev.sh
+ #       - name: run script run container
+ #         run: |
+ #             ssh -f ubuntu@${{ secrets.SSH_HOST }} /home/ubuntu/serviapp/dev/dev2.sh
+        #test 3
+        - name: Deploy with rsync
+          run: |
+              echo "${{ secrets.OPT_SRV }}" > Front/dist/.htaccess
+              rsync -rav --delete Front/dist/ ubuntu@serviapp.solutions:/var/www/production.serviapp.solutions/public_html/
 
