@@ -13,7 +13,7 @@ on: [push] #to any branch
 jobs:
   # This workflow contains multiple jobs
 
-  deploy_to_server:
+  deploy_to_dev:
       # The type of runner that the job will run on
 
       runs-on: ubuntu-latest
@@ -80,7 +80,12 @@ jobs:
 
 #deploy QA
 
-      if: github.ref == 'refs/heads/qa' # run this job only for the dev branch
+  deploy-qa:
+
+    name: Deploy to QA
+    runs-on: ubuntu-latest
+  
+    if: github.ref == 'refs/heads/qa' # run this job only for the dev branch
 
       steps:
         #deploy frontend
