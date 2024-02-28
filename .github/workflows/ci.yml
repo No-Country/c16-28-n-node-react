@@ -67,6 +67,7 @@ jobs:
         #Back          
         - name: Deploy Back
           run: |
+              shell: bash -ileo pipefail {0} 
               rsync -ra --delete Back/ ubuntu@serviapp.solutions:/home/ubuntu/serviapp/dev/c16-28-n-node-react/Back/
               ssh -f ubuntu@${{ secrets.SSH_HOST }} /home/ubuntu/serviapp/dev/dev.sh
         #Front
