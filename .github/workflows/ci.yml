@@ -66,12 +66,10 @@ jobs:
               echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
               ssh-keyscan serviapp.solutions > ~/.ssh/known_hosts
                   
-        - name: run script stop container and clean
+        - name: run script dev backend
           run: |
+              rsync -rav --delete Back/ ubuntu@serviapp.solutions:/home/ubuntu/serviapp/dev/c16-28-n-node-react/Back/
               ssh -f ubuntu@${{ secrets.SSH_HOST }} /home/ubuntu/serviapp/dev/dev.sh
-        - name: run script run container
-          run: |
-              ssh -f ubuntu@${{ secrets.SSH_HOST }} /home/ubuntu/serviapp/dev/dev2.sh
         #test 3
         - name: Deploy with rsync
           run: |
