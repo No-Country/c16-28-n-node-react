@@ -14,7 +14,7 @@ const routesLogin = require('./Routes-Login');
 const router = Router();
 
 // Configurar los routes de users:
-router.use(routesUsers);
+router.use('/users', routesUsers);
 
 // confg las rutas de reviews:
 router.use('/reviews', routesReviews);

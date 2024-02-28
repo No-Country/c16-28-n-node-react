@@ -83,6 +83,22 @@ async function getUsers(req, res) {
   }
 }
 
+async function getUserById(req, res) {
+  try {
+    const { id_user } = req.params;
+    const user = await User.findByPk(id_user);
+    if (!user) {
+      return res.status(404).json({ "message": "User not found" })
+    }
+    res.status(200).json(user);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ "error": error });
+    
+  }
+
+}
+
 //funcion para actualizar un usuario: 
 async function putUsers(req, res) {
   try {
@@ -144,6 +160,7 @@ async function putUsers(req, res) {
 
 module.exports = {
   getUsers,
+  getUserById,
   postUsers,
   putUsers
 };
