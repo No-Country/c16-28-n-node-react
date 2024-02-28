@@ -43,7 +43,6 @@ jobs:
 #            file: ./Back/Dockerfile
 #            push: true
 #            tags: ${{ secrets.DOCKERHUB_USERNAME }}/serviapp:back-${{ github.ref_name }}
-#deploy frontend
         - name: checkout repo
           uses: actions/checkout@v2
 
