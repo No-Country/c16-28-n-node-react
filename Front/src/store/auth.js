@@ -6,8 +6,10 @@ const useUserStore = create(
     (set) => ({
       token: '',
       role: '',
-      setTokenAndRole: (token, role) =>
-        set((state) => ({ ...state, token, role })),
+      id:null,
+      setTokenAndRole: (token, role , id) =>
+        set((state) => ({ ...state, token, role , id })),
+      logout: () => set({ token: '', role: '' , id:null}),
     }),
     {
       name: 'auth',

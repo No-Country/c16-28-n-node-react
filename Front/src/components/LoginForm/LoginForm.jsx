@@ -1,10 +1,12 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-hot-toast';
 import configureAxios from '../../api/axios';
 import useUserStore from '../../store/auth';
 
 const LoginForm = () => {
   const setTokenAndRole = useUserStore((state) => state.setTokenAndRole);
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     email: '',
@@ -18,19 +20,20 @@ const LoginForm = () => {
 
     try {
       const res = await api.post('/login', { ...formData });
-      const { token, role } = res.data;
+      const { token, role, id } = res.data;
 
-      setTokenAndRole(token, role);
+      setTokenAndRole(token, role, id);
+      toast.success('Usuario conectado exitosamente'); 
+      navigate('/');
     } catch (error) {
-      console.error('Error>>>', error.response?.status);
-      setError(error);
+      toast.error('Ooops algo ha salido mal, vuelve a intentarlo');
+      setError(error.message || 'Error de inicio de sesión');
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { email, password } = formData;
-    console.log(formData);
     await handleLogin({ email, password });
   };
 
@@ -63,9 +66,7 @@ const LoginForm = () => {
             className='bg-background p-3 rounded border text-text text-gray'
             placeholder='Escribe tu correo...'
           />
-          {!error && (
-            <div className='text-text text-red font-medium'>{error}</div>
-          )}
+          {error && <div className='text-text text-red font-medium'>{error}</div>}
         </div>
         <div className='flex flex-col'>
           <label htmlFor='password' className='mb-2 text-text text-black'>
@@ -81,9 +82,7 @@ const LoginForm = () => {
             className='bg-background p-3 rounded border text-text text-gray'
             placeholder='Escribe tu contraseña...'
           />
-          {!error && (
-            <div className='text-text text-red font-medium'>{error}</div>
-          )}
+          {error && <div className='text-text text-red font-medium'>{error}</div>}
         </div>
         <div className='pb-0.5 self-center border-b border-black border-1'>
           <Link to={'#'} className='text-text text-center text-dark'>
