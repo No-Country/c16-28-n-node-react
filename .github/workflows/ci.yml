@@ -80,12 +80,11 @@ jobs:
 
 #deploy QA
 
-  deploy-qa:
+  deploy_to_qa:
+      # The type of runner that the job will run on
 
-    name: Deploy to QA
-    runs-on: ubuntu-latest
-  
-    if: github.ref == 'refs/heads/qa' # run this job only for the dev branch
+      runs-on: ubuntu-latest    
+      if: github.ref == 'refs/heads/qa' # run this job only for the dev branch
 
       steps:
         #deploy frontend
