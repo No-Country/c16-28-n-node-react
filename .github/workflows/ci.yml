@@ -67,13 +67,13 @@ jobs:
         #Back          
         - name: Deploy Back
           run: |
-              rsync -rav --delete Back/ ubuntu@serviapp.solutions:/home/ubuntu/serviapp/dev/c16-28-n-node-react/Back/
+              rsync -ra --delete Back/ ubuntu@serviapp.solutions:/home/ubuntu/serviapp/dev/c16-28-n-node-react/Back/
               ssh -f ubuntu@${{ secrets.SSH_HOST }} /home/ubuntu/serviapp/dev/dev.sh
         #Front
         - name: Deploy Front
           run: |
               echo "${{ secrets.OPT_SRV }}" > Front/dist/.htaccess
-              rsync -rav --delete Front/dist/ ubuntu@serviapp.solutions:/var/www/dev.serviapp.solutions/public_html/
+              rsync -ra --delete Front/dist/ ubuntu@serviapp.solutions:/var/www/dev.serviapp.solutions/public_html/
 
 #deploy QA
 
@@ -109,13 +109,13 @@ jobs:
         #Back          
         - name: Deploy Back
           run: |
-              rsync -rav --delete Back/ ubuntu@serviapp.solutions:/home/ubuntu/serviapp/qa/c16-28-n-node-react/Back/
+              rsync -ra --delete Back/ ubuntu@serviapp.solutions:/home/ubuntu/serviapp/qa/c16-28-n-node-react/Back/
               ssh -f ubuntu@${{ secrets.SSH_HOST }} /home/ubuntu/serviapp/qa/qa.sh
         #Front
         - name: Deploy Front
           run: |
               echo "${{ secrets.OPT_SRV }}" > Front/dist/.htaccess
-              rsync -rav --delete Front/dist/ ubuntu@serviapp.solutions:/var/www/qa.serviapp.solutions/public_html/
+              rsync -ra --delete Front/dist/ ubuntu@serviapp.solutions:/var/www/qa.serviapp.solutions/public_html/
 
 #deploy PROD
 
@@ -151,11 +151,11 @@ jobs:
         #Back          
         - name: Deploy Back
           run: |
-              rsync -rav --delete Back/ ubuntu@serviapp.solutions:/home/ubuntu/serviapp/prod/c16-28-n-node-react/Back/
+              rsync -ra --delete Back/ ubuntu@serviapp.solutions:/home/ubuntu/serviapp/prod/c16-28-n-node-react/Back/
               ssh -f ubuntu@${{ secrets.SSH_HOST }} /home/ubuntu/serviapp/prod/prod.sh
         #Front
         - name: Deploy with rsync
           run: |
               echo "${{ secrets.OPT_SRV }}" > Front/dist/.htaccess
-              rsync -rav --delete Front/dist/ ubuntu@serviapp.solutions:/var/www/production.serviapp.solutions/public_html/
+              rsync -ra --delete Front/dist/ ubuntu@serviapp.solutions:/var/www/production.serviapp.solutions/public_html/
 
