@@ -9,6 +9,7 @@ import DataProvider from "../pages/DataProvedores/perfildeProv";
 import Home from '../pages/home/Home';
 import ConfirmationPage from '../pages/ConfirmationPage/ConfirmationPage';
 import Solicitud from '../pages/Solicitud de Contacto/Solicitud';
+import PerfilCliente from '../pages/PerfilCliente/PerfilCliente';
 
 
 const AppRoutes = () => {
@@ -16,6 +17,7 @@ const AppRoutes = () => {
     <Routes>
       <Route path='/' element={<Home />} />
       <Route path='/login' element={<Login />} />
+      <Route path='/users/:id_user' element={<PerfilCliente />}/>
       <Route path='/register' element={<RegisterPage />} />
       <Route path='/services/:id_rubro' element={<Services/>} />
       <Route path='/providers/:id_service' element={<Providers/>} />
