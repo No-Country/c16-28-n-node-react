@@ -2,10 +2,10 @@
 name: CI-CD
 
 # Controls when the action will run. 
-on:
+on: [push] #to any branch
   # Triggers the workflow on push or pull request events but only for the Develop branch
-  push:
-    branches: [ Develop ]
+  #push:
+  #  branches: [ Develop ]
   # Allows you to run this workflow manually from the Actions tab
   #workflow_dispatch:
   
@@ -13,10 +13,11 @@ on:
 jobs:
   # This workflow contains multiple jobs
 
-  push_to_Docker_Hub:
+  deploy_to_server:
       # The type of runner that the job will run on
 
       runs-on: ubuntu-latest
+#Deploy dev      
       if: github.ref == 'refs/heads/Develop' # run this job only for the dev branch
 
       steps:
@@ -42,10 +43,10 @@ jobs:
             file: ./Back/Dockerfile
             push: true
             tags: ${{ secrets.DOCKERHUB_USERNAME }}/serviapp:back-${{ github.ref_name }}
-
+#deploy frontend
         - name: checkout repo
           uses: actions/checkout@v2
-#deploy frontend
+
         - name: Use Node.js 16 LTS
           uses: actions/setup-node@v2
           with:
@@ -76,4 +77,43 @@ jobs:
           run: |
               echo "${{ secrets.OPT_SRV }}" > Front/dist/.htaccess
               rsync -rav --delete Front/dist/ ubuntu@serviapp.solutions:/var/www/dev.serviapp.solutions/public_html/
+
+#deploy QA
+
+      if: github.ref == 'refs/heads/qa' # run this job only for the dev branch
+
+      steps:
+        #deploy frontend
+        - name: checkout repo
+          uses: actions/checkout@v2
+
+        - name: Use Node.js 16 LTS
+          uses: actions/setup-node@v2
+          with:
+            node-version: '16'
+      
+        - name: Install NPM Modules
+          working-directory: ./Front
+          run: npm install
+
+        - name: Build Project
+          working-directory: ./Front
+          run: CI= npm run build
+          
+        - name: Create SSH key
+          run: |
+              install -m 600 -D /dev/null ~/.ssh/id_rsa
+              echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+              ssh-keyscan serviapp.solutions > ~/.ssh/known_hosts                 
+ #       - name: run script stop container and clean
+ #         run: |
+ #             ssh -f ubuntu@${{ secrets.SSH_HOST }} /home/ubuntu/serviapp/dev/dev.sh
+ #       - name: run script run container
+ #         run: |
+ #             ssh -f ubuntu@${{ secrets.SSH_HOST }} /home/ubuntu/serviapp/dev/dev2.sh
+        #test 3
+        - name: Deploy with rsync
+          run: |
+              echo "${{ secrets.OPT_SRV }}" > Front/dist/.htaccess
+              rsync -rav --delete Front/dist/ ubuntu@serviapp.solutions:/var/www/qa.serviapp.solutions/public_html/
 
