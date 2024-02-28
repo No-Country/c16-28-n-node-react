@@ -1,14 +1,16 @@
-import { useEffect } from 'react';
+import { useEffect} from 'react';
 import providerStore from '../../store/dataProv';
 import imgServiceStore from "../../store/imgServices";
 import useServiceStore from '../../store/services';
+import useUserStore from '../../store/auth';
 import reviewsStore from '../../store/reviews';
 import { useParams } from 'react-router-dom';
-import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { BreadcrumbProveedoresDetail } from '../../components/breadcrumb/breadcrumbs';
+import { useNavigate } from 'react-router-dom';
+
 
 const Proveedores = () => {
   const { provider, loadprovider } = providerStore();
@@ -17,6 +19,9 @@ const Proveedores = () => {
   const { service } = useServiceStore();
   const { id_prov } = useParams();
   let id_service = service?.id_service;
+  const navigate = useNavigate();
+  const { token } = useUserStore(); 
+
   
   useEffect(() => {
     loadprovider(id_prov);
@@ -25,6 +30,16 @@ const Proveedores = () => {
       loadImgs(id_prov, id_service);
     }
   }, [id_prov, loadprovider, loadImgs, id_service, loadReviews]);
+
+  const handleSolicitarContacto = () => {
+    if (!token) {
+      alert('Debe iniciar sesión para solicitar contacto');
+      navigate('/login'); 
+    }
+    else{
+      navigate("/contactRequest")
+    }
+  };
 
   const settings = {
     dots: false,
@@ -108,10 +123,8 @@ const Proveedores = () => {
         </ul>
       )}
 
-      <div className='flex justify-center pb-8'>
-        <Link to='/contactRequest'>
-          <button className='primaryBtn'>Solicitar Contacto</button>
-        </Link>
+<div className='flex justify-center pb-8'>
+        <button className='primaryBtn' onClick={handleSolicitarContacto}>Solicitar Contacto</button>
       </div>
     </div>
   );

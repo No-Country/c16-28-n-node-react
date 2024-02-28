@@ -4,7 +4,7 @@ const { Solicited, User, Provider, Service } = require("../../Database/database"
 // Función para crear un nuevo servicio solicitado
 async function postSolicited(req, res) {
     try {
-        const { id_user, id_prov, id_service, description } = req.body;
+        const { id_user, id_prov, id_service, description , name } = req.body;
 
         // Verificar si el usuario, proveedor y servicio existen
         const user = await User.findByPk(id_user);
@@ -26,6 +26,7 @@ async function postSolicited(req, res) {
             id_prov,
             id_service,
             description,
+            name
         });
         res.status(201).json(solicited);
     } catch (error) {
