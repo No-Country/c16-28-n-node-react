@@ -1,37 +1,3 @@
-// {const categoryList = [
-//   {
-//     title: 'Plomería',
-//     image: '../src/assets/plumbing.png',
-//     alt: 'Icono de plomeria',
-//   },
-//   {
-//     title: 'Limpieza',
-//     image: '../src/assets/cleaning.png',
-//     alt: 'Icono de limpieza',
-//   },
-//   {
-//     title: 'Electricidad',
-//     image: '../src/assets/electricity.png',
-//     alt: 'Icono de electricidad',
-//   },
-//   {
-//     title: 'Carpintería',
-//     image: '../src/assets/carpentry.png',
-//     alt: 'Icono de una cierra',
-//   },
-//   {
-//     title: 'Mudanzas',
-//     image: '../src/assets/truck.png',
-//     alt: 'Icono de camión',
-//   },
-//   {
-//     title: 'Pintores',
-//     image: '../src/assets/tabler_paint.png',
-//     alt: 'Icono de pintores',
-//   },
-// ];
-// }
-
 import { useEffect } from 'react';
 import rubroStore from '../../store/rubros'; 
 import { Link } from 'react-router-dom';
