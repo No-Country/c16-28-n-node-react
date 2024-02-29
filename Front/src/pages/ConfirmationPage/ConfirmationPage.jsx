@@ -17,7 +17,7 @@ location.pathname === '/confirmation-user-page'
         <div className='flex items-center justify-center'>
           <figure>
             <img
-              src='../../../src/assets/confirmation-image.png'
+              src='https://res.cloudinary.com/dq9icw8vb/image/upload/v1709240734/mtfpvlbmuspg2ym2oezz.png'
               alt='confirmation image'
             />
           </figure>
