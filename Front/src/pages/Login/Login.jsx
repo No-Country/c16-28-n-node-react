@@ -13,7 +13,7 @@ const Login = () => {
           <div className='w-full h-px bg-black mx-5'></div>
         </div>
         <Link
-          to={'/register'}
+          to={'/register/user'}
           className='secondaryBtn'
         >
           Regístrate
