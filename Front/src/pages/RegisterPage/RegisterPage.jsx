@@ -5,6 +5,14 @@ const RegisterPage = () => {
   return (
     <section className='flex flex-col gap-8'>
       <h1 className='font-bold pb-8'>Crea tu cuenta</h1>
+      <div className='flex items-center justify-center gap-2'>
+        <Link className='primaryBtn w-full' to={'/register/user'}>
+          Cliente
+        </Link>
+        <Link className='btnProviders w-full' to={'/register/provider'}>
+          Profesional
+        </Link>
+      </div>
       <RegisterForm />
       <div className='w-full'>
         <div className='flex flex-col items-center mt-5'>
