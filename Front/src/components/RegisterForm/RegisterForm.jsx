@@ -1,14 +1,23 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useLocation, useNavigate, Link } from 'react-router-dom';
 import { registerUser } from '../../api/userApi';
+import rubroStore from '../../store/rubros';
 
 const RegisterForm = () => {
-  const navigate = useNavigate()
+  const { rubros, loadRubros } = rubroStore();
+
+  useEffect(() => {
+    loadRubros();
+  }, []);
+
+  const navigate = useNavigate();
+  const location = useLocation();
   const [formData, setFormData] = useState({
     name: '',
     lastName: '',
     email: '',
     password: '',
+    category: '',
   });
 
   const [errors, setErrors] = useState({
@@ -16,15 +25,37 @@ const RegisterForm = () => {
     lastName: false,
     email: false,
     password: false,
+    category: false,
   });
+
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const submitButtomColor =
+    location.pathname === '/register/user' ? 'primaryBtn' : 'btnProviders';
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { name, lastName, email, password } = formData;
-    const userData = { name, lastName, email, password };
-    console.log(userData);
-    await registerUser(userData);
-    navigate('/confirmation-page')
+    const { name, lastName, email, password, category } = formData;
+    const userData = { name, lastName, email, password, category };
+    try {
+      const route =
+        location.pathname === '/register/user' ? '/users' : '/providers';
+      const res = await registerUser(route, userData);
+
+      res && location.pathname === '/register/user'
+        ? navigate('/confirmation-user-page')
+        : navigate('/confirmation-provider-page');
+    } catch (error) {
+      if (error.status === 400) {
+        setErrorMessage(
+          `El correo ${email} ya se encuentra en uso. Inténtalo con otro o... `
+        );
+      } else {
+        setErrorMessage(
+          'Ocurrió un error inesperado. Intente nuevamente más tarde.'
+        );
+      }
+    }
   };
 
   const handleChange = (e) => {
@@ -33,7 +64,6 @@ const RegisterForm = () => {
       ...prevData,
       [name]: value,
     }));
-    // Validaciones
     if (name === 'name') {
       setErrors((prevErrors) => ({
         ...prevErrors,
@@ -57,8 +87,15 @@ const RegisterForm = () => {
             value
           ),
       }));
+    } else if (name === 'category') {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        category: value === '',
+      }));
     }
   };
+
+  const providerUrl = location.pathname === '/register/provider';
 
   return (
     <div className='bg-white p-10 rounded-md shadow-md'>
@@ -69,7 +106,7 @@ const RegisterForm = () => {
               className='block mb-2 text-sm font-medium text-gray-700'
               htmlFor='name'
             >
-              Nombre
+              Nombre <span style={{ color: 'red' }}>*</span>
             </label>
             <input
               type='text'
@@ -91,7 +128,7 @@ const RegisterForm = () => {
               className='block mb-2 text-sm font-medium text-gray-700'
               htmlFor='lastName'
             >
-              Apellido
+              Apellido <span style={{ color: 'red' }}>*</span>
             </label>
             <input
               type='text'
@@ -115,7 +152,7 @@ const RegisterForm = () => {
             className='block mb-2 text-sm font-medium text-gray-700'
             htmlFor='email'
           >
-            Correo Electrónico
+            Correo Electrónico <span style={{ color: 'red' }}>*</span>
           </label>
           <input
             type='email'
@@ -131,6 +168,11 @@ const RegisterForm = () => {
               Ingresa un Correo Electrónico valido.
             </span>
           )}
+          {errorMessage && (
+            <span style={{ color: 'red' }}>
+              {errorMessage} <Link to={'/login'}>Inicia Sesión</Link>
+            </span>
+          )}
         </div>
 
         <div className='mb-5'>
@@ -138,7 +180,7 @@ const RegisterForm = () => {
             className='block mb-2 text-sm font-medium text-gray-700'
             htmlFor='password'
           >
-            Contraseña
+            Contraseña <span style={{ color: 'red' }}>*</span>
           </label>
           <input
             type='password'
@@ -166,10 +208,39 @@ const RegisterForm = () => {
           )}
         </div>
 
-        <button
-          type='submit'
-          className='primaryBtn w-full px-4 py-2 bg-blue-500 text-white font-bold rounded-md hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300'
-        >
+        {providerUrl && (
+          <div className='mb-5'>
+            <label
+              className='block mb-2 text-sm font-medium text-gray-700'
+              htmlFor='category'
+            >
+              Tu servicio <span style={{ color: 'red' }}>*</span>
+            </label>
+            <select
+              id='category'
+              name='category'
+              value={formData.category}
+              onChange={handleChange}
+              required
+              className='w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
+            >
+              <option value=''>Encuentra tu servicio</option>
+              {rubros &&
+                rubros.map((categoria) => (
+                  <option key={categoria.id_rubro} value={categoria.id_rubro}>
+                    {categoria.name}
+                  </option>
+                ))}
+            </select>
+            {errors.category && (
+              <span style={{ color: 'red' }}>
+                Por favor selecciona una categoría.
+              </span>
+            )}
+          </div>
+        )}
+
+        <button type='submit' className={`${submitButtomColor} w-full`}>
           Registrarse
         </button>
       </form>
