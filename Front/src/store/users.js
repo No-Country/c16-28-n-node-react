@@ -7,7 +7,7 @@ const userStore = create((set) => ({
   loadUserById: async (id_user) => {
     try {
       const res = await api.get(`/users/${id_user}`)
-      console.log(res);
+      // console.log(res);
       set({ user: res.data })
     } catch (error) {
       console.error(error)
