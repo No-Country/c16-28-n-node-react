@@ -3,9 +3,8 @@ import useUserStore from "../../store/auth";
 import { toast } from "react-hot-toast";
 
 const NavBar = () => {
-  const { token, logout } = useUserStore();
+  const { token, role ,logout } = useUserStore();
   const navigate= useNavigate();
-
   const handleLogout = () => {
     logout();
     toast.success('¡Has cerrado sesión exitosamente!');
@@ -15,16 +14,23 @@ const NavBar = () => {
   return (
     <nav className='bg-slate-800 w-full text-white'>
       <ul className='flex justify-center items-center gap-6 p-3'>
-        <li>Home</li>
+      <Link to="/">
+      <li>Home</li>
+      </Link>
         { !token ? (
-         <li><Link to ="/login">Log in</Link></li>
+        <Link to ="/login"><li>Log in</li></Link>
         ):(
           <div className='flex justify-center items-center gap-6 p-3'>
-            <li>
-              {/* <Link to ="/per"> */}
-                Perfil
-                {/* </Link> */}
-            </li>
+            { role === "user" && (
+              
+                <Link to ="/usuario/perfil"><li>Perfil</li></Link>
+            
+            )}
+            { role === "provider" && (
+              <li>
+                <Link to ="/proveedor/perfil">Perfil</Link>
+              </li>
+            )}
             <li onClick={handleLogout} >Log out</li>
           </div>
         )}

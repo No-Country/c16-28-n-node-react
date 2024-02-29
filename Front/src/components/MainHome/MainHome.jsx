@@ -27,12 +27,12 @@ const MainHome = () => {
           <CardProfesionalCliente
             titulo='Encuentra Profesionales'
             texto='Con solo unos clics, podrás contratar a los mejores expertos para tus necesidades de servicios en el hogar con ServiApp'
-            imagen='../../src/assets/cliente.webp'
+            imagen='https://res.cloudinary.com/dq9icw8vb/image/upload/v1709240920/vwhhyzefnz1o9gtui0dy.webp'
           />
           <CardProfesionalCliente
             titulo='¿Eres un profesional?'
             texto='Únete a ServiApp y muestra tus habilidades al mundo. Carga fotos de tus proyectos, destaca tus certificaciones y comienza a recibir solicitudes de servicio hoy mismo'
-            imagen='../../src/assets/profesional.webp'
+            imagen='https://res.cloudinary.com/dq9icw8vb/image/upload/v1709240702/nuga9m0o0wk9c0l1yl7x.webp'
           />
         </section>
         <section className='section__normal items-center justify-center'>

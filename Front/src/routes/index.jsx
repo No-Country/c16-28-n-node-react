@@ -6,7 +6,7 @@ import Login from '../pages/Login/Login';
 import Services from '../pages/MenúServicio/Servicios';
 import Providers from '../pages/MenuProveedores/ListProv';
 import DataProvider from '../pages/DataProvedores/perfildeProv';
-import Home from '../pages/Home/Home';
+import Home from '../pages/home/Home';
 import ConfirmationPage from '../pages/ConfirmationPage/ConfirmationPage';
 import Solicitud from '../pages/Solicitud de Contacto/Solicitud';
 import PerfilCliente from '../pages/PerfilCliente/PerfilCliente';
@@ -33,7 +33,7 @@ const AppRoutes = () => {
       { role === "user" &&(
         <>
           <Route path='/contactRequest' element={<Solicitud/>} />
-          <Route path='/perfilUser' element={""} />
+          <Route path='/usuario/perfil' element={<PerfilCliente/>} />
           <Route path='/ListaDeSolicitedes' element={""} />
         </>
       )}
