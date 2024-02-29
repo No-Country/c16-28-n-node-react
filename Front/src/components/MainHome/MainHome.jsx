@@ -41,7 +41,7 @@ const MainHome = () => {
           </Link>
           <div className='flex flex-col'>
             <span className='text-gray text-sm'>¿No estás registrado?</span>
-            <Link to={'/register'} className='secondaryBtn'>
+            <Link to={'/register/user'} className='secondaryBtn'>
               Regístrate
             </Link>
           </div>
