@@ -1,4 +1,4 @@
-const port = process.env.PORT
+const port = process.env.PORT || 3001;
 const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
 const routes = require('./Routes/index.js');
@@ -22,7 +22,6 @@ server.use(cors({
   origin: "*",
   credentials: true,
 }));
-
 
 server.use(express.json({ limit: '50mb' }));
 server.use(express.urlencoded({ extended: false }));
