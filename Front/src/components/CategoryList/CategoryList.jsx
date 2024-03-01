@@ -1,23 +1,20 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import rubroStore from '../../store/rubros'; 
 import { Link } from 'react-router-dom';
 
 const CategoryList = () => {
-  const { rubros, loadRubros, resetRubros } = rubroStore();
-  const [ loading, setLoading ] = useState(true);
+  const { rubros, loadRubros, resetRubros } = rubroStore(); 
 
   useEffect(() => {
     loadRubros(); 
     return () => {
       resetRubros();
     };
-
-    setLoading(false);
   }, [loadRubros, resetRubros]);
 
   return (
     <div className='flex flex-wrap w-full items-center justify-center gap-5'>
-      {(rubros.lenght) && rubros?.map((rubro) => {
+      {rubros && rubros.map((rubro) => {
         return (
           <div
             className='flex flex-col items-center justify-center px-3 py-2 rounded-md h-20 w-20 bg-orange'
