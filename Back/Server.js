@@ -1,4 +1,3 @@
-const port = process.env.PORT || 3001;
 const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
 const routes = require('./Routes/index.js');
@@ -10,6 +9,7 @@ const cloudinary = require('cloudinary').v2;
 const cloudName = process.env.CLOUDINARY_NAME;
 const cloudKey = process.env.CLOUDINARY_API_KEY;
 const cloudSecret = process.env.CLOUDINARY_API_SECRET;
+const port = process.env.PORT 
 
 server.name = 'API';
 
@@ -60,7 +60,7 @@ conn
   .sync({alter:true})
   .then(() => {
     server.listen(port, async () => {
-      console.log('Servidor ON in http://localhost:3001/');
+      console.log( `Servidor ON in http://localhost:${port}/`);
     });
     console.log('Base de datos sincronizada');
   })
