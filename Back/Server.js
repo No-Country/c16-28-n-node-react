@@ -1,4 +1,4 @@
-const port = process.env.PORT || 3001;
+const port = process.env.PORT
 const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
 const routes = require('./Routes/index.js');
