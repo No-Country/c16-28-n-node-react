@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseURL = import.meta.env.VITE_BASE_URL;
+const baseURL = "http://dev.serviapp.solutions:3001"
 
 const configureAxios = (token) => {
   const api = axios.create({
