@@ -27,6 +27,9 @@ module.exports = (sequelize) => {
     img:{
       type: DataTypes.STRING,
       allowNull: true,
+      validate: {
+        isUrl: true,
+      },
     },
     horary:{
       type: DataTypes.STRING,

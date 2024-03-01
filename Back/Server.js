@@ -9,31 +9,25 @@ const cloudinary = require('cloudinary').v2;
 const cloudName = process.env.CLOUDINARY_NAME;
 const cloudKey = process.env.CLOUDINARY_API_KEY;
 const cloudSecret = process.env.CLOUDINARY_API_SECRET;
-const port = process.env.PORT 
+const port = process.env.PORT;
 
 server.name = 'API';
-
-// server.use(cors({
-//   origin: ["http://localhost:5173", "http://dev.serviapp.solutions"],
-//   credentials: true,
-// }))
 
 server.use(cors({
   origin: "*",
   credentials: true,
 }));
 
+// server.use(cors({
+//   origin: ["http://localhost:5173", "http://dev.serviapp.solutions"],
+//   credentials: true,
+// }))
+
 server.use(express.json({ limit: '50mb' }));
 server.use(express.urlencoded({ extended: false }));
 server.use(cookieParser());
 server.use(morgan('dev'));
 server.use((req, res, next) => {
-  // res.header('Access-Control-Allow-Origin', '*');
-  // res.header('Access-Control-Allow-Credentials', 'true');
-  // res.header(
-  //   'Access-Control-Allow-Headers',
-  //   'Origin, X-Requested-With, Content-Type, Accept'
-  // );
   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
   next();
 });
@@ -46,7 +40,9 @@ cloudinary.config({
   api_secret: cloudSecret,
 });
 
-// Detector de errores:
+require('./config/httpsConfg')(server);
+
+// Detector de errores
 server.use((err, req, res, next) => {
   const status = err.status || 500;
   const message = err.message || 'Internal Server Error';
@@ -54,14 +50,14 @@ server.use((err, req, res, next) => {
   res.status(status).json({ error: message });
 });
 
-// Server On:
-console.log('Iniciando la aplicación');
-conn
-  .sync({alter:true})
+// Iniciar servidor HTTP 
+server.listen(port, async () => {
+  console.log(`Servidor ON in http://localhost:${port}/`);
+});
+
+// Base de datos sincronizada
+conn.sync({ alter: true })
   .then(() => {
-    server.listen(port, async () => {
-      console.log( `Servidor ON in http://localhost:${port}/`);
-    });
     console.log('Base de datos sincronizada');
   })
   .catch((error) => {
