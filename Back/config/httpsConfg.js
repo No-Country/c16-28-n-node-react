@@ -7,7 +7,7 @@ const options = {
   cert: fs.readFileSync(path.resolve(__dirname, '../../../ssl/fullchain.pem'))
 };
 
-const httpsPort = process.env.HTTPS_PORT || 443;
+const httpsPort = process.env.PORT || 3001;
 
 module.exports = function (app) {
   https.createServer(options, app).listen(httpsPort, () => {
