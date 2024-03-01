@@ -1,9 +1,10 @@
+const path = require('path');
 const https = require('https');
 const fs = require('fs');
 
 const options = {
-  key: fs.readFileSync('falta la clave_privada.pem'),
-  cert: fs.readFileSync(' falta el certificado_ssl.pem')
+  key: fs.readFileSync(path.resolve(__dirname, 'privkey.pem')),
+  cert: fs.readFileSync(path.resolve(__dirname, 'fullchain.pem'))
 };
 
 const httpsPort = process.env.HTTPS_PORT || 443;

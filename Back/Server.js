@@ -40,7 +40,7 @@ cloudinary.config({
   api_secret: cloudSecret,
 });
 
-// require('./httpsConfig')(server);   //Faltan el certificado y la clave 
+require('./config/httpsConfg')(server);
 
 // Detector de errores
 server.use((err, req, res, next) => {
