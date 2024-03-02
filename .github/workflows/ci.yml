@@ -18,9 +18,9 @@ jobs:
       # The type of runner that the job will run on
 
       runs-on: ubuntu-latest
-      defaults:
-        run:
-          shell: bash -ileo pipefail {0} 
+      #defaults:
+      #  run:
+      #    shell: bash -ileo pipefail {0} 
 #Deploy dev      
       if: github.ref == 'refs/heads/Develop' # run this job only for the dev branch
       steps:
@@ -96,9 +96,10 @@ jobs:
         - name: checkout repo
           uses: actions/checkout@v2
           
-        - name: set env
+        - name: set env qa
           env:
             VITE_BASE_URL: 'https://qa.serviapp.solutions:4001'
+            run: echo "${{ secrets.ENV_QA }}" > ./Front/.env
 
         - name: Use Node.js 16 LTS
           uses: actions/setup-node@v2
@@ -142,9 +143,10 @@ jobs:
         - name: checkout repo
           uses: actions/checkout@v2
           
-        - name: set env
+        - name: set env prod
           env:
-            VITE_BASE_URL: 'https://serviapp.solutions:5001'
+            VITE_BASE_URL: 'https://dev.serviapp.solutions:3001'
+            run: echo "${{ secrets.ENV_PRO }}" > ./Front/.env
 
         - name: Use Node.js 16 LTS
           uses: actions/setup-node@v2
