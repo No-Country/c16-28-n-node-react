@@ -41,6 +41,7 @@ const RegisterForm = () => {
       const route =
         location.pathname === '/register/user' ? '/users' : '/providers';
       const res = await registerUser(route, userData);
+      console.log(res)
 
       res && location.pathname === '/register/user'
         ? navigate('/confirmation-user-page')
