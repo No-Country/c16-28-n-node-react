@@ -145,7 +145,7 @@ jobs:
           uses: actions/checkout@v2
           
         - name: set env prod
-          run: echo "${{ secrets.ENV_PRO }}" > ./Front/.env
+          run: echo "${{ secrets.ENV_PROD }}" > ./Front/.env
           env:
             VITE_BASE_URL: 'https://serviapp.solutions:5001'
 
