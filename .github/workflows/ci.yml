@@ -18,9 +18,9 @@ jobs:
       # The type of runner that the job will run on
 
       runs-on: ubuntu-latest
-#      defaults:
-#        run:
-#          shell: bash -ileo pipefail {0} 
+      defaults:
+        run:
+          shell: bash -ileo pipefail {0} 
 #Deploy dev      
       if: github.ref == 'refs/heads/Develop' # run this job only for the dev branch
       steps:
