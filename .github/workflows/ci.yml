@@ -48,6 +48,10 @@ jobs:
 #            tags: ${{ secrets.DOCKERHUB_USERNAME }}/serviapp:back-${{ github.ref_name }}
         - name: checkout repo
           uses: actions/checkout@v2
+          
+        - name: set env
+          working-directory: ./Front
+          run: echo "${{ secrets.ENV_DEV }}" > .env
 
         - name: Use Node.js 16 LTS
           uses: actions/setup-node@v2
