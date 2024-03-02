@@ -18,10 +18,10 @@ server.use(cors({
   credentials: true,
 }));
 
-// server.use(cors({
-//   origin: ["http://localhost:5173", "http://dev.serviapp.solutions"],
-//   credentials: true,
-// }))
+server.use(cors({
+   origin: ["http://localhost:5173", "http://dev.serviapp.solutions"],
+   credentials: true,
+}))
 
 server.use(express.json({ limit: '50mb' }));
 server.use(express.urlencoded({ extended: false }));
