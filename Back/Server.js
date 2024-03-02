@@ -51,9 +51,9 @@ server.use((err, req, res, next) => {
 });
 
 // Iniciar servidor HTTP 
-server.listen(port, async () => {
-  console.log(`Servidor ON in http://localhost:${port}/`);
-});
+// server.listen(port, async () => {
+//   console.log(`Servidor HTTP in http://localhost:${port}/`);
+// });
 
 // Base de datos sincronizada
 conn.sync({ alter: true })
