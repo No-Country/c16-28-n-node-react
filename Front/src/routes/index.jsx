@@ -19,32 +19,28 @@ const AppRoutes = () => {
     <Routes>
       <Route path='/' element={<Home />} />
       <Route path='/login' element={<Login />} />
+      <Route path='/users/:id_user' element={<PerfilCliente />} />
       <Route path='/register/user' element={<RegisterPage />} />
       <Route path='/register/provider' element={<RegisterPage />} />
-
+      <Route path='/services/:id_rubro' element={<Services />} />
+      <Route path='/providers/:id_service' element={<Providers />} />
+      <Route path='/providers/data/:id_prov' element={<DataProvider />} />
       <Route path='/contactRequest' element={<Solicitud />} />
+      <Route path='confirmation-user-page' element={<ConfirmationPage />} />
+      <Route path='confirmation-provider-page' element={<ConfirmationPage />} />
+      <Route path='/usuario/perfil' element={<PerfilCliente />} />
+      <Route path='/proveedor/perfil' element={<PerfilProveedor />} />
+      <Route path='/proveedores' element={<Proveedores />} />
       {role === 'user' && (
         <>
-          <Route path='/users/:id_user' element={<PerfilCliente />} />
           <Route path='/contactRequest' element={<Solicitud />} />
-          <Route path='/usuario/perfil' element={<PerfilCliente />} />
           <Route path='/ListaDeSolicitedes' element={''} />
-          <Route path='confirmation-user-page' element={<ConfirmationPage />} />
         </>
       )}
       {role === 'provider' && (
         <>
-          <Route path='/proveedores' element={<Proveedores />} />
-          <Route path='/proveedor/perfil' element={<PerfilProveedor />} />
           <Route path='/servicios' element={''} />
           <Route path='/solicitudes' element={''} />
-          <Route
-            path='confirmation-provider-page'
-            element={<ConfirmationPage />}
-          />
-          <Route path='/services/:id_rubro' element={<Services />} />
-          <Route path='/providers/:id_service' element={<Providers />} />
-          <Route path='/providers/data/:id_prov' element={<DataProvider />} />
         </>
       )}
       <Route
