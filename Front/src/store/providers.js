@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import configureAxios from '../api/axios';
 
-const api = configureAxios()
+const api = configureAxios();
 
 const providerStore = create((set) => ({
   providers: [],
@@ -12,7 +12,9 @@ const providerStore = create((set) => ({
 
       const details = {};
       for (const provider of response.data) {
-        const providerData = await providerStore.getState().getProviderByIdProv(provider.id_prov);
+        const providerData = await providerStore
+          .getState()
+          .getProviderByIdProv(provider.id_prov);
 
         details[provider.id_prov] = providerData;
       }
@@ -24,7 +26,7 @@ const providerStore = create((set) => ({
   getProviderByIdProv: async (id_prov) => {
     try {
       const response = await api.get(`/providers/${id_prov}`);
-      return response.data;
+      set({ providersDetails: response.data });
     } catch (error) {
       console.error('Error getting provider by id_prov:', error);
       return null;
@@ -32,6 +34,5 @@ const providerStore = create((set) => ({
   },
   resetProviders: () => set({ providersDetails: {} }),
 }));
-
 
 export default providerStore;
