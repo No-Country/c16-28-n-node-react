@@ -18,9 +18,11 @@ jobs:
       # The type of runner that the job will run on
 
       runs-on: ubuntu-latest
+
       #defaults:
       #  run:
       #    shell: bash -ileo pipefail {0} 
+
 #Deploy dev      
       if: github.ref == 'refs/heads/Develop' # run this job only for the dev branch
       steps:
@@ -53,7 +55,6 @@ jobs:
           run: echo "${{ secrets.ENV_DEV }}" > ./Front/.env
           env:
             VITE_BASE_URL: 'https://dev.serviapp.solutions:3001'
-
 
         - name: Use Node.js 16 LTS
           uses: actions/setup-node@v2
