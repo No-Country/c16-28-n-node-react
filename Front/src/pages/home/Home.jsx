@@ -6,9 +6,7 @@ const Home = () => {
       <section>
         <SearchBar />
       </section>
-      <section>
         <MainHome />
-      </section>
     </div>
   );
 };
