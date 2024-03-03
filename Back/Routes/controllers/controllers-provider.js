@@ -1,5 +1,5 @@
 const { Provider , Service , User } = require("../../Database/database");
-const MailService = require("../../Services/mailerServices");
+const {registerProv, updatePerfil} = require("../../Services/mailerServices");
 const cloudinary = require('cloudinary').v2;
 
 // Validaciones
@@ -55,8 +55,6 @@ async function postProviders(req, res) {
   try {
     const { name, email, lastName, password} = req.body;
 
-// Validaciones de los campos
-
     // Validaciones de los campos
     const errores = [];
     if (name && !validateName(name)) {
@@ -71,43 +69,40 @@ async function postProviders(req, res) {
     if (password && !validatePassword(password)) {
       errores.push("La contraseña debe tener entre 6 y 10 caracteres, al menos una letra mayúscula, una letra minúscula, un dígito y un carácter especial");
     }
-    
 
     if (errores.length > 0) {
       return res.status(400).json({ "ERROR:": errores });
     }
 
+    const existingUser = await User.findOne({ where: { email } });
+    const existingProv = await Provider.findOne({ where: { email } });
+    if (existingUser || existingProv) {
+      return res.status(400).json({ "error": "El email ingresado esta utilizado, intente con otro" });
+    }
 
-  const existingUser = await User.findOne({ where: { email } });
-  const existingProv = await Provider.findOne({ where: { email } });
-  if (existingUser || existingProv) {
-    return res.status(400).json({ "error": "El email ingresado esta utilizado, intente con otro" });
-  }
     const provider = await Provider.create({
       name,
       lastName,
       email,
       password,
       isActive: true
-    })
+    });
 
-    MailService(name, email, lastName);
+    registerProv(name, email, lastName);
 
-    res.status(200).json(provider)
+    res.status(200).json(provider);
   } catch (error) {
     console.log("Error", error);
-
-    res.status(500).json({ "error": error })
+    res.status(500).json({ "error": error });
   }
-
 }
+
 
 // Modificar proveedor
 async function putProvider(req, res) {
   try {
     const { id } = req.params;
     const { name, lastName, email, address, password, otherCertif, isActive, contact, horary, matriculation, id_services } = req.body;
-    // Validaciones de los campos
 
     // Validaciones de los campos
     const errores = [];
@@ -124,11 +119,9 @@ async function putProvider(req, res) {
       errores.push("La contraseña debe tener entre 6 y 10 caracteres, al menos una letra mayúscula, una letra minúscula, un dígito y un carácter especial");
     }
     
-
     if (errores.length > 0) {
       return res.status(400).json({ "ERROR:": errores });
     }
-
 
     const provider = await Provider.findByPk(id);
     if (!provider) {
@@ -154,6 +147,11 @@ async function putProvider(req, res) {
       const uploadedImg = await cloudinary.uploader.upload(req.file.path);
       imgUrl = uploadedImg.secure_url;
     }
+
+    const emaiL = email || provider.email;
+    const namE = name || provider.name;
+    const lastNamE= lastName || provider.lastName;
+
     await provider.update({
       name: name || provider.name,
       lastName: lastName || provider.lastName,
@@ -169,8 +167,9 @@ async function putProvider(req, res) {
     });
 
     await provider.setServices(services);
-
     const updatedProvider = await Provider.findByPk(id, { include: Service });
+
+    updatePerfil(emaiL , namE , lastNamE)
 
     res.status(200).json(updatedProvider);
 
