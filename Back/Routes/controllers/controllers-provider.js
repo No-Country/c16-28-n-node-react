@@ -87,7 +87,7 @@ async function postProviders(req, res) {
       password,
       isActive: true
     });
-    
+
     registerProv(name, email, lastName);
 
     res.status(200).json(provider);
@@ -119,11 +119,9 @@ async function putProvider(req, res) {
       errores.push("La contraseña debe tener entre 6 y 10 caracteres, al menos una letra mayúscula, una letra minúscula, un dígito y un carácter especial");
     }
     
-
     if (errores.length > 0) {
       return res.status(400).json({ "ERROR:": errores });
     }
-
 
     const provider = await Provider.findByPk(id);
     if (!provider) {
@@ -149,6 +147,11 @@ async function putProvider(req, res) {
       const uploadedImg = await cloudinary.uploader.upload(req.file.path);
       imgUrl = uploadedImg.secure_url;
     }
+
+    const emaiL = email || provider.email;
+    const namE = name || provider.name;
+    const lastNamE= lastName || provider.lastName;
+
     await provider.update({
       name: name || provider.name,
       lastName: lastName || provider.lastName,
@@ -164,10 +167,9 @@ async function putProvider(req, res) {
     });
 
     await provider.setServices(services);
-
     const updatedProvider = await Provider.findByPk(id, { include: Service });
 
-    updatePerfil(name , lastName, email)
+    updatePerfil(emaiL , namE , lastNamE)
 
     res.status(200).json(updatedProvider);
 

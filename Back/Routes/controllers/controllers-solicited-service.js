@@ -1,5 +1,5 @@
 const { Solicited, User, Provider, Service } = require("../../Database/database");
-const { sendRequestProv, sendRequestUser } = require("../../Services/mailerServices");
+const { sendRequestProv, sendRequestUser, sendStateUser , sendStateProv } = require("../../Services/mailerServices");
 
 // Función para crear un nuevo servicio solicitado
 async function postSolicited(req, res) {
@@ -115,16 +115,16 @@ async function putSolicited(req, res) {
             return res.status(404).json({ message: "Service not found" });
         }
 
-
+        //Puede que esto no tenga sentido , pero asi funciona e-e 
         const nameRequest= solicited.name;
         const services = service.name;
         const emailUser = user.email;
-        const emailProv = provider.email;
+        const emailProv = provider.name;
         const nameUser = user.name;
         const lastNameUser = user.lastName;
-        const nameProv = provider.name;
+        const nameProv = provider.email;
         const lastNameProv = provider.lastName;
-        // Actualizar el servicio solicitado
+
         await solicited.update({
             id_user,
             id_prov,
@@ -132,7 +132,7 @@ async function putSolicited(req, res) {
             description,
             state,
         });
-
+        
         if(state === false){
             const result = "Rechazada";
             sendStateUser(emailUser, nameUser, lastNameUser, nameProv, lastNameProv, nameRequest, services ,result);

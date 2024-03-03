@@ -149,6 +149,10 @@ async function putUsers(req, res) {
       imgUrl = uploadedImg.secure_url;
     }
 
+    const emaiL = email || user.email;
+    const namE = name || user.name;
+    const lastNamE= lastName || user.lastName;
+
     await user.update({
       name: name || user.name,
       email: email || user.email,
@@ -159,7 +163,7 @@ async function putUsers(req, res) {
       img: imgUrl,
     });
 
-    updatePerfil(email,name, lastName)
+    updatePerfil(emaiL , namE , lastNamE)
     
     res.status(200).json(user);
   } catch (error) {

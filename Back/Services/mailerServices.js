@@ -25,7 +25,7 @@ async function registerUser(name, email, lastName) {
   const mailOptions = {
     from: "Registro ServiApp <notcountry16@gmail.com>",
     to: email,
-    subject: "Bienvenido a ServiApp",
+    subject: "Bienvenid@ a ServiApp",
     html: welcomeUserTemplate(name, lastName, email),
   };
 
@@ -38,14 +38,14 @@ async function registerUser(name, email, lastName) {
   }
 }
 
-// Registro del User
-async function updatePerfil(name, email, lastName) {
+// Update de Perfil :
+async function updatePerfil(emaiL , namE , lastNamE){
 
   const mailOptions = {
-    from: "Registro ServiApp <notcountry16@gmail.com>",
-    to: email,
-    subject: "Bienvenido a ServiApp",
-    html: updatePerfilTemplate(name, lastName, email),
+    from: "Actualización de Perfil en ServiApp <notcountry16@gmail.com>",
+    to: emaiL,
+    subject: "Modificaciones en tu perfil",
+    html: updatePerfilTemplate(emaiL , namE , lastNamE),
   };
 
   try {
@@ -63,7 +63,7 @@ async function registerProv(name, email, lastName) {
   const mailOptions = {
     from: "Registro ServiApp <notcountry16@gmail.com>",
     to: email,
-    subject: "Bienvenido a ServiApp",
+    subject: "Bienvenid@ a ServiApp",
     html: welcomeProvTemplate(name, lastName, email),
   };
 
@@ -100,7 +100,7 @@ async function sendRequestProv(emailProv, nameUser, lastNameUser, nameProv, last
   const mailOptions = {
     from: "Solicitud, ServiApp <notcountry16@gmail.com>",
     to: emailProv,
-    subject: "Recepcion de solicitud",
+    subject: "Recepción de solicitud",
     html: requestProvTemplate(nameUser, lastNameUser, nameProv, lastNameProv, nameRequest, services),
   };
 
@@ -114,9 +114,10 @@ async function sendRequestProv(emailProv, nameUser, lastNameUser, nameProv, last
 }
 
 //Notificar resultado de la solicitud (Prov):
-async function sendStateProv(nameProv, lastNameProv, nameRequest, services, result) {
+async function sendStateProv( emailProv, nameProv, lastNameProv, nameRequest, services, result) {
+  
   const mailOptions = {
-    from: "Solicitud, ServiApp <notcountry16@gmail.com>",
+    from: "Resultado de solicitud, ServiApp <notcountry16@gmail.com>",
     to: emailProv,
     subject: "Estado de solicitud",
     html: stateRequestProv(nameProv, lastNameProv, nameRequest, services, result),
@@ -132,12 +133,13 @@ async function sendStateProv(nameProv, lastNameProv, nameRequest, services, resu
 }
 
 //Notificar resultado de la solicitud (User):
-async function sendStateUser(emailUser, nameUser, lastNameUser, nameProv, lastNameProv, nameRequest, services ,result) {
+async function sendStateUser( emailUser, nameUser, lastNameUser, nameProv, lastNameProv, nameRequest, services ,result) {
+
   const mailOptions = {
-    from: "Solicitud, ServiApp <notcountry16@gmail.com>",
+    from: "Resultado de Solicitud, ServiApp <notcountry16@gmail.com>",
     to: emailUser,
     subject: "Estado de solicitud",
-    html: stateRequestUser(nameUser, lastNameUser, nameProv, lastNameProv, nameRequest, services , result),
+    html: stateRequestUser( nameUser, lastNameUser, nameProv, lastNameProv, nameRequest, services ,result),
   };
 
   try {
