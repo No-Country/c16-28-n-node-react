@@ -12,13 +12,13 @@ router.post('/login', async (req, res) => {
     const provider = await Provider.findOne({ where: { email, password } });
     if (provider) {
         const token = jwt.sign({ email, role: 'provider' }, secretKey, { expiresIn: '1h' });
-        return res.json({ token, role: 'provider' });
+        return res.json({ token, role: 'provider', id: provider.id_prov });
     }
 
     const user = await User.findOne({ where: { email, password } });
     if (user) {
         const token = jwt.sign({ email, role: 'user' }, secretKey, { expiresIn: '1h' });
-        return res.json({ token, role: 'user' });
+        return res.json({ token, role: 'user' ,  id: user.id_user});
     }
     
     res.status(401).json({ message: 'Try again' });

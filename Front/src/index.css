@@ -3,9 +3,11 @@
 @tailwind utilities;
 
 @layer base {
-  html,
+  html {
+    @apply bg-[#fff];
+  }
   body {
-    @apply bg-background;
+    @apply container min-h-full w-full bg-background;
   }
 
   h1 {
@@ -28,6 +30,10 @@
 
   .secondaryBtn {
     @apply p-3 rounded border border-dark text-center;
+  }
+
+  .btnProviders {
+    @apply p-3 bg-skyBlue rounded border border-dark text-center hover:bg-skyBlue;
   }
 
   .section__skyblue {
