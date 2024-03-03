@@ -1,5 +1,5 @@
 const { Provider , Service , User } = require("../../Database/database");
-const MailService = require("../../Services/mailerServices");
+const {registerProv, updatePerfil} = require("../../Services/mailerServices");
 const cloudinary = require('cloudinary').v2;
 
 // Validaciones
@@ -53,9 +53,7 @@ async function getProvidersByID(req,res){
 // Crear un proveedor
 async function postProviders(req, res) {
   try {
-    const { name, email, lastName, password} = req.body;
-
-// Validaciones de los campos
+    const { name, email, lastName, password , id_service} = req.body;
 
     // Validaciones de los campos
     const errores = [];
@@ -71,43 +69,51 @@ async function postProviders(req, res) {
     if (password && !validatePassword(password)) {
       errores.push("La contraseña debe tener entre 6 y 10 caracteres, al menos una letra mayúscula, una letra minúscula, un dígito y un carácter especial");
     }
+    if(!id_service){
+      errores.push("Debe colocar un servicio.");
+    }
     
-
     if (errores.length > 0) {
       return res.status(400).json({ "ERROR:": errores });
     }
 
+    const existingUser = await User.findOne({ where: { email } });
+    const existingProv = await Provider.findOne({ where: { email } });
+    if (existingUser || existingProv) {
+      return res.status(400).json({ "error": "El email ingresado esta utilizado, intente con otro" });
+    }
 
-  const existingUser = await User.findOne({ where: { email } });
-  const existingProv = await Provider.findOne({ where: { email } });
-  if (existingUser || existingProv) {
-    return res.status(400).json({ "error": "El email ingresado esta utilizado, intente con otro" });
-  }
+    // Crear el proveedor
     const provider = await Provider.create({
       name,
       lastName,
       email,
       password,
       isActive: true
-    })
+    });
 
-    MailService(name, email, lastName);
+    // Asociar el servicio al proveedor
+    await provider.addService(id_service);
 
-    res.status(200).json(provider)
+    // Obtener el proveedor con el servicio asociado
+    const updatedProvider = await Provider.findByPk(provider.id, { include: Service });
+
+    // Enviar correo de registro
+    registerProv(name, email, lastName);
+
+    res.status(200).json(updatedProvider);
   } catch (error) {
     console.log("Error", error);
-
-    res.status(500).json({ "error": error })
+    res.status(500).json({ "error": error });
   }
-
 }
+
 
 // Modificar proveedor
 async function putProvider(req, res) {
   try {
     const { id } = req.params;
     const { name, lastName, email, address, password, otherCertif, isActive, contact, horary, matriculation, id_services } = req.body;
-    // Validaciones de los campos
 
     // Validaciones de los campos
     const errores = [];
@@ -171,6 +177,8 @@ async function putProvider(req, res) {
     await provider.setServices(services);
 
     const updatedProvider = await Provider.findByPk(id, { include: Service });
+
+    updatePerfil(name , lastName, email)
 
     res.status(200).json(updatedProvider);
 
