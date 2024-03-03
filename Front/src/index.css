@@ -3,9 +3,11 @@
 @tailwind utilities;
 
 @layer base {
-  html,
+  html {
+    @apply bg-[#fff];
+  }
   body {
-    @apply bg-background;
+    @apply container min-h-full w-full bg-background;
   }
 
   h1 {

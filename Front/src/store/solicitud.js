@@ -1,4 +1,4 @@
-import create from 'zustand';
+import { create } from 'zustand';
 
 const useCacheStore = create((set) => ({
     id_service: null,

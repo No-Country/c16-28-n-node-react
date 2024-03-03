@@ -5,10 +5,10 @@ import NavBar from './components/NavBar/NavBar.jsx';
 const App = () => {
   return (
     <BrowserRouter>
-      <main className='container'>
-        <header>
+      <header>
         <NavBar />
-        </header>
+      </header>
+      <main>
         <AppRoutes />
       </main>
     </BrowserRouter>
