@@ -53,7 +53,7 @@ async function getProvidersByID(req,res){
 // Crear un proveedor
 async function postProviders(req, res) {
   try {
-    const { name, email, lastName, password , id_service} = req.body;
+    const { name, email, lastName, password} = req.body;
 
     // Validaciones de los campos
     const errores = [];
@@ -69,10 +69,7 @@ async function postProviders(req, res) {
     if (password && !validatePassword(password)) {
       errores.push("La contraseña debe tener entre 6 y 10 caracteres, al menos una letra mayúscula, una letra minúscula, un dígito y un carácter especial");
     }
-    if(!id_service){
-      errores.push("Debe colocar un servicio.");
-    }
-    
+
     if (errores.length > 0) {
       return res.status(400).json({ "ERROR:": errores });
     }
@@ -83,7 +80,6 @@ async function postProviders(req, res) {
       return res.status(400).json({ "error": "El email ingresado esta utilizado, intente con otro" });
     }
 
-    // Crear el proveedor
     const provider = await Provider.create({
       name,
       lastName,
@@ -91,17 +87,10 @@ async function postProviders(req, res) {
       password,
       isActive: true
     });
-
-    // Asociar el servicio al proveedor
-    await provider.addService(id_service);
-
-    // Obtener el proveedor con el servicio asociado
-    const updatedProvider = await Provider.findByPk(provider.id, { include: Service });
-
-    // Enviar correo de registro
+    
     registerProv(name, email, lastName);
 
-    res.status(200).json(updatedProvider);
+    res.status(200).json(provider);
   } catch (error) {
     console.log("Error", error);
     res.status(500).json({ "error": error });
