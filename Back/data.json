@@ -5,36 +5,28 @@
             "description": "Servicios de instalación y reparación eléctrica"
         },
         {
-            "name": "Fontanería",
+            "name": "Plomeria",
             "description": "Servicios de instalación y reparación de tuberías y sistemas de agua"
         },
         {
-            "name": "Carpintería",
+            "name": "Carpinteria",
             "description": "Servicios de fabricación y reparación de muebles y estructuras de madera"
         },
         {
-            "name": "Pintura",
+            "name": "Pintores",
             "description": "Servicios de pintura y acabados en interiores y exteriores"
         },
         {
-            "name": "Albañilería",
+            "name": "Reparaciones",
             "description": "Servicios de construcción y reparación de estructuras de concreto y mampostería"
         },
         {
-            "name": "Jardinería",
+            "name": "Jardineria",
             "description": "Servicios de diseño, mantenimiento y paisajismo de jardines"
         },
         {
             "name": "Limpieza",
             "description": "Servicios de limpieza y mantenimiento de espacios residenciales y comerciales"
-        },
-        {
-            "name": "Seguridad",
-            "description": "Servicios de vigilancia y protección de bienes y personas"
-        },
-        {
-            "name": "Otros",
-            "description": "Otros servicios"
         }
     ],
     "service": [
@@ -169,17 +161,17 @@
             "id_rubro": "5"
         },
         {
-            "name": "Construcción de Paredes de Mampostería",
+            "name": "Construcción y reparacion de Paredes de Mampostería",
             "description": "Servicio de construcción de paredes utilizando técnicas de mampostería",
             "id_rubro": "5"
         },
         {
-            "name": "Instalación de Suelos de Concreto",
-            "description": "Servicio de instalación y mantenimiento de suelos de concreto",
+            "name": "Reparacion de Suelos de Concreto",
+            "description": "Servicio de reparacion y mantenimiento de suelos de concreto",
             "id_rubro": "5"
         },
         {
-            "name": "Construcción de Chimeneas",
+            "name": "Construcción y reparacion de Chimeneas",
             "description": "Servicio de construcción de chimeneas y elementos de concreto",
             "id_rubro": "5"
         },
@@ -247,36 +239,6 @@
             "name": "Limpieza Post Construcción",
             "description": "Servicio de limpieza exhaustiva después de obras y construcciones",
             "id_rubro": "7"
-        },
-        {
-            "name": "Vigilancia Residencial 1",
-            "description": "Servicio de vigilancia y seguridad para propiedades residenciales",
-            "id_rubro": "8"
-        },
-        {
-            "name": "Vigilancia Comercial",
-            "description": "Servicio de vigilancia para espacios comerciales y negocios",
-            "id_rubro": "8"
-        },
-        {
-            "name": "Monitoreo de Cámaras de Seguridad",
-            "description": "Servicio de monitoreo constante de cámaras de seguridad",
-            "id_rubro": "8"
-        },
-        {
-            "name": "Control de Acceso",
-            "description": "Servicio de control de acceso y verificación de identidad",
-            "id_rubro": "8"
-        },
-        {
-            "name": "Seguridad en Eventos",
-            "description": "Servicio de seguridad especializado para eventos y concentraciones masivas",
-            "id_rubro": "8"
-        },
-        {
-            "name": "Asesoría en Seguridad",
-            "description": "Servicio de asesoramiento y consultoría en medidas de seguridad",
-            "id_rubro": "8"
         }
     ],
     "user": [
