@@ -27,6 +27,7 @@ const providerStore = create((set) => ({
     try {
       const response = await api.get(`/providers/${id_prov}`);
       set({ providersDetails: response.data });
+      return response.data
     } catch (error) {
       console.error('Error getting provider by id_prov:', error);
       return null;
