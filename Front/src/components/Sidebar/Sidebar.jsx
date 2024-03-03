@@ -11,6 +11,7 @@ import {
 import useUserStore from '../../store/auth';
 import userStore from '../../store/users';
 import providerStore from '../../store/providers';
+import { X } from 'lucide-react';
 
 const Sidebar = ({ handleMenuToggle, logout }) => {
   const { role, id } = useUserStore();
@@ -32,64 +33,70 @@ const Sidebar = ({ handleMenuToggle, logout }) => {
   };
 
   return (
-    <aside className='relative min-h-screen p-4 flex flex-col justify-between'>
-      <div>
-        <ul className='flex flex-col gap-y-4' onClick={handleMenuToggle}>
-          <Link to='/'>
-            <li className='flex items-center justify-start gap-1'>
-              <Home size={20} />
-              Inicio
-            </li>
-          </Link>
-          {role === 'user' && (
-            <Link to='/usuario/perfil'>
+    <aside className='min-w-64 absolute min-h-screen p-4 flex flex-col justify-between ml-3 top-0 right-[-39px] bg-[#fff] rounded-sm shadow-lg z-10'>
+      <div className='flex flex-col items-start justify-center gap-8'>
+        <X
+          onClick={handleMenuToggle}
+          className='cursor-pointer absolute top-4 right-10'
+        />
+        <div className='mt-8'>
+          <ul className='flex flex-col gap-y-4' onClick={handleMenuToggle}>
+            <Link to='/'>
               <li className='flex items-center justify-start gap-1'>
-                <CircleUserRound size={20} />
-                Perfil
+                <Home size={20} />
+                Inicio
               </li>
             </Link>
-          )}
-          {role === 'provider' && (
-            <Link to='/proveedor/perfil'>
-              <li className='flex items-center justify-start gap-1'>
-                <CircleUserRound size={20} />
-                Perfil
-              </li>
-            </Link>
-          )}
-          {role === 'user' && (
-            <Link to='/search'>
-              <li className='flex items-center justify-start gap-1'>
-                <SearchCheck size={20} />
-                Buscar Profesionales
-              </li>
-            </Link>
-          )}
+            {role === 'user' && (
+              <Link to='/usuario/perfil'>
+                <li className='flex items-center justify-start gap-1'>
+                  <CircleUserRound size={20} />
+                  Perfil
+                </li>
+              </Link>
+            )}
+            {role === 'provider' && (
+              <Link to='/proveedor/perfil'>
+                <li className='flex items-center justify-start gap-1'>
+                  <CircleUserRound size={20} />
+                  Perfil
+                </li>
+              </Link>
+            )}
+            {role === 'user' && (
+              <Link to='/search'>
+                <li className='flex items-center justify-start gap-1'>
+                  <SearchCheck size={20} />
+                  Buscar Profesionales
+                </li>
+              </Link>
+            )}
 
-          {!role ? (
-            <>
-              <Link to='/login'>
+            {!role ? (
+              <>
+                <Link to='/login'>
+                  <li className='flex items-center justify-start gap-1'>
+                    <LogIn size={20} />
+                    Login
+                  </li>
+                </Link>
+                <Link to='/register/user'>
+                  <li className='flex items-center justify-start gap-1'>
+                    <BadgePlus size={20} />
+                    Regístrate
+                  </li>
+                </Link>
+              </>
+            ) : (
+              <Link onClick={logout}>
                 <li className='flex items-center justify-start gap-1'>
-                  <LogIn size={20} />
-                  Login
+                  <LogOut size={20} />
+                  Log out
                 </li>
               </Link>
-              <Link to='/register/user'>
-                <li className='flex items-center justify-start gap-1'>
-                  <BadgePlus size={20} />
-                  Regístrate
-                </li>
-              </Link>
-            </>
-          ) : (
-            <Link onClick={logout}>
-              <li className='flex items-center justify-start gap-1'>
-                <LogOut size={20} />
-                Log out
-              </li>
-            </Link>
-          )}
-        </ul>
+            )}
+          </ul>
+        </div>
       </div>
       <div>
         {role === 'user' ? (
