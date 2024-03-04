@@ -85,9 +85,8 @@ const Proveedores = () => {
             <p className='p__h3'>Trabajos realizados: </p>
             {imgs.length > 0 ? (
               imgs.length === 1 || imgs.length === 2 ? (
-                <div className="grid grid-cols-2 gap-4">
+                <div>
                   <img src={imgs[0].url} alt={``} className='rounded-lg max-w-[9.1em]' />
-                  <img src={imgs[1].url} alt={""} className='rounded-lg max-w-[9.1em]' />
                 </div>
               ) : (
                 <Slider {...settings}>
