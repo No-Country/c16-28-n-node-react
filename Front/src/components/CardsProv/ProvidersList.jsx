@@ -27,7 +27,7 @@ function ProvidersList() {
   }
   const handleProviderSelection = (id_prov, data) => {
     setCacheData({ provider_data:data , id_service:id_service});
-    navigate(`/providers/data/${providersDetails[id_prov].id_prov}`)
+    navigate(`/providers/${id_service}/${providersDetails[id_prov].id_prov}`)
   }
   return (
     <div>

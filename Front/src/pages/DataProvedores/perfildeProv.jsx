@@ -1,7 +1,6 @@
 import { useEffect} from 'react';
 import providerStore from '../../store/dataProv';
 import imgServiceStore from "../../store/imgServices";
-import useServiceStore from '../../store/services';
 import useUserStore from '../../store/auth';
 import reviewsStore from '../../store/reviews';
 import { useParams } from 'react-router-dom';
@@ -16,9 +15,7 @@ const Proveedores = () => {
   const { provider, loadprovider } = providerStore();
   const {imgs , loadImgs} = imgServiceStore();
   const {reviews , loadReviews} = reviewsStore();
-  const { service } = useServiceStore();
-  const { id_prov } = useParams();
-  let id_service = service?.id_service;
+  const { id_prov , id_service } = useParams();
   const navigate = useNavigate();
   const { token } = useUserStore(); 
 
@@ -26,10 +23,11 @@ const Proveedores = () => {
   useEffect(() => {
     loadprovider(id_prov);
     loadReviews(id_prov);
-    if (id_service) {
-      loadImgs(id_prov, id_service);
-    }
+    loadImgs(id_prov, id_service);
   }, [id_prov, loadprovider, loadImgs, id_service, loadReviews]);
+
+  console.log(id_prov , id_service)
+  console.log(imgs)
 
   const handleSolicitarContacto = () => {
     if (!token) {
@@ -45,10 +43,10 @@ const Proveedores = () => {
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 1, 
+    slidesToShow: 2, 
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 1800,
+    autoplaySpeed: 6000,
     arrows: false,
   };
 
@@ -67,8 +65,8 @@ const Proveedores = () => {
                 alt={`${provider.name}`}
               />
             </figure>
-            Nombre:<h2 className='ml-5'>{provider.name}</h2>
-            Apellido:<h2 className='ml-5'> {provider.lastName}</h2>
+            Nombre:<h2 className='ml-7'>{provider.name}</h2>
+            Apellido:<h2 className='ml-7'> {provider.lastName}</h2>
           </li>
 
           <hr className='h-0.5 bg-blue border-0' />
@@ -79,9 +77,9 @@ const Proveedores = () => {
 
           <hr className='h-0.5 bg-blue border-0' />
           <li className='items-left justify-center p-[5%] ml-1 mb-2 '>
-            <p className='p__h3'>Matriculacion y certificaciones: </p>
-            <p className='p__title'>Matriculacion: {provider.matriculation}</p>
-            <p className='p__title'>Certificaciones: {provider.otherCertif}</p>
+            <p className='p__h3'>Matriculación y certificaciones: </p>
+            <p className='p__title'><strong>Matriculación:</strong> {provider.matriculation}</p>
+            <p className='p__title'><strong>Certificaciones:</strong> {provider.otherCertif}</p>
           </li>
 
           <hr className='h-0.5 bg-blue border-0' />
@@ -91,7 +89,7 @@ const Proveedores = () => {
               <Slider {...settings}>
                 {imgs.map((image, index) => (
                   <div key={index}>
-                    <img src={image} alt={`Imagen ${index}`} className='rounded-lg' />
+                    <img src={image.url} alt={`Imagen ${index}`} className='rounded-lg max-w-[9.1em]' />
                   </div>
                 ))}
               </Slider>
@@ -104,14 +102,16 @@ const Proveedores = () => {
           <li className='items-left justify-center p-[5%] ml-1 mb-2 '>
             <p className='p__h3'>Reseñas: </p>
             {reviews.length > 0 ? (
-            <ul>
-              {reviews.map((review, index) => (
-                <li key={index}>
-                  <p>{review.text}</p>
-                  <p>Calificación: {review.rating}</p>
-                </li>
-              ))}
-            </ul>
+              <div className="grid grid-cols-2 gap-4">
+  {reviews.map((review, index) => (
+        <div key={index} className="border border-skyBlue rounded-lg text-white text-center p-4">
+        {Array.from({ length: review.score }).map((_, i) => (
+          <span key={i}>⭐</span>
+        ))}
+        <p>{review.description}</p>
+        </div>
+  ))}
+</div>
           ) : (
             <p className='p__title'>No posee reseñas aún.</p>
           )}
