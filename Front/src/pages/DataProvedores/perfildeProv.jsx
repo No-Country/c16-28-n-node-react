@@ -26,8 +26,6 @@ const Proveedores = () => {
     loadImgs(id_prov, id_service);
   }, [id_prov, loadprovider, loadImgs, id_service, loadReviews]);
 
-  console.log(id_prov , id_service)
-  console.log(imgs)
 
   const handleSolicitarContacto = () => {
     if (!token) {
