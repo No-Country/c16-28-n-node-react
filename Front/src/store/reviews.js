@@ -15,6 +15,7 @@ const reviewsStore = create((set) => ({
       set({ error: 'Error loading reviews' });
     }
   },
+  resetReviews: () => set({ reviews: [] }),
 }));
 
 export default reviewsStore;

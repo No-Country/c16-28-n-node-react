@@ -1,4 +1,4 @@
-import { useEffect} from 'react';
+import { useEffect, useState} from 'react';
 import providerStore from '../../store/dataProv';
 import imgServiceStore from "../../store/imgServices";
 import useUserStore from '../../store/auth';
@@ -13,18 +13,33 @@ import { useNavigate } from 'react-router-dom';
 
 const Proveedores = () => {
   const { provider, loadprovider } = providerStore();
-  const {imgs , loadImgs} = imgServiceStore();
-  const {reviews , loadReviews} = reviewsStore();
+  const {imgs , loadImgs , resetImgs} = imgServiceStore();
+  const {reviews , loadReviews, resetReviews} = reviewsStore();
   const { id_prov , id_service } = useParams();
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   const { token } = useUserStore(); 
 
   
   useEffect(() => {
-    loadprovider(id_prov);
+    loadprovider(id_prov).then(() => {
+      setTimeout(() => {
+        setLoading(false);
+      }, 500);
+    });
     loadReviews(id_prov);
     loadImgs(id_prov, id_service);
-  }, [id_prov, loadprovider, loadImgs, id_service, loadReviews]);
+  
+    return () => {
+      resetImgs();
+      resetReviews();
+    };
+  }, [id_prov, loadprovider, loadImgs, id_service, loadReviews, resetImgs, resetReviews]);
+
+
+if (loading) {
+  return <img src="https://registration.gjepc.org/images/formloader.gif"/>;  //cambiar loader
+}
 
 
   const handleSolicitarContacto = () => {
@@ -92,7 +107,7 @@ const Proveedores = () => {
                 <Slider {...settings}>
                   {imgs.map((image, index) => (
                     <div key={index}>
-                      <img src={image.url} alt={`Imagen ${index}`} className='rounded-lg max-w-[9.1em]' key={index}/>
+                      <img src={image.url} alt={`Imagen ${index}`} className='rounded-lg h-100 max-w-140 m-auto' key={index}/>
                     </div>
                   ))}
                 </Slider>
