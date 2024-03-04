@@ -24,7 +24,7 @@ const AppRoutes = () => {
       <Route path='/register/provider' element={<RegisterPage />} />
       <Route path='/services/:id_rubro' element={<Services />} />
       <Route path='/providers/:id_service' element={<Providers />} />
-      <Route path='/providers/data/:id_prov' element={<DataProvider />} />
+      <Route path='/providers/:id_service/:id_prov' element={<DataProvider />} />
       <Route path='/contactRequest' element={<Solicitud />} />
       <Route path='confirmation-user-page' element={<ConfirmationPage />} />
       <Route path='confirmation-provider-page' element={<ConfirmationPage />} />
