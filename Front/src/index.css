@@ -33,7 +33,7 @@
   }
 
   .btnProviders {
-    @apply p-3 bg-skyBlue rounded border border-dark text-center hover:bg-skyBlue;
+    @apply p-3 bg-skyBlue rounded border border-dark text-center text-text hover:bg-skyBlue;
   }
 
   .section__skyblue {
