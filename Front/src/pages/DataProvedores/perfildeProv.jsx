@@ -84,13 +84,20 @@ const Proveedores = () => {
           <li className='items-left justify-center p-[5%] ml-1 mb-2 '>
             <p className='p__h3'>Trabajos realizados: </p>
             {imgs.length > 0 ? (
-              <Slider {...settings}>
-                {imgs.map((image, index) => (
-                  <div key={index}>
-                    <img src={image.url} alt={`Imagen ${index}`} className='rounded-lg max-w-[9.1em]' />
-                  </div>
-                ))}
-              </Slider>
+              imgs.length === 1 || imgs.length === 2 ? (
+                <div className="grid grid-cols-2 gap-4">
+                  <img src={imgs[0].url} alt={``} className='rounded-lg max-w-[9.1em]' />
+                  <img src={imgs[1].url} alt={""} className='rounded-lg max-w-[9.1em]' />
+                </div>
+              ) : (
+                <Slider {...settings}>
+                  {imgs.map((image, index) => (
+                    <div key={index}>
+                      <img src={image.url} alt={`Imagen ${index}`} className='rounded-lg max-w-[9.1em]' key={index}/>
+                    </div>
+                  ))}
+                </Slider>
+              )
             ) : (
               <p className='p__title'> No ha cargado fotos aun</p>
             )}
