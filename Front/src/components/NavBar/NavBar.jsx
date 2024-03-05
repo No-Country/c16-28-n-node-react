@@ -8,12 +8,10 @@ import { Menu } from 'lucide-react';
 const Navbar = () => {
   const { logout } = useUserStore();
   const [menuOpen, setMenuOpen] = useState(false);
-  const navigate = useNavigate();
 
   const handleLogout = () => {
     logout();
     toast.success('¡Has cerrado sesión exitosamente!');
-    navigate('/');
     setMenuOpen(!menuOpen);
   };
 
