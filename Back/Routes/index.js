@@ -10,6 +10,7 @@ const multer = require('multer');
 const cloudinary = require('cloudinary').v2;
 const routesProvService = require('./Routes-provService');
 const routesLogin = require('./Routes-Login');
+const verificationToken = require('./Routes-verifitacion')
 
 const router = Router();
 
@@ -34,6 +35,7 @@ router.use('/providers',verifyToken, routesProviders);
 router.use('/services', routesServices);
 router.use('/rubros', routesRubros);
 router.use(routesLogin);
+router.use('/verificar', verificationToken)
 
 
 const storage = multer.diskStorage({

@@ -1,5 +1,5 @@
 const { Provider , Service , User } = require("../../Database/database");
-const {registerProv, updatePerfil} = require("../../Services/mailerServices");
+const { updatePerfil, sendVerificationEmailProv} = require("../../Services/mailerServices");
 const cloudinary = require('cloudinary').v2;
 
 // Validaciones
@@ -84,11 +84,10 @@ async function postProviders(req, res) {
       name,
       lastName,
       email,
-      password,
-      isActive: true
+      password
     });
 
-    registerProv(name, email, lastName);
+    await sendVerificationEmailProv(provider);
 
     res.status(200).json(provider);
   } catch (error) {
