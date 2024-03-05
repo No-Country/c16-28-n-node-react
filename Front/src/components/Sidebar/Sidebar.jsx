@@ -33,7 +33,7 @@ const Sidebar = ({ handleMenuToggle, logout }) => {
   };
 
   return (
-    <aside className='min-w-64 absolute min-h-screen p-4 flex flex-col justify-between ml-3 top-0 right-[-39px] bg-[#fff] rounded-sm shadow-lg z-10'>
+    <aside className='min-w-80 absolute min-h-screen p-4 flex flex-col justify-between ml-3 top-0 right-[-39px] bg-[#fff] rounded-sm shadow-lg z-10'>
       <div className='flex flex-col items-start justify-center gap-8'>
         <X
           onClick={handleMenuToggle}
@@ -56,7 +56,7 @@ const Sidebar = ({ handleMenuToggle, logout }) => {
               </Link>
             )}
             {role === 'provider' && (
-              <Link to='/proveedor/perfil'>
+              <Link to='/providers/completar-perfil'>
                 <li className='flex items-center justify-start gap-1'>
                   <CircleUserRound size={20} />
                   Perfil
@@ -88,7 +88,7 @@ const Sidebar = ({ handleMenuToggle, logout }) => {
                 </Link>
               </>
             ) : (
-              <Link onClick={logout}>
+              <Link to={'/'} onClick={logout}>
                 <li className='flex items-center justify-start gap-1'>
                   <LogOut size={20} />
                   Log out

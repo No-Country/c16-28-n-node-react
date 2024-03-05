@@ -1,7 +1,6 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import RegisterPage from '../pages/RegisterPage/RegisterPage';
 import Proveedores from '../pages/Proveedores/Proveedores';
-import PerfilProveedor from '../pages/PerfilProveedor/PerfilProveedor';
 import Login from '../pages/Login/Login';
 import Services from '../pages/MenúServicio/Servicios';
 import Providers from '../pages/MenuProveedores/ListProv';
@@ -11,6 +10,10 @@ import ConfirmationPage from '../pages/ConfirmationPage/ConfirmationPage';
 import Solicitud from '../pages/Solicitud de Contacto/Solicitud';
 import PerfilCliente from '../pages/PerfilCliente/PerfilCliente';
 import useUserStore from '../store/auth';
+import IntermedioProveedor from '../pages/IntermedioProveedor/IntermedioProveedor';
+import EditarPerfil from '../pages/EditarPerfil/EditarPerfil';
+import PerfilProveedor from '../pages/PerfilProveedor/PerfilProveedor';
+import ProfileVerificationPage from '../pages/ProfileVerificationPage/ProfileVerificationPage';
 
 const AppRoutes = () => {
   const { role } = useUserStore();
@@ -24,7 +27,10 @@ const AppRoutes = () => {
       <Route path='/register/provider' element={<RegisterPage />} />
       <Route path='/services/:id_rubro' element={<Services />} />
       <Route path='/providers/:id_service' element={<Providers />} />
-      <Route path='/providers/:id_service/:id_prov' element={<DataProvider />} />
+      <Route
+        path='/providers/:id_service/:id_prov'
+        element={<DataProvider />}
+      />
       <Route path='/contactRequest' element={<Solicitud />} />
       <Route path='confirmation-user-page' element={<ConfirmationPage />} />
       <Route path='confirmation-provider-page' element={<ConfirmationPage />} />
@@ -41,6 +47,16 @@ const AppRoutes = () => {
         <>
           <Route path='/servicios' element={''} />
           <Route path='/solicitudes' element={''} />
+          <Route
+            path='/profile-verification'
+            element={<ProfileVerificationPage />}
+          />
+
+          <Route
+            path='/providers/completar-perfil'
+            element={<IntermedioProveedor />}
+          />
+          <Route path='/providers/editar-perfil' element={<EditarPerfil />} />
         </>
       )}
       <Route
