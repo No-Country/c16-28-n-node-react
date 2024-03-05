@@ -27,7 +27,7 @@ const Proveedores = () => {
         setLoading(false);
       }, 500);
     });
-    loadReviews(id_prov);
+    loadReviews(id_prov, id_service);
     loadImgs(id_prov, id_service);
   
     return () => {

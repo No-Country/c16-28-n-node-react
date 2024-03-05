@@ -6,9 +6,9 @@ const api = configureAxios();
 const reviewsStore = create((set) => ({
   reviews: [],
   error: null,
-  loadReviews: async (id_prov) => {
+  loadReviews: async (id_prov, id_service) => {
     try{
-      const { data } = await api.get(`/reviews/${id_prov}`);
+      const { data } = await api.get(`/reviews/${id_prov}/${id_service}`);
       set({ reviews: data, error: null });
     } catch (error) {
       console.error('Error loading reviews:', error);
