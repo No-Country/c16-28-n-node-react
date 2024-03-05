@@ -1,7 +1,7 @@
 
 const PerfilProveedor = () => {
   return (
-    <div>PerfilProveedor</div>
+    <div className="min-h-screen">PerfilProveedor</div>
   )
 }
 
