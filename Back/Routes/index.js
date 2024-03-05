@@ -10,35 +10,33 @@ const multer = require('multer');
 const cloudinary = require('cloudinary').v2;
 const routesProvService = require('./Routes-provService');
 const routesLogin = require('./Routes-Login');
+const verificationToken = require('./Routes-verifitacion')
 
 const router = Router();
 
-// Configurar los routes de users:
-router.use('/users', routesUsers);
+function verifyToken(req, res, next) {
+  const bearerHeader = req.headers['authorization'];
+  if (typeof bearerHeader !== 'undefined') {
+    const bearerToken = bearerHeader.split(' ')[1];
+    req.token = bearerToken;
+    next();
+  } else {
+    res.sendStatus(403); 
+  }
+}
 
-// confg las rutas de reviews:
-router.use('/reviews', routesReviews);
+router.use('/reviews', verifyToken, routesReviews);
+router.use('/solicited', verifyToken, routesSolicited);
+router.use('/ProvService', verifyToken, routesProvService);
+router.use('/users', verifyToken, routesUsers);
+router.use('/img',verifyToken , routesImg);
+router.use('/providers',verifyToken, routesProviders);
 
-// Configurar los routers de los proveedores
-router.use('/providers', routesProviders);
-
-// Config los routers de los servicios:
 router.use('/services', routesServices);
-
-// Config los routers de los rubros:
 router.use('/rubros', routesRubros);
-
-// Config los routers de los solicited:
-router.use('/solicited', routesSolicited);
-
-// Config los routers de ProvService:
-router.use('/ProvService', routesProvService);
-
-//Conf Login para user y para Prov:
 router.use(routesLogin);
+router.use('/verificar', verificationToken)
 
-// Config los routers de los img:
-router.use('/img', routesImg);
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {

@@ -57,7 +57,7 @@ async function getReviews(req, res) {
 
 //funcion para traer todas las reseñas de un solo proveedor:
 const getReviewsByID = async (req, res) => {
-    const { id_prov } = req.params;
+    const { id_prov, id_service } = req.params;
 
     try {
         const prov = await Review.findByPk(id_prov);
@@ -67,7 +67,8 @@ const getReviewsByID = async (req, res) => {
 
         const reviews = await Review.findAll({
             where: {
-                id_prov: id_prov
+                id_prov: id_prov,
+                id_service: id_service
             }
         });
 
@@ -123,11 +124,29 @@ async function putReviews(req, res) {
     }
 }
 
+async function deleteReview (req,res){
+     const {id} = req.params
+
+     try {
+        const review = await Review.findByPk(id);
+        if (!review) {
+            return res.status(404).json({ message: "Review not found" });
+        }
+
+        await review.destroy();
+        console.log(id, "Removed successfully");
+        return res.status(204).end();
+    } catch (error) {
+        console.error("Error deleting", error);
+        return res.status(500).json({ error: error.message || "Internal Server Error" });
+    }
+}
 
 module.exports = {
     getReviews,
     postReviews,
     putReviews,
-    getReviewsByID
+    getReviewsByID,
+    deleteReview
     };
 

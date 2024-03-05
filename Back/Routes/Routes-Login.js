@@ -11,17 +11,24 @@ router.post('/login', async (req, res) => {
 
     const provider = await Provider.findOne({ where: { email, password } });
     if (provider) {
+        if (!provider.isActive) {
+            return res.status(403).send('La cuenta no está activa!');
+        }
         const token = jwt.sign({ email, role: 'provider' }, secretKey, { expiresIn: '1h' });
         return res.json({ token, role: 'provider', id: provider.id_prov });
     }
 
     const user = await User.findOne({ where: { email, password } });
     if (user) {
+        if (!user.isActive) {
+            return res.status(403).send('La cuenta no está activa!');
+        }
         const token = jwt.sign({ email, role: 'user' }, secretKey, { expiresIn: '1h' });
-        return res.json({ token, role: 'user' ,  id: user.id_user});
+        return res.json({ token, role: 'user', id: user.id_user });
     }
     
-    res.status(401).json({ message: 'Try again' });
+    res.status(401).send('Try again');
 });
 
 module.exports = router;
+

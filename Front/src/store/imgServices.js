@@ -15,6 +15,7 @@ const imgServiceStore = create((set) => ({
       set({ error: 'Error loading imgs' });
     }
   },
+  resetImgs: () => set({ imgs: [] }),
 }));
 
 export default imgServiceStore;

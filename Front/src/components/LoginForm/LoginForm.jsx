@@ -23,13 +23,23 @@ const LoginForm = () => {
       const { token, role, id } = res.data;
 
       setTokenAndRole(token, role, id);
+      if(role === 'user') {
+        navigate('/')
+      }else {
+        navigate('/profile-verification');
+      }
       toast.success('Usuario conectado exitosamente'); 
-      navigate('/');
     } catch (error) {
-      toast.error('Ooops algo ha salido mal, vuelve a intentarlo');
-      setError(error.message || 'Error de inicio de sesión');
+
+      if (error.response && error.response.status === 403) {
+        setError(error.response.data);
+    } else {
+        toast.error('Ooops algo ha salido mal, vuelve a intentarlo');
+        setError('Error de inicio de sesión');
     }
-  };
+}
+};
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();

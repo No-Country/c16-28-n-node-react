@@ -25,8 +25,30 @@ async function getProvServiceByID(req, res) {
     }
 }
 
+async function deleteProvService (req, res){
+    const {id} = req.params;
+
+    try {
+        // Verificar si el servicio solicitado existe
+        const service = await ProviderService.findByPk(id);
+        if (!service) {
+            return res.status(404).json({ message: "Service not found" });
+        }
+
+        // Eliminar el servicio solicitado
+        await service.destroy();
+        console.log(id, "Removed successfully");
+        return res.status(204).end();
+    } catch (error) {
+        console.error("Error deleting", error);
+        return res.status(500).json({ error: error.message || "Internal Server Error" });
+    }
+}
+
+
 
 module.exports = {
 getProvService ,
-getProvServiceByID
+getProvServiceByID,
+deleteProvService
 }

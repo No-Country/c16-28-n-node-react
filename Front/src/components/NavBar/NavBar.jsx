@@ -1,19 +1,17 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import useUserStore from '../../store/auth';
 import { toast } from 'react-hot-toast';
 import Sidebar from '../Sidebar/Sidebar';
-import { Menu, X } from 'lucide-react';
+import { Menu } from 'lucide-react';
 
 const Navbar = () => {
   const { logout } = useUserStore();
   const [menuOpen, setMenuOpen] = useState(false);
-  const navigate = useNavigate();
 
   const handleLogout = () => {
     logout();
     toast.success('¡Has cerrado sesión exitosamente!');
-    navigate('/');
     setMenuOpen(!menuOpen);
   };
 
@@ -39,16 +37,12 @@ const Navbar = () => {
       </div>
 
       {menuOpen && (
-        <div className='min-w-64  absolute ml-3 top-8 right-[287px] bg-[#fff] rounded-sm shadow-lg z-10'>
+        <div className='relative '>
           <div
             className='relative pb-8
           '
-          >
-            <X
-              onClick={handleMenuToggle}
-              className='cursor-pointer absolute top-2 right-10'
-            />
-          </div>
+          ></div>
+
           <Sidebar handleMenuToggle={handleMenuToggle} logout={handleLogout} />
         </div>
       )}
