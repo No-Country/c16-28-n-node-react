@@ -66,14 +66,20 @@ const RegisterForm = () => {
       [name]: value,
     }));
     if (name === 'name') {
+      const minLengthName = value.length >= 3;
+
       setErrors((prevErrors) => ({
         ...prevErrors,
-        name: value.trim().length < 3,
+        //name: value.trim().length < 3,
+        name: !minLengthName,
       }));
     } else if (name === 'lastName') {
+      const minLengthLastName = value.length >= 3;
+
       setErrors((prevErrors) => ({
         ...prevErrors,
-        lastName: value.trim().length < 3,
+        //lastName: value.trim().length < 3,
+        lastName: !minLengthLastName,
       }));
     } else if (name === 'email') {
       setErrors((prevErrors) => ({
@@ -81,12 +87,20 @@ const RegisterForm = () => {
         email: !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(value),
       }));
     } else if (name === 'password') {
+      const hasCapital = /[A-Z]/.test(value);
+      const hasNumber = /\d/.test(value);
+      const hasSpecialChar = /[.!%*?&#]/.test(value);
+      const minLength = value.length >= 6;
+      const maxLength = value.length <= 10;
+
       setErrors((prevErrors) => ({
         ...prevErrors,
-        password:
-          !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,10}$/.test(
-            value
-          ),
+        password: !hasCapital || !hasNumber || !hasSpecialChar || !minLength || !maxLength,
+        passwordHasCapital: !hasCapital,
+        passwordHasNumber: !hasNumber,
+        passwordHasSpecialChar: !hasSpecialChar,
+        passwordMinLength: !minLength,
+        passwordMaxLength: !maxLength,
       }));
     } else if (name === 'category') {
       setErrors((prevErrors) => ({
@@ -99,15 +113,18 @@ const RegisterForm = () => {
   const providerUrl = location.pathname === '/register/provider';
 
   return (
-    <div className='bg-white p-10 rounded-md shadow-md'>
-      <form onSubmit={handleSubmit}>
-        <div className='flex mb-5 gap-2'>
-          <div className='w-full sm:w-1/2 mb-5 sm:mb-0'>
+    <div>
+      <form 
+        className='flex flex-col rounded border p-4 gap-6' 
+        onSubmit={handleSubmit}
+      >
+        <div className='flex gap-2'>
+          <div className='w-full sm:w-1/2'>
             <label
               className='block mb-2 text-sm font-medium text-gray-700'
               htmlFor='name'
             >
-              Nombre <span style={{ color: 'red' }}>*</span>
+              Nombre <span className='text-red'>*</span>
             </label>
             <input
               type='text'
@@ -116,12 +133,12 @@ const RegisterForm = () => {
               value={formData.name}
               onChange={handleChange}
               required
-              className='w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-bl-500 focus:border-skyBlue-500 sm:text-sm'
+              className='bg-background w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-bl-500 focus:border-skyBlue-500 sm:text-sm'
             />
             {errors.name && (
-              <span style={{ color: 'red' }}>
-                El nombre debe tener al menos 3 caracteres.
-              </span>
+              <div className='text-sm text-red font-medium mt-1 pl-1'>
+                <span>Debe contener al menos 3 caracteres.</span>
+              </div>
             )}
           </div>
           <div className='w-full sm:w-1/2'>
@@ -129,7 +146,7 @@ const RegisterForm = () => {
               className='block mb-2 text-sm font-medium text-gray-700'
               htmlFor='lastName'
             >
-              Apellido <span style={{ color: 'red' }}>*</span>
+              Apellido <span className='text-red'>*</span>
             </label>
             <input
               type='text'
@@ -138,22 +155,22 @@ const RegisterForm = () => {
               value={formData.lastName}
               onChange={handleChange}
               required
-              className='w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
+              className='bg-background w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
             />
             {errors.lastName && (
-              <span style={{ color: 'red' }}>
-                El apellido debe tener al menos 3 caracteres.
-              </span>
+              <div className='text-sm text-red font-medium mt-1 pl-1'>
+                <span>Debe contener al menos 3 caracteres.</span>
+              </div>
             )}
           </div>
         </div>
 
-        <div className='mb-5'>
+        <div>
           <label
             className='block mb-2 text-sm font-medium text-gray-700'
             htmlFor='email'
           >
-            Correo Electrónico <span style={{ color: 'red' }}>*</span>
+            Correo Electrónico <span className='text-red'>*</span>
           </label>
           <input
             type='email'
@@ -162,11 +179,11 @@ const RegisterForm = () => {
             value={formData.email}
             onChange={handleChange}
             required
-            className='w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
+            className='bg-background w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
           />
           {errors.email && (
-            <span style={{ color: 'red' }}>
-              Ingresa un Correo Electrónico valido.
+            <span className='text-sm text-red font-medium mt-1 pl-1'>
+              Ingresa un Correo Electrónico válido.
             </span>
           )}
           {errorMessage && (
@@ -176,12 +193,12 @@ const RegisterForm = () => {
           )}
         </div>
 
-        <div className='mb-5'>
+        <div>
           <label
             className='block mb-2 text-sm font-medium text-gray-700'
             htmlFor='password'
           >
-            Contraseña <span style={{ color: 'red' }}>*</span>
+            Contraseña <span className='text-red'>*</span>
           </label>
           <input
             type='password'
@@ -190,20 +207,17 @@ const RegisterForm = () => {
             value={formData.password}
             onChange={handleChange}
             required
-            className='w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
+            className='bg-background w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
           />
           {errors.password && (
             <>
-              <p style={{ color: 'red' }}>
-                La contraseña que estás intentando crear no cumple con los
-                requerimientos.
-              </p>
-              <ul style={{ color: 'red' }}>
-                <li>La contraseña debe tener entre 6 y 10 caracteres.</li>
-                <li>Al menos una letra mayúscula.</li>
-                <li>Al menos una letra minúscula.</li>
-                <li>Al menos un número.</li>
-                <li>Al menos un carácter especial.</li>
+              <ul className='flex flex-col text-sm text-red font-medium mt-1 pl-1'>
+                <li>{errors.passwordMinLength && 'Debe tener entre 6 y 10 caracteres.'}</li>
+                <li>{errors.passwordMaxLength && 'Debe tener entre 6 y 10 caracteres.'}</li>
+                <li>{errors.passwordHasCapital && 'Debe tener al menos una letra mayúscula y minúscula.'}</li>
+                <li>{errors.passwordHasNumber && 'Debe tener al menos un número.'}</li>
+                <li>{errors.passwordHasSpecialChar && 'Debe tener al menos un carácter especial.'}</li>
+                <li>{!errors.passwordHasCapital && !errors.passwordHasNumber && !errors.passwordHasSpecialChar && !errors.passwordMinLength && !errors.passwordMaxLength && 'La contraseña no cumple con los requerimientos.'}</li>
               </ul>
             </>
           )}
@@ -241,9 +255,7 @@ const RegisterForm = () => {
           </div>
         )}
 
-        <button type='submit' className={`${submitButtomColor} w-full`}>
-          Registrarse
-        </button>
+        <button type='submit' className={`${submitButtomColor} w-full`}>Registrarse</button>
       </form>
     </div>
   );

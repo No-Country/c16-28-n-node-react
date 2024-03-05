@@ -3,7 +3,7 @@ import LoginForm from "../../components/LoginForm/LoginForm"
 
 const Login = () => {
   return (
-    <div className='px-6'>
+    <section className='px-6'>
       <div className='flex flex-col gap-8'>
         <h1>Inicia sesión</h1>
         <LoginForm />
@@ -19,7 +19,7 @@ const Login = () => {
           Regístrate
         </Link>
       </div>
-    </div>
+    </section>
   );
 }
 
