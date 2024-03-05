@@ -1,5 +1,5 @@
 const { User, Provider } = require("../../Database/database");
-const {registerUser, updatePerfil }= require("../../Services/mailerServices");
+const {sendVerificationEmailUser, updatePerfil }= require("../../Services/mailerServices");
 const cloudinary = require('cloudinary').v2;
 
 //Aca van a ir los controller de la ruta Users , (Cada ruta tiene su propio controlador)
@@ -59,12 +59,12 @@ async function postUsers(req, res) {
       name,
       lastName,
       email,
-      password,
-      isActive: true,
+      password
     });
 
-    registerUser(name, email, lastName);
 
+    await sendVerificationEmailUser(user);
+    
     res.status(201).json(user);
 
   } catch (error) {

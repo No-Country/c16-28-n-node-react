@@ -54,7 +54,8 @@ module.exports = (sequelize) => {
     isActive: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
-      defaultValue: true
-    }
+      defaultValue: false,
+    },
+    verificationToken: DataTypes.STRING, 
   },{timestamps:false});
 }

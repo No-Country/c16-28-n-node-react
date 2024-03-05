@@ -6,7 +6,10 @@ const requestProvTemplate = require("../Templates/requestProv");
 const welcomeProvTemplate = require ("../Templates/welcomeProv");
 const updatePerfilTemplate = require("../Templates/updatePerfil");
 const {stateRequestUser} = require("../Templates/stateRequestUser");
-const stateRequestProv = require("../Templates/stateRequestProv")
+const stateRequestProv = require("../Templates/stateRequestProv");
+const registerAndVerifyTemplate = require("../Templates/verificationTemplate")
+const jwt = require('jsonwebtoken');
+const secretKey = process.env.JWT_SECRET_KEY2;
 
 let transporter = nodemailer.createTransport({
   service: "gmail",
@@ -72,6 +75,52 @@ async function registerProv(name, email, lastName) {
     return sendMail;
   } catch (error) {
     console.error('Error al enviar el correo:', error.message);
+    throw error;
+  }
+}
+
+async function sendVerificationEmailUser(user) {
+  const token = jwt.sign({ id: user.id }, secretKey, { expiresIn: '30m' });
+  user.verificationToken = token;
+  await user.save();
+
+  const verificationLink = `https://dev.serviapp.solutions:3001/verificar?token=${token}`;
+
+  const mailOptions = {
+    from: "ServiApp <notcountry16@gmail.com>",
+    to: user.email,
+    subject: "Confirma tu correo electrónico",
+    html:registerAndVerifyTemplate(user.name, user.lastName, verificationLink)
+  };
+
+  try {
+    const sendMail = await transporter.sendMail(mailOptions);
+    console.log('Correo electrónico de verificación enviado:', sendMail);
+  } catch (error) {
+    console.error('Error al enviar el correo electrónico de verificación:', error);
+    throw error;
+  }
+}
+
+async function sendVerificationEmailProv(provider) {
+  const token = jwt.sign({ id: provider.id }, secretKey, { expiresIn: '30m' });
+  provider.verificationToken = token;
+  await provider.save();
+
+  const verificationLink = `https://dev.serviapp.solutions:3001/verificar?token=${token}`;
+
+  const mailOptions = {
+    from: "ServiApp <notcountry16@gmail.com>",
+    to: provider.email,
+    subject: "Confirma tu correo electrónico",
+    html:registerAndVerifyTemplate(provider.name, provider.lastName, verificationLink)
+  };
+
+  try {
+    const sendMail = await transporter.sendMail(mailOptions);
+    console.log('Correo electrónico de verificación enviado:', sendMail);
+  } catch (error) {
+    console.error('Error al enviar el correo electrónico de verificación:', error);
     throw error;
   }
 }
@@ -155,6 +204,8 @@ module.exports = {
   registerUser,
   registerProv,
   updatePerfil,
+  sendVerificationEmailUser,
+  sendVerificationEmailProv,
   sendRequestUser,
   sendRequestProv,
   sendStateProv,
