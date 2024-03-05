@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import useUserStore from '../../store/auth';
 import { toast } from 'react-hot-toast';
 import Sidebar from '../Sidebar/Sidebar';
