@@ -18,7 +18,7 @@ function validateEmail(email) {
 }
 
 function validatePassword(password) {
-  return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%.-*?&])[A-Za-z\d@$!%*?-.&]{6,10}$/.test(password);
+  return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,10}$/.test(password);
 }
 
 
