@@ -12,6 +12,14 @@ const LoginForm = () => {
     email: '',
     password: '',
   });
+
+  const [errors, setErrors] = useState({
+    email: false,
+    password: false,
+  });
+
+  const [passwordType, setPasswordType] = useState('password');
+
   const [error, setError] = useState(null);
   const api = configureAxios();
 
@@ -53,6 +61,33 @@ const LoginForm = () => {
       ...prevData,
       [name]: value,
     }));
+
+    if (name === 'email') {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        email: !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(value),
+      }));
+    } else if (name === 'password') {
+      const hasCapital = /[A-Z]/.test(value);
+      const hasNumber = /\d/.test(value);
+      const hasSpecialChar = /[.!%*?&#]/.test(value);
+      const minLength = value.length >= 6;
+      const maxLength = value.length <= 10;
+
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        password: !hasCapital || !hasNumber || !hasSpecialChar || !minLength || !maxLength,
+        passwordHasCapital: !hasCapital,
+        passwordHasNumber: !hasNumber,
+        passwordHasSpecialChar: !hasSpecialChar,
+        passwordMinLength: !minLength,
+        passwordMaxLength: !maxLength,
+      }));
+    }
+  };
+
+  const togglePasswordVisibility = () => {
+    setPasswordType(passwordType === 'password' ? 'text' : 'password');
   };
 
   return (
@@ -64,7 +99,7 @@ const LoginForm = () => {
         <div className='flex flex-col'>
           <label htmlFor='email' className='mb-2 text-text text-black'>
             Correo Electrónico{' '}
-            <span className='text-text font-light text-red'>*</span>
+            <span className='text-red'>*</span>
           </label>
           <input
             type='email'
@@ -73,35 +108,50 @@ const LoginForm = () => {
             value={formData.email}
             onChange={handleChange}
             required
-            className='bg-background p-3 rounded border text-text text-gray'
+            className='bg-background p-3 rounded border text-text text-gray outline-none'
             placeholder='Escribe tu correo...'
           />
-          {error && <div className='text-text text-red font-medium'>{error}</div>}
+          {errors.email && <span className='text-sm text-red font-medium mt-1 pl-1'>Correo electrónico inválido.</span>}
         </div>
         <div className='flex flex-col'>
           <label htmlFor='password' className='mb-2 text-text text-black'>
-            Contraseña <span className='text-text font-light text-red'>*</span>
+            Contraseña <span className='text-red'>*</span>
           </label>
-          <input
-            type='password'
-            id='password'
-            name='password'
-            value={formData.password}
-            onChange={handleChange}
-            required
-            className='bg-background p-3 rounded border text-text text-gray'
-            placeholder='Escribe tu contraseña...'
-          />
-          {error && <div className='text-text text-red font-medium'>{error}</div>}
+          <div className='w-full flex'>
+            <input
+              type={passwordType}
+              id='password'
+              name='password'
+              value={formData.password}
+              onChange={handleChange}
+              required
+              className='w-5/6 bg-background p-3 rounded-l border-y	border-l text-text text-gray outline-none'
+              placeholder='Escribe tu contraseña...'
+            />
+            <button
+              className='w-1/6 bg-background p-3 rounded-r border-y border-r text-text text-gray'
+              onClick={togglePasswordVisibility}
+            >
+              o
+            </button>
+          </div>
+          {errors.password && (
+              <ul className='flex flex-col text-sm text-red font-medium mt-1 pl-1'>
+                <li>{errors.passwordMinLength && 'Debe tener entre 6 y 10 caracteres.'}</li>
+                <li>{errors.passwordMaxLength && 'Debe tener máximo 10 caracteres.'}</li>
+                <li>{errors.passwordHasCapital && 'Debe contener al menos una letra mayúscula y minúscula.'}</li>
+                <li>{errors.passwordHasNumber && 'Debe contener al menos un número.'}</li>
+                <li>{errors.passwordHasSpecialChar && 'Debe contener un caracter especial ".!%*?&#"'}</li>
+                <li>{!errors.passwordHasCapital && !errors.passwordHasNumber && !errors.passwordHasSpecialChar && !errors.passwordMinLength && !errors.passwordMaxLength && 'Contraseña inválida.'}</li>
+              </ul>
+            )}
         </div>
         <div className='pb-0.5 self-center border-b border-black border-1'>
           <Link to={'#'} className='text-text text-center text-dark'>
             ¿Olvidaste tu contraseña?
           </Link>
         </div>
-        <button type='submit' className='primaryBtn'>
-          Iniciar Sesión
-        </button>
+        <button type='submit' className='primaryBtn'>Iniciar Sesión</button>
       </form>
     </div>
   );
