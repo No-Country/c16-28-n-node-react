@@ -1,47 +1,53 @@
-import { Link, useNavigate } from "react-router-dom";
-import useUserStore from "../../store/auth";
-import { toast } from "react-hot-toast";
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import useUserStore from '../../store/auth';
+import { toast } from 'react-hot-toast';
+import Sidebar from '../Sidebar/Sidebar';
+import { Menu } from 'lucide-react';
 
-const NavBar = () => {
-  const { token, role ,logout } = useUserStore();
-  const navigate= useNavigate();
+const Navbar = () => {
+  const { logout } = useUserStore();
+  const [menuOpen, setMenuOpen] = useState(false);
+
   const handleLogout = () => {
     logout();
     toast.success('¡Has cerrado sesión exitosamente!');
-    navigate("/");
+    setMenuOpen(!menuOpen);
+  };
+
+  const handleMenuToggle = () => {
+    setMenuOpen(!menuOpen);
   };
 
   return (
-    <nav className='bg-slate-800 w-full text-white'>
-      <ul className='flex justify-center items-center gap-6 p-3'>
-      <Link to="/">
-      <li>Home</li>
-      </Link>
-        { !token ? (
-        <Link to ="/login"><li>Log in</li></Link>
-        ):(
-          <div className='flex justify-center items-center gap-6 p-3'>
-            { role === "user" && (
-              
-                <Link to ="/usuario/perfil"><li>Perfil</li></Link>
-            
-            )}
-            { role === "provider" && (
-              <li>
-                <Link to ="/proveedor/perfil">Perfil</Link>
-              </li>
-            )}
-            <li onClick={handleLogout} >Log out</li>
-          </div>
-        )}
-      </ul>
-      <div className='m-6 bg-yellow w-[125px] h-[54px] flex items-center justify-center'>
-        <Link to={'/'} className='font-sans text-xl font-bold text-center text-blue'>
-          ServiApp
+    <nav className='flex justify-between items-center border-b border-dark/10 shadow-sm p-2'>
+      <div className='flex items-center'>
+        <Link to={'/'}>
+          <figure className='w-[200px] h-auto'>
+            <img
+              src='https://res.cloudinary.com/dq9icw8vb/image/upload/v1709388024/mczmuz3tirvjkm1cvtjg.png'
+              alt='ServiApp Logo'
+            />
+          </figure>
         </Link>
       </div>
+
+      <div className='flex items-center'>
+        <Menu onClick={handleMenuToggle} className='cursor-pointer' />
+      </div>
+
+      {menuOpen && (
+        <div className='relative '>
+          <div
+            className='relative pb-8
+          '
+          ></div>
+
+          <Sidebar handleMenuToggle={handleMenuToggle} logout={handleLogout} />
+        </div>
+      )}
     </nav>
   );
-}
+};
 
-export default NavBar;
+export default Navbar;

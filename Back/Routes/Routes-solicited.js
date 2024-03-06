@@ -21,10 +21,10 @@ router.get('/by/:parameter/:value', getSolicitedByParameter);
 router.post('/post', postSolicited);
 
 // Ruta para actualizar un servicio solicitado por ID (PUT)
-router.put('/:id', putSolicited);
+router.put('/:id_solicited', putSolicited);
 
 // Ruta para eliminar un servicio solicitado por ID (DELETE)
-router.delete('/:id', deleteSolicited);
+router.delete('/:id_solicited', deleteSolicited);
 
 module.exports = router;
 
