@@ -1,17 +1,8 @@
-# SERVIAPP
+ # SERVIAPP:
 <img src="https://res.cloudinary.com/dq9icw8vb/image/upload/v1709388024/mczmuz3tirvjkm1cvtjg.png" />
 <p>ServiApp es una aplicación web desarrollada como un MVP en un mes, con el objetivo de conectar personas que necesitan un servicio con personas que lo ofrecen.</p>
 
-# Índice
-
-- [Objetivo del proyecto](#objetivo-del-proyecto)
-- [Desarrollo del producto](#desarrollo-del-producto)
-- [Próximos pasos](#próximos-pasos)
-- [Equipo](#equipo)
-- [Stack Tecnológico](#stack-tecnológico)
-
-# Objetivo del proyecto {#objetivo-del-proyecto}
-
+# Objetivo del proyecto 
 <ul>
 <li>Proporcionar un listado de rubros (categorías de servicios).</li>
 <li>Ofrecer un listado de servicios detallados, con información relevante y precios.</li>
@@ -23,16 +14,17 @@
 <li>Diseñar una interfaz intuitiva y centrada en el usuario.</li>
 </ul>
 
-# Desarrollo del producto {#desarrollo-del-producto}
+## Desarrollo del producto 
 
 Desarrollado por un equipo multidisciplinario con un DevOps, una tester QA, una diseñadora UI/UX, un PM, 2 desarrolladores backend y 5 desarrolladores frontend.
 Coordinación y comunicación a través de plataformas como Meet, Slack, Discord, WhatsApp, Trello, Figma y GitHub.
 
-# Próximos pasos {#próximos-pasos}
+## Próximos pasos 
 
 Implementación de nuevas funcionalidades como métodos de pago, suscripciones con descuentos, geolocalización, entre otros.
 
-## Equipo {#equipo}
+<hr/>
+# Equipo
 
 | Rol               | Nombre               | Redes                                                                                                                             |
 | :---------------- | :------------------- | :-------------------------------------------------------------------------------------------------------------------------------- |
@@ -47,9 +39,15 @@ Implementación de nuevas funcionalidades como métodos de pago, suscripciones c
 | `Back End`        | Bárbara Espinola      | [![GitHub]](https://github.com/BaEsp1) [![linkedin]](https://www.linkedin.com/in/baesp/)                       |
 | `Back End`        | Neil Aular        | [![GitHub]](https://github.com/NxL22) [![linkedin]](https://www.linkedin.com/in/neil-aular/)                       |
 
-## Stack Tecnológico {#stack-tecnológico}
+# Stack Tecnológico 
 
 | Rama          | Tecnologías             |
 | :------------ | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | UX/UI         | ![Figma](https://img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white)          |
-| Front End     | ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg
+| Front End     | ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E) ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB) ![React Hook Form](https://img.shields.io/badge/React%20Hook%20Form-%23EC5990.svg?style=for-the-badge&logo=reacthookform&logoColor=white) ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white) ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white) |
+| Back End      | ![Node]()          |
+
+| Base de datos |                                                                                                                                                                |
+| Deployment    | ![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&
+adge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white) ![Postman](https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white) |
+|               |
