@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply bg-[#fff];
+  }
+  body {
+    @apply container min-h-full w-full bg-background;
+  }
+
+  h1 {
+    @apply font-sans font-semibold text-title;
+  }
+
+  h2 {
+    @apply font-sans font-medium text-subtitle;
+  }
+
+  p {
+    @apply font-sans font-normal text-black text-text;
+  }
+}
+
+@layer components {
+  .primaryBtn {
+    @apply p-3 bg-orange rounded border border-dark text-center hover:bg-blue hover:text-background;
+  }
+
+  .secondaryBtn {
+    @apply p-3 rounded border border-dark text-center;
+  }
+
+  .btnProviders {
+    @apply p-3 bg-skyBlue rounded border border-dark text-center text-text hover:bg-skyBlue;
+  }
+
+  .section__skyblue {
+    @apply py-[46px] px-[32px] bg-skyBlue/25 space-y-[32px];
+  }
+
+  .section__normal {
+    @apply py-[46px] px-[32px] flex flex-col  space-y-[32px];
+  }
+
+  .p__title {
+    @apply ml-5 text-[0.9em] font-medium text-dark;
+  }
+
+  .p__h3 {
+    @apply text-lg font-medium text-dark;
+  }
+}
