@@ -35,7 +35,7 @@ const PerfilProveedor = () => {
 
       <div className='mt-5 flex flex-col items-center'>
         <ul>
-          <li className='mt-4 w-[16em] font-bold'> 
+          <li className='mt-4 w-[16em] font-bold' onClick={() => navigate('/proveedor/editar-perfil')}> 
             <img className='max-w-7 inline-block mr-5' src="https://res.cloudinary.com/dq9icw8vb/image/upload/v1709243588/icons/hk1foubdljk2x1yh1do3.png" alt=""/>
               Configuración
               <img  className='max-w-9 float-right' src="https://res.cloudinary.com/dq9icw8vb/image/upload/v1709245960/icons/flk7jjpkiirnwpfy1bve.png" alt=">"/>
