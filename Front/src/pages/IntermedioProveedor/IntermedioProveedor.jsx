@@ -36,7 +36,7 @@ const IntermedioProveedor = () => {
           <p className='text-pretty'>
             Y podrás ofrecer tus servicios y usar al máximo ServiApp.
           </p>
-          <Link to='/providers/editar-perfil' className='btnProviders'>
+          <Link to='/proveedor/editar-perfil' className='btnProviders'>
             Comenzar
           </Link>
         </div>
