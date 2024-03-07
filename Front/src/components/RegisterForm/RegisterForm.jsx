@@ -32,6 +32,7 @@ const RegisterForm = () => {
     password: '',
     category: '',
   });
+  console.log(formData);
 
   const [errors, setErrors] = useState({
     name: false,
@@ -47,6 +48,7 @@ const RegisterForm = () => {
     location.pathname === '/register/user' ? 'primaryBtn' : 'btnProviders';
 
   const handleSubmit = async (e) => {
+    console.log('handlesubmit')
     e.preventDefault();
     setIsCreatingAccount(true);
     const { name, lastName, email, password, category } = formData;
@@ -54,6 +56,7 @@ const RegisterForm = () => {
     try {
       const route =
         location.pathname === '/register/user' ? '/users' : '/providers';
+        console.log(route)
       const res = await registerUser(route, userData);
       res && location.pathname === '/register/user'
         ? navigate('/confirmation-user-page')
@@ -306,9 +309,7 @@ const RegisterForm = () => {
           </div>
         )}
 
-        <button type='submit' className={`${submitButtomColor} w-full`}>
-          {buttonText}
-        </button>
+        <button type='submit' className={`${submitButtomColor} w-full`}>Registrarse</button>
       </form>
     </div>
   );
