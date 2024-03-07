@@ -11,7 +11,9 @@ export const getUserById = async (route, id_user) => {
 };
 
 export const registerUser = async (route, newUser) => {
+  console.log('newUser', newUser);
   try {
+    console.log(route, newUser);
     const res = await api.post(route, newUser);
     return res.data;
   } catch (error) {

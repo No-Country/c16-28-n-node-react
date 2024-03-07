@@ -23,7 +23,7 @@ const LoginForm = () => {
     try {
       const res = await api.post('/login', { ...formData });
       const { token, role, id } = res.data;
-
+console.log(token, role, id)
       setTokenAndRole(token, role, id);
       if (role === 'user') {
         navigate('/');
