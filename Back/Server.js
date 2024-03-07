@@ -19,7 +19,7 @@ server.name = 'API';
 })); */
 
 server.use(cors({
-   origin: ["http://localhost:5173", "https://dev.serviapp.solutions"],
+   origin: ["http://localhost:5173", "https://dev.serviapp.solutions", "https://qa.serviapp.solutions"],
    credentials: true,
 }))
 
