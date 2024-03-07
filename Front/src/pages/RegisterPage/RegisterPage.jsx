@@ -3,8 +3,8 @@ import RegisterForm from '../../components/RegisterForm/RegisterForm.jsx';
 
 const RegisterPage = () => {
   return (
-    <section className='flex flex-col gap-8'>
-      <h1 className='font-bold pb-8'>Crea tu cuenta</h1>
+    <section className='flex flex-col gap-8 px-6'>
+      <h1>Crea tu cuenta</h1>
       <div className='flex items-center justify-center gap-2'>
         <Link className='primaryBtn w-full' to={'/register/user'}>
           Cliente

@@ -14,6 +14,7 @@ import IntermedioProveedor from '../pages/IntermedioProveedor/IntermedioProveedo
 import EditarPerfil from '../pages/EditarPerfil/EditarPerfil';
 import PerfilProveedor from '../pages/PerfilProveedor/PerfilProveedor';
 import ProfileVerificationPage from '../pages/ProfileVerificationPage/ProfileVerificationPage';
+import EditProfileProveedor from '../pages/EditProfileProveedor/EditProfileProveedor'
 
 const AppRoutes = () => {
   const { role } = useUserStore();
@@ -36,6 +37,7 @@ const AppRoutes = () => {
       <Route path='confirmation-provider-page' element={<ConfirmationPage />} />
       <Route path='/usuario/perfil' element={<PerfilCliente />} />
       <Route path='/proveedor/perfil' element={<PerfilProveedor />} />
+      <Route path='/proveedor/editar-perfil' element={<EditProfileProveedor />} />
       <Route path='/proveedores' element={<Proveedores />} />
       {role === 'user' && (
         <>

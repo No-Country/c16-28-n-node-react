@@ -1,5 +1,5 @@
 const { ImgService, Service, Provider } = require("../../Database/database");
-
+const cloudinary = require('cloudinary').v2;
 
 //funcion para subir foto 
 async function postImgService(req, res) {

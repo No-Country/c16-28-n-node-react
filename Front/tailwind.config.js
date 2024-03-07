@@ -24,7 +24,7 @@ export default {
       dark: '#1C1A1A',
       black: '#211A1A',
       gray: '#3E3B3B',
-      red: '#900101',
+      red: '#FF0000',
     },
     fontFamily: {
       sans: ['Poppins', 'sans-serif'],
