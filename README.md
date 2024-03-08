@@ -57,6 +57,7 @@ Implementación de nuevas funcionalidades como métodos de pago, suscripciones c
 https://www.figma.com/file/GzEzDdzS3W5kcZHCWQgl6m/ServiAPP?type=design&node-id=1%3A2&mode=design&t=X5uImKFh9F1bFAFr-1
 https://www.figma.com/file/GzEzDdzS3W5kcZHCWQgl6m/ServiAPP?type=design&node-id=446%3A630&mode=design&t=X5uImKFh9F1bFAFr-1
 ## Tester QA:
+<li>Requisitos del producto y User Stories:https://drive.google.com/file/d/1DtRphzWEsgvsV_TSouBaKCpP06QOlXwM/view?usp=sharing </li>
 <li>Plan de Pruebas: https://drive.google.com/file/d/1MRV4jCSr5WoMfQ855FtA1U6Zre4oGRib/view?usp=drive_link</li>
 <li>Casos de Pruebas:</li>
 <li>Reporte de Bugs:</li>
