@@ -54,6 +54,6 @@ Implementación de nuevas funcionalidades como métodos de pago, suscripciones c
 
 
 ## Diseño UI/UX:
-Houy iasdjisadjiajdai 
-
+https://www.figma.com/file/GzEzDdzS3W5kcZHCWQgl6m/ServiAPP?type=design&node-id=1%3A2&mode=design&t=X5uImKFh9F1bFAFr-1
+https://www.figma.com/file/GzEzDdzS3W5kcZHCWQgl6m/ServiAPP?type=design&node-id=446%3A630&mode=design&t=X5uImKFh9F1bFAFr-1
 ## Tester QA:
