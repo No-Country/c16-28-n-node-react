@@ -59,6 +59,5 @@ https://www.figma.com/file/GzEzDdzS3W5kcZHCWQgl6m/ServiAPP?type=design&node-id=4
 ## Tester QA:
 <li>Requisitos del producto y User Stories:https://drive.google.com/file/d/1DtRphzWEsgvsV_TSouBaKCpP06QOlXwM/view?usp=sharing </li>
 <li>Plan de Pruebas: https://drive.google.com/file/d/1MRV4jCSr5WoMfQ855FtA1U6Zre4oGRib/view?usp=drive_link</li>
-<li>Casos de Pruebas:</li>
-<li>Reporte de Bugs:</li>
+<li>Casos de Pruebas y Reporte de Bugs: https://docs.google.com/spreadsheets/d/1RxVla1yVe4TVR9Pry47IsJ2NzH3PBfhUqzxenLGnVjo/edit?usp=sharing</li>
 <li>Informe Final:</li>
