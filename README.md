@@ -54,6 +54,6 @@ Implementación de nuevas funcionalidades como métodos de pago, suscripciones c
 
 
 ## Diseño UI/UX:
-
+Houy iasdjisadjiajdai 
 
 ## Tester QA:
