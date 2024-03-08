@@ -26,7 +26,6 @@ Coordinación y comunicación a través de plataformas como Meet, Slack, Discord
 
 Implementación de nuevas funcionalidades como métodos de pago, suscripciones con descuentos, geolocalización, entre otros.
 
-<hr/>
 # Equipo
 
 | Rol               | Nombre               | Redes                                                                                                                             |
