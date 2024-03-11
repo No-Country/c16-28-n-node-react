@@ -4,18 +4,18 @@ const cloudinary = require('cloudinary').v2;
 //funcion para subir foto 
 async function postImgService(req, res) {
   try {
-    const { description, id_service, id_prov } = req.body;
+    const { description, id_service, id_prov , url} = req.body;
 
     const service = await Service.findByPk(id_service);
     if (!service) {
       return res.status(404).json({ message: "Service not found" });
     }
-
-    const uploadedImg = await cloudinary.uploader.upload(req.file.path);
-    const imgUrl = uploadedImg.secure_url;
+    // const uploadedImg = await cloudinary.uploader.upload(req.file.path);
+    // const imgUrl = uploadedImg.secure_url;
 
     const imgService = await ImgService.create({
-      url: imgUrl,
+      // url: imgUrl || url,
+      url: url,
       description,
       id_service,
       id_prov

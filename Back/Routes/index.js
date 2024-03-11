@@ -28,7 +28,7 @@ function verifyToken(req, res, next) {
 router.use('/reviews', verifyToken, routesReviews);
 router.use('/solicited', verifyToken, routesSolicited);
 router.use('/ProvService', verifyToken, routesProvService);
-router.use('/users', verifyToken, routesUsers);
+router.use('/users', routesUsers);
 router.use('/img',verifyToken , routesImg);
 router.use('/providers',verifyToken, routesProviders);
 
