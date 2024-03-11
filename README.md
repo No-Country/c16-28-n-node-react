@@ -3,7 +3,7 @@
 <p>ServiApp es una aplicación web desarrollada como un MVP en un mes, con el objetivo de conectar personas que necesitan un servicio con personas que lo ofrecen.</p>
 
 ## Screenshots:
-
+<img src="https://res.cloudinary.com/dq9icw8vb/image/upload/v1710197763/icons/ytiiftbyloset9heeibr.png"/>
 
 # Objetivo del proyecto 
 <ul>
